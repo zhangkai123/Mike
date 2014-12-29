@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MKRootViewController.h
 //  Mike
 //
 //  Created by zhang kai on 12/29/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface MKRootViewController : UIViewController
 
 @end
-
