@@ -8,6 +8,8 @@
 
 #import "MKRootViewController.h"
 #import "MKSettingViewController.h"
+#import "MKAddViewController.h"
+#import "MKCommon.h"
 
 @interface MKRootViewController ()
 
@@ -36,7 +38,20 @@
     UIBarButtonItem *customAddBarItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
     self.navigationItem.rightBarButtonItem = customAddBarItem;
     
+    UIView *bottleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 60, 30)];
+ //   bottleView.backgroundColor = [UIColor blueColor];
+    UIImageView *bottleImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bottle"]];
+    bottleImageView.center = CGPointMake(bottleView.center.x - 10, bottleView.center.y);
+    [bottleView addSubview:bottleImageView];
     
+    UILabel *bottleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [bottleLabel setText:@"25"];
+    [bottleLabel setFont:[UIFont systemFontOfSize:15]];
+    [bottleLabel setTextColor:UIColorFromRGB(0xfd6262)];
+    bottleLabel.center = CGPointMake(bottleView.center.x + 15, bottleView.center.y + 2);
+    [bottleView addSubview:bottleLabel];
+    
+    self.navigationItem.titleView = bottleView;
 }
 -(void)goToSetting
 {
@@ -45,7 +60,9 @@
 }
 -(void)addRecord
 {
-    
+    MKAddViewController *addViewController = [[MKAddViewController alloc]init];
+    UINavigationController *navigaitonController = [[UINavigationController alloc]initWithRootViewController:addViewController];
+    [self presentViewController:navigaitonController animated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
