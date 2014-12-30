@@ -116,6 +116,47 @@
         [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
 //        timeLabel.backgroundColor = [UIColor blueColor];
         [cell.contentView addSubview:timeLabel];
+    }else if (indexPath.section == 1){
+        if (indexPath.row == 0) {
+            UILabel *numberStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
+            numberStaticLabel.text = @"总共";
+            [numberStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+            //        timeStaticLabel.backgroundColor = [UIColor blueColor];
+            [cell.contentView addSubview:numberStaticLabel];
+            
+            UILabel *numberLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
+            numberLabel.text = @"200 ml";
+            numberLabel.textAlignment = NSTextAlignmentRight;
+            [numberLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+            //        timeLabel.backgroundColor = [UIColor blueColor];
+            [cell.contentView addSubview:numberLabel];
+        }else{
+            UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
+            noteStaticLabel.text = @"备注";
+            [noteStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+            //        timeStaticLabel.backgroundColor = [UIColor blueColor];
+            [cell.contentView addSubview:noteStaticLabel];
+            
+            UILabel *noteLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
+            noteLabel.text = @"比上午略少";
+            noteLabel.textAlignment = NSTextAlignmentRight;
+            [noteLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+            //        timeLabel.backgroundColor = [UIColor blueColor];
+            [cell.contentView addSubview:noteLabel];
+        }
+    }else{
+        UILabel *nextStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
+        nextStaticLabel.text = @"下次";
+        [nextStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+        //        timeStaticLabel.backgroundColor = [UIColor blueColor];
+        [cell.contentView addSubview:nextStaticLabel];
+        
+        UILabel *nextLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
+        nextLabel.text = @"2小时30分钟后提醒";
+        nextLabel.textAlignment = NSTextAlignmentRight;
+        [nextLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+        //        timeLabel.backgroundColor = [UIColor blueColor];
+        [cell.contentView addSubview:nextLabel];
     }
     return cell;
 }
