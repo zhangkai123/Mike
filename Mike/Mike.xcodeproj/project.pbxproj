@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4BC06A211A5252D700D62B3C /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1C1A5252D700D62B3C /* share@2x.png */; };
+		4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1D1A5252D700D62B3C /* bottle@2x.png */; };
+		4BC06A231A5252D700D62B3C /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1E1A5252D700D62B3C /* more@2x.png */; };
+		4BC06A241A5252D700D62B3C /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1F1A5252D700D62B3C /* add@2x.png */; };
+		4BC06A251A5252D700D62B3C /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A201A5252D700D62B3C /* setting@2x.png */; };
+		4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC06A271A52756600D62B3C /* MKSettingViewController.m */; };
 		4BCF0CAE1A50F95900A2FF5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF0CAD1A50F95900A2FF5D /* main.m */; };
 		4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF0CB01A50F95900A2FF5D /* AppDelegate.m */; };
 		4BCF0CB91A50F95900A2FF5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BCF0CB81A50F95900A2FF5D /* Images.xcassets */; };
@@ -25,6 +31,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4BC06A1C1A5252D700D62B3C /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
+		4BC06A1D1A5252D700D62B3C /* bottle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottle@2x.png"; sourceTree = "<group>"; };
+		4BC06A1E1A5252D700D62B3C /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
+		4BC06A1F1A5252D700D62B3C /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
+		4BC06A201A5252D700D62B3C /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
+		4BC06A261A52756600D62B3C /* MKSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSettingViewController.h; sourceTree = "<group>"; };
+		4BC06A271A52756600D62B3C /* MKSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSettingViewController.m; sourceTree = "<group>"; };
 		4BCF0CA81A50F95900A2FF5D /* Mike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BCF0CAC1A50F95900A2FF5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BCF0CAD1A50F95900A2FF5D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -56,6 +69,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BC06A1B1A5252B300D62B3C /* images */ = {
+			isa = PBXGroup;
+			children = (
+				4BC06A1C1A5252D700D62B3C /* share@2x.png */,
+				4BC06A1D1A5252D700D62B3C /* bottle@2x.png */,
+				4BC06A1E1A5252D700D62B3C /* more@2x.png */,
+				4BC06A1F1A5252D700D62B3C /* add@2x.png */,
+				4BC06A201A5252D700D62B3C /* setting@2x.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		4BCF0C9F1A50F95900A2FF5D = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +108,8 @@
 				4BCF0CAB1A50F95900A2FF5D /* Supporting Files */,
 				4BD18F991A51046200CC0F4D /* MKRootViewController.h */,
 				4BD18F9A1A51046200CC0F4D /* MKRootViewController.m */,
+				4BC06A261A52756600D62B3C /* MKSettingViewController.h */,
+				4BC06A271A52756600D62B3C /* MKSettingViewController.m */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -90,6 +117,7 @@
 		4BCF0CAB1A50F95900A2FF5D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BC06A1B1A5252B300D62B3C /* images */,
 				4BCF0CAC1A50F95900A2FF5D /* Info.plist */,
 				4BCF0CAD1A50F95900A2FF5D /* main.m */,
 			);
@@ -193,7 +221,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BC06A241A5252D700D62B3C /* add@2x.png in Resources */,
+				4BC06A211A5252D700D62B3C /* share@2x.png in Resources */,
 				4BCF0CB91A50F95900A2FF5D /* Images.xcassets in Resources */,
+				4BC06A251A5252D700D62B3C /* setting@2x.png in Resources */,
+				4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */,
+				4BC06A231A5252D700D62B3C /* more@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */,
+				4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */,
 				4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */,
 				4BCF0CAE1A50F95900A2FF5D /* main.m in Sources */,
 			);
