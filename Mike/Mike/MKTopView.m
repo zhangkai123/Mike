@@ -1,0 +1,68 @@
+//
+//  MKTopView.m
+//  Mike
+//
+//  Created by zhang kai on 12/31/14.
+//  Copyright (c) 2014 zhang kai. All rights reserved.
+//
+
+#import "MKTopView.h"
+#import "MKCommon.h"
+
+@implementation MKTopView
+@synthesize todayNumberLabel , totalNumberLabel;
+
+-(id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        
+        self.backgroundColor = UIColorFromRGB(0xffaeca);
+        
+        UILabel *todayLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, 42, self.frame.size.height)];
+        todayLabel.text = @"今日";
+//        todayLabel.backgroundColor = [UIColor blueColor];
+        [todayLabel setFont:[UIFont boldSystemFontOfSize:14]];
+        [todayLabel setTextColor:[UIColor whiteColor]];
+        todayLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:todayLabel];
+        
+        self.todayNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(52, 0, 80, self.frame.size.height)];
+        self.todayNumberLabel.text = @"380 ml";
+        [self.todayNumberLabel setFont:[UIFont boldSystemFontOfSize:17]];
+        [self.todayNumberLabel setTextColor:[UIColor whiteColor]];
+        [self addSubview:self.todayNumberLabel];
+        
+        UILabel *totalLabel = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth/2 + 33 , 0, 42, self.frame.size.height)];
+        totalLabel.text = @"全部";
+        //        totalLabel.backgroundColor = [UIColor blueColor];
+        [totalLabel setFont:[UIFont boldSystemFontOfSize:14]];
+        [totalLabel setTextColor:[UIColor whiteColor]];
+        totalLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:totalLabel];
+        
+        self.totalNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth/2 + 75, 0, 80, self.frame.size.height)];
+        self.totalNumberLabel.text = @"21000 ml";
+        [self.totalNumberLabel setFont:[UIFont boldSystemFontOfSize:17]];
+        [self.totalNumberLabel setTextColor:[UIColor whiteColor]];
+        [self addSubview:self.totalNumberLabel];
+        
+        UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2 - 23, self.frame.size.height - 23, 46, 46)];
+        [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+        [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:shareButton];
+    }
+    return self;
+}
+-(void)shareNumber
+{
+    
+}
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
+}
+*/
+
+@end

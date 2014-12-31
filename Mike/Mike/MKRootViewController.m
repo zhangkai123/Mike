@@ -9,6 +9,7 @@
 #import "MKRootViewController.h"
 #import "MKSettingViewController.h"
 #import "MKAddViewController.h"
+#import "MKTopView.h"
 #import "MKCommon.h"
 
 @interface MKRootViewController ()
@@ -19,6 +20,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    NSArray *ver = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+//    if ([[ver objectAtIndex:0] intValue] >= 7) {
+//        // iOS 7.0 or later
+//        self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+//        self.navigationController.navigationBar.translucent = NO;
+//    }else {
+//        // iOS 6.1 or earlier
+//        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+//    }
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    
+    [navigationBar setBackgroundImage:[UIImage imageNamed:@"NavigationBarBackground"]
+                       forBarPosition:UIBarPositionAny
+                           barMetrics:UIBarMetricsDefault];
+    [navigationBar setShadowImage:[UIImage new]];
+    
     // Do any additional setup after loading the view.
     UIImage *settingButtonImage = [UIImage imageNamed:@"setting"];
     UIButton *settingButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -50,8 +67,10 @@
     [bottleLabel setTextColor:UIColorFromRGB(0xfd6262)];
     bottleLabel.center = CGPointMake(bottleView.center.x + 15, bottleView.center.y + 2);
     [bottleView addSubview:bottleLabel];
-    
     self.navigationItem.titleView = bottleView;
+    
+    MKTopView *topView = [[MKTopView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 49)];
+    [self.view addSubview:topView];
 }
 -(void)goToSetting
 {
