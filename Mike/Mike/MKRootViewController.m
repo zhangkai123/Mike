@@ -11,6 +11,7 @@
 #import "MKAddViewController.h"
 #import "MKTopView.h"
 #import "MKCommon.h"
+#import "MKChartView.h"
 
 @interface MKRootViewController ()
 
@@ -71,6 +72,9 @@
     
     MKTopView *topView = [[MKTopView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 49)];
     [self.view addSubview:topView];
+    
+    MKChartView *chartView = [[MKChartView alloc]initWithFrame:CGRectMake(0, 49, self.view.frame.size.width, 216)];
+    [self.view addSubview:chartView];
 }
 -(void)goToSetting
 {

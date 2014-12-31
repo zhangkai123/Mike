@@ -21,6 +21,10 @@
 		4BCF0CB91A50F95900A2FF5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BCF0CB81A50F95900A2FF5D /* Images.xcassets */; };
 		4BCF0CC81A50F95A00A2FF5D /* MikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF0CC71A50F95A00A2FF5D /* MikeTests.m */; };
 		4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD18F9A1A51046200CC0F4D /* MKRootViewController.m */; };
+		4BE59E111A53C738004CF8D9 /* MKChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E101A53C738004CF8D9 /* MKChartView.m */; };
+		4BE59E141A53CD35004CF8D9 /* MKChartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */; };
+		4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */; };
+		4BE59E181A53D3F2004CF8D9 /* chart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E161A53D3F2004CF8D9 /* chart@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +62,12 @@
 		4BCF0CC71A50F95A00A2FF5D /* MikeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MikeTests.m; sourceTree = "<group>"; };
 		4BD18F991A51046200CC0F4D /* MKRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRootViewController.h; sourceTree = "<group>"; };
 		4BD18F9A1A51046200CC0F4D /* MKRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRootViewController.m; sourceTree = "<group>"; };
+		4BE59E0F1A53C738004CF8D9 /* MKChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKChartView.h; sourceTree = "<group>"; };
+		4BE59E101A53C738004CF8D9 /* MKChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKChartView.m; sourceTree = "<group>"; };
+		4BE59E121A53CD35004CF8D9 /* MKChartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKChartTableViewCell.h; sourceTree = "<group>"; };
+		4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKChartTableViewCell.m; sourceTree = "<group>"; };
+		4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "奶量条前景.png"; sourceTree = "<group>"; };
+		4BE59E161A53D3F2004CF8D9 /* chart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +91,8 @@
 		4BC06A1B1A5252B300D62B3C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */,
+				4BE59E161A53D3F2004CF8D9 /* chart@2x.png */,
 				4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */,
 				4BC06A1C1A5252D700D62B3C /* share@2x.png */,
 				4BC06A1D1A5252D700D62B3C /* bottle@2x.png */,
@@ -125,6 +137,10 @@
 				4BC06A2B1A527FF600D62B3C /* MKAddViewController.m */,
 				4B5782E21A53A0C20085BEAE /* MKTopView.h */,
 				4B5782E31A53A0C20085BEAE /* MKTopView.m */,
+				4BE59E0F1A53C738004CF8D9 /* MKChartView.h */,
+				4BE59E101A53C738004CF8D9 /* MKChartView.m */,
+				4BE59E121A53CD35004CF8D9 /* MKChartTableViewCell.h */,
+				4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -240,8 +256,10 @@
 				4BC06A241A5252D700D62B3C /* add@2x.png in Resources */,
 				4BC06A211A5252D700D62B3C /* share@2x.png in Resources */,
 				4BCF0CB91A50F95900A2FF5D /* Images.xcassets in Resources */,
+				4BE59E181A53D3F2004CF8D9 /* chart@2x.png in Resources */,
 				4BC06A251A5252D700D62B3C /* setting@2x.png in Resources */,
 				4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */,
+				4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */,
 				4BC06A231A5252D700D62B3C /* more@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +284,8 @@
 				4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */,
 				4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */,
 				4BCF0CAE1A50F95900A2FF5D /* main.m in Sources */,
+				4BE59E141A53CD35004CF8D9 /* MKChartTableViewCell.m in Sources */,
+				4BE59E111A53C738004CF8D9 /* MKChartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
