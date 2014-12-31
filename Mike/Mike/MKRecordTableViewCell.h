@@ -10,4 +10,7 @@
 
 @interface MKRecordTableViewCell : UITableViewCell
 
+@property(nonatomic,strong) UILabel *timeLabel;
+@property(nonatomic,strong) UILabel *numberLabel;
+@property(nonatomic,strong) UILabel *noteLabel;
 @end
