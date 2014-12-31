@@ -1,5 +1,5 @@
 //
-//  MKRecordsView.h
+//  MKRecordTableViewCell.h
 //  Mike
 //
 //  Created by zhang kai on 12/31/14.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MKRecordsView : UIView<UITableViewDelegate,UITableViewDataSource>
-{
-    UITableView *recordsTableView;
-}
+@interface MKRecordTableViewCell : UITableViewCell
+
 @end

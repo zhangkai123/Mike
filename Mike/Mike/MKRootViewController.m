@@ -12,6 +12,7 @@
 #import "MKTopView.h"
 #import "MKCommon.h"
 #import "MKChartView.h"
+#import "MKRecordsView.h"
 
 @interface MKRootViewController ()
 
@@ -80,6 +81,10 @@
     [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shareButton];
+    
+    float recordsViewY = chartView.frame.size.height + chartView.frame.origin.y;
+    MKRecordsView *recordsView = [[MKRecordsView alloc]initWithFrame:CGRectMake(0, recordsViewY, ScreenWidth, ScreenHeight- recordsViewY - 64)];
+    [self.view addSubview:recordsView];
 }
 -(void)goToSetting
 {

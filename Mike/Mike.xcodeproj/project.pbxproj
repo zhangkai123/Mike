@@ -26,6 +26,7 @@
 		4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */; };
 		4BE59E181A53D3F2004CF8D9 /* chart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E161A53D3F2004CF8D9 /* chart@2x.png */; };
 		4BE59E1B1A53E3D6004CF8D9 /* MKRecordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */; };
+		4BE59E1E1A53F342004CF8D9 /* MKRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		4BE59E161A53D3F2004CF8D9 /* chart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart@2x.png"; sourceTree = "<group>"; };
 		4BE59E191A53E3D6004CF8D9 /* MKRecordsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordsView.h; sourceTree = "<group>"; };
 		4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecordsView.m; sourceTree = "<group>"; };
+		4BE59E1C1A53F342004CF8D9 /* MKRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordTableViewCell.h; sourceTree = "<group>"; };
+		4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecordTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,8 @@
 				4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */,
 				4BE59E191A53E3D6004CF8D9 /* MKRecordsView.h */,
 				4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */,
+				4BE59E1C1A53F342004CF8D9 /* MKRecordTableViewCell.h */,
+				4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */,
 				4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */,
 				4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */,
+				4BE59E1E1A53F342004CF8D9 /* MKRecordTableViewCell.m in Sources */,
 				4BCF0CAE1A50F95900A2FF5D /* main.m in Sources */,
 				4BE59E141A53CD35004CF8D9 /* MKChartTableViewCell.m in Sources */,
 				4BE59E111A53C738004CF8D9 /* MKChartView.m in Sources */,
