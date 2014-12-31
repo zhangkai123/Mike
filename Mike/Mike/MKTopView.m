@@ -45,17 +45,8 @@
         [self.totalNumberLabel setFont:[UIFont boldSystemFontOfSize:17]];
         [self.totalNumberLabel setTextColor:[UIColor whiteColor]];
         [self addSubview:self.totalNumberLabel];
-        
-        UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2 - 23, self.frame.size.height - 23, 46, 46)];
-        [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
-        [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:shareButton];
     }
     return self;
-}
--(void)shareNumber
-{
-    
 }
 /*
 // Only override drawRect: if you perform custom drawing.

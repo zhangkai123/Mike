@@ -25,6 +25,7 @@
 		4BE59E141A53CD35004CF8D9 /* MKChartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */; };
 		4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */; };
 		4BE59E181A53D3F2004CF8D9 /* chart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E161A53D3F2004CF8D9 /* chart@2x.png */; };
+		4BE59E1B1A53E3D6004CF8D9 /* MKRecordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,8 @@
 		4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKChartTableViewCell.m; sourceTree = "<group>"; };
 		4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "奶量条前景.png"; sourceTree = "<group>"; };
 		4BE59E161A53D3F2004CF8D9 /* chart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart@2x.png"; sourceTree = "<group>"; };
+		4BE59E191A53E3D6004CF8D9 /* MKRecordsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordsView.h; sourceTree = "<group>"; };
+		4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecordsView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 				4BE59E101A53C738004CF8D9 /* MKChartView.m */,
 				4BE59E121A53CD35004CF8D9 /* MKChartTableViewCell.h */,
 				4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */,
+				4BE59E191A53E3D6004CF8D9 /* MKRecordsView.h */,
+				4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */,
+				4BE59E1B1A53E3D6004CF8D9 /* MKRecordsView.m in Sources */,
 				4BC06A2C1A527FF600D62B3C /* MKAddViewController.m in Sources */,
 				4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */,
 				4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */,

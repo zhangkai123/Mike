@@ -75,6 +75,11 @@
     
     MKChartView *chartView = [[MKChartView alloc]initWithFrame:CGRectMake(0, 49, self.view.frame.size.width, 216)];
     [self.view addSubview:chartView];
+    
+    UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2 - 23, topView.frame.size.height - 25, 46, 46)];
+    [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:shareButton];
 }
 -(void)goToSetting
 {
@@ -86,6 +91,10 @@
     MKAddViewController *addViewController = [[MKAddViewController alloc]init];
     UINavigationController *navigaitonController = [[UINavigationController alloc]initWithRootViewController:addViewController];
     [self presentViewController:navigaitonController animated:YES completion:nil];
+}
+-(void)shareNumber
+{
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
