@@ -18,6 +18,14 @@
 		4BCF0CB91A50F95900A2FF5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BCF0CB81A50F95900A2FF5D /* Images.xcassets */; };
 		4BCF0CC81A50F95A00A2FF5D /* MikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF0CC71A50F95A00A2FF5D /* MikeTests.m */; };
 		4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD18F9A1A51046200CC0F4D /* MKRootViewController.m */; };
+		E2815C4C1A5938A000916F43 /* 打分鼓励，给个评价！.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */; };
+		E2815C4D1A5938A000916F43 /* 导出数据.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C451A5938A000916F43 /* 导出数据.png */; };
+		E2815C4E1A5938A000916F43 /* 关于我们.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C461A5938A000916F43 /* 关于我们.png */; };
+		E2815C4F1A5938A000916F43 /* 商务合作.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C471A5938A000916F43 /* 商务合作.png */; };
+		E2815C501A5938A000916F43 /* 提醒设置.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C481A5938A000916F43 /* 提醒设置.png */; };
+		E2815C511A5938A000916F43 /* 推荐给朋友.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C491A5938A000916F43 /* 推荐给朋友.png */; };
+		E2815C521A5938A000916F43 /* 意见反馈.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4A1A5938A000916F43 /* 意见反馈.png */; };
+		E2815C531A5938A000916F43 /* 应用推荐.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4B1A5938A000916F43 /* 应用推荐.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +57,14 @@
 		4BCF0CC71A50F95A00A2FF5D /* MikeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MikeTests.m; sourceTree = "<group>"; };
 		4BD18F991A51046200CC0F4D /* MKRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRootViewController.h; sourceTree = "<group>"; };
 		4BD18F9A1A51046200CC0F4D /* MKRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRootViewController.m; sourceTree = "<group>"; };
+		E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "打分鼓励，给个评价！.png"; sourceTree = "<group>"; };
+		E2815C451A5938A000916F43 /* 导出数据.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "导出数据.png"; sourceTree = "<group>"; };
+		E2815C461A5938A000916F43 /* 关于我们.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关于我们.png"; sourceTree = "<group>"; };
+		E2815C471A5938A000916F43 /* 商务合作.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "商务合作.png"; sourceTree = "<group>"; };
+		E2815C481A5938A000916F43 /* 提醒设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提醒设置.png"; sourceTree = "<group>"; };
+		E2815C491A5938A000916F43 /* 推荐给朋友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "推荐给朋友.png"; sourceTree = "<group>"; };
+		E2815C4A1A5938A000916F43 /* 意见反馈.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "意见反馈.png"; sourceTree = "<group>"; };
+		E2815C4B1A5938A000916F43 /* 应用推荐.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "应用推荐.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +88,14 @@
 		4BC06A1B1A5252B300D62B3C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */,
+				E2815C451A5938A000916F43 /* 导出数据.png */,
+				E2815C461A5938A000916F43 /* 关于我们.png */,
+				E2815C471A5938A000916F43 /* 商务合作.png */,
+				E2815C481A5938A000916F43 /* 提醒设置.png */,
+				E2815C491A5938A000916F43 /* 推荐给朋友.png */,
+				E2815C4A1A5938A000916F43 /* 意见反馈.png */,
+				E2815C4B1A5938A000916F43 /* 应用推荐.png */,
 				4BC06A1C1A5252D700D62B3C /* share@2x.png */,
 				4BC06A1D1A5252D700D62B3C /* bottle@2x.png */,
 				4BC06A1E1A5252D700D62B3C /* more@2x.png */,
@@ -222,11 +246,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC06A241A5252D700D62B3C /* add@2x.png in Resources */,
+				E2815C531A5938A000916F43 /* 应用推荐.png in Resources */,
+				E2815C521A5938A000916F43 /* 意见反馈.png in Resources */,
 				4BC06A211A5252D700D62B3C /* share@2x.png in Resources */,
+				E2815C4C1A5938A000916F43 /* 打分鼓励，给个评价！.png in Resources */,
 				4BCF0CB91A50F95900A2FF5D /* Images.xcassets in Resources */,
+				E2815C4E1A5938A000916F43 /* 关于我们.png in Resources */,
 				4BC06A251A5252D700D62B3C /* setting@2x.png in Resources */,
+				E2815C4F1A5938A000916F43 /* 商务合作.png in Resources */,
 				4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */,
+				E2815C501A5938A000916F43 /* 提醒设置.png in Resources */,
 				4BC06A231A5252D700D62B3C /* more@2x.png in Resources */,
+				E2815C4D1A5938A000916F43 /* 导出数据.png in Resources */,
+				E2815C511A5938A000916F43 /* 推荐给朋友.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
