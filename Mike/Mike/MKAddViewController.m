@@ -59,7 +59,12 @@
 }
 -(void)save
 {
-    [[MKDataController sharedDataController]insertRecord:timeLabel.text milkNum:[numberField.text floatValue] note:noteField.text];
+    NSString *dateTime = timeLabel.text;
+    NSArray *dateTimeArray = [dateTime componentsSeparatedByString:@" "];
+    NSString *dateStr = [dateTimeArray objectAtIndex:0];
+    NSString *timeStr = [dateTimeArray objectAtIndex:1];
+    [[MKDataController sharedDataController]updateDates:dateStr];
+    [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteField.text];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 

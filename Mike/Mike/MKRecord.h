@@ -10,7 +10,8 @@
 
 @interface MKRecord : NSObject
 
-@property(nonatomic,strong) NSString *dateTime;
+@property(nonatomic,strong) NSString *date;
+@property(nonatomic,strong) NSString *time;
 @property(nonatomic,assign) float milkNum;
 @property(nonatomic,strong) NSString *noteStr;
 @end

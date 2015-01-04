@@ -11,6 +11,8 @@
 @interface MKDataController : NSObject
 
 +(id)sharedDataController;
--(void)insertRecord:(NSString *)dateTime milkNum:(float)milkNumber note:(NSString *)noteStr;
+-(void)updateDates:(NSString *)theDate;
+-(NSArray *)getDates;
+-(void)insertRecord:(NSString *)theDate recordTime:(NSString *)theTime milkNum:(float)milkNumber note:(NSString *)noteStr;
 -(NSArray *)getRecords;
 @end

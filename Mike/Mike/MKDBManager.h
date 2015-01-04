@@ -15,6 +15,8 @@
     NSString		*databasePath;
 }
 +(id)sharedDBManager;
+-(void)insertDate:(NSString *)recordDate;
+-(NSArray *)getDates;
 -(void)insertRecord:(MKRecord *)record;
 -(NSArray *)getRecords;
 @end
