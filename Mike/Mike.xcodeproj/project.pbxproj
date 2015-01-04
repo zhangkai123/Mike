@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4B040BD31A5939A200DF859F /* MKDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B040BD21A5939A100DF859F /* MKDataController.m */; };
-		4B040BD51A593FB100DF859F /* MKDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B040BD41A593FB100DF859F /* MKDataBase.sqlite */; };
 		4B040BD81A59468000DF859F /* MKDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B040BD71A59468000DF859F /* MKDBManager.m */; };
 		4B040BDA1A59474400DF859F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B040BD91A59474400DF859F /* libsqlite3.dylib */; };
 		4B040BDD1A59482100DF859F /* MKRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B040BDC1A59482100DF859F /* MKRecord.m */; };
 		4B5782E11A539DB80085BEAE /* NavigationBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */; };
 		4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5782E31A53A0C20085BEAE /* MKTopView.m */; };
+		4B99A82F1A59555100B88311 /* MKDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B99A82E1A59555100B88311 /* MKDataBase.sqlite */; };
 		4BC06A211A5252D700D62B3C /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1C1A5252D700D62B3C /* share@2x.png */; };
 		4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1D1A5252D700D62B3C /* bottle@2x.png */; };
 		4BC06A231A5252D700D62B3C /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1E1A5252D700D62B3C /* more@2x.png */; };
@@ -47,7 +47,6 @@
 /* Begin PBXFileReference section */
 		4B040BD11A5939A100DF859F /* MKDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDataController.h; sourceTree = "<group>"; };
 		4B040BD21A5939A100DF859F /* MKDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDataController.m; sourceTree = "<group>"; };
-		4B040BD41A593FB100DF859F /* MKDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MKDataBase.sqlite; sourceTree = "<group>"; };
 		4B040BD61A59468000DF859F /* MKDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDBManager.h; sourceTree = "<group>"; };
 		4B040BD71A59468000DF859F /* MKDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDBManager.m; sourceTree = "<group>"; };
 		4B040BD91A59474400DF859F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -56,6 +55,7 @@
 		4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBarBackground.png; sourceTree = "<group>"; };
 		4B5782E21A53A0C20085BEAE /* MKTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTopView.h; sourceTree = "<group>"; };
 		4B5782E31A53A0C20085BEAE /* MKTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTopView.m; sourceTree = "<group>"; };
+		4B99A82E1A59555100B88311 /* MKDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MKDataBase.sqlite; sourceTree = "<group>"; };
 		4BC06A1C1A5252D700D62B3C /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		4BC06A1D1A5252D700D62B3C /* bottle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottle@2x.png"; sourceTree = "<group>"; };
 		4BC06A1E1A5252D700D62B3C /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		4BCF0CAB1A50F95900A2FF5D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4B040BD41A593FB100DF859F /* MKDataBase.sqlite */,
+				4B99A82E1A59555100B88311 /* MKDataBase.sqlite */,
 				4BC06A1B1A5252B300D62B3C /* images */,
 				4BCF0CAC1A50F95900A2FF5D /* Info.plist */,
 				4BCF0CAD1A50F95900A2FF5D /* main.m */,
@@ -284,7 +284,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B040BD51A593FB100DF859F /* MKDataBase.sqlite in Resources */,
+				4B99A82F1A59555100B88311 /* MKDataBase.sqlite in Resources */,
 				4B5782E11A539DB80085BEAE /* NavigationBarBackground.png in Resources */,
 				4BC06A241A5252D700D62B3C /* add@2x.png in Resources */,
 				4BC06A211A5252D700D62B3C /* share@2x.png in Resources */,

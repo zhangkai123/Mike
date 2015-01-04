@@ -9,6 +9,7 @@
 #import "MKRecordsView.h"
 #import "MKRecordTableViewCell.h"
 #import "MKCommon.h"
+#import "MKDataController.h"
 
 @implementation MKRecordsView
 

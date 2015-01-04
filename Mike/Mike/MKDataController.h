@@ -10,4 +10,7 @@
 
 @interface MKDataController : NSObject
 
++(id)sharedDataController;
+-(void)insertRecord:(NSString *)dateTime milkNum:(float)milkNumber note:(NSString *)noteStr;
+-(NSArray *)getRecords;
 @end

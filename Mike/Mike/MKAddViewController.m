@@ -8,6 +8,7 @@
 
 #import "MKAddViewController.h"
 #import "MKCommon.h"
+#import "MKDataController.h"
 
 @interface MKAddViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
@@ -58,7 +59,8 @@
 }
 -(void)save
 {
-    
+    [[MKDataController sharedDataController]insertRecord:timeLabel.text milkNum:[numberField.text floatValue] note:noteField.text];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma uitableview delegate and datasource
