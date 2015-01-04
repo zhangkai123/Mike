@@ -9,9 +9,13 @@
 #import "MKAddViewController.h"
 #import "MKCommon.h"
 
-@interface MKAddViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface MKAddViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITableView *theTableView;
+    UIDatePicker *datePicker;
+    UILabel *timeLabel;
+    UITextField* numberField;
+    UITextField* noteField;
 }
 @end
 
@@ -39,6 +43,14 @@
     [theTableView setBackgroundColor:UIColorFromRGB(0xfff1f6)];
     
     [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    datePicker = [[UIDatePicker alloc]init];
+    [datePicker setDate:[NSDate date]];
+    datePicker.center = CGPointMake(160, 450);
+    datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    [datePicker addTarget:self action:@selector(updateDateLable) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:datePicker];
+    datePicker.hidden = YES;
 }
 -(void)cancel
 {
@@ -110,7 +122,7 @@
 //        timeStaticLabel.backgroundColor = [UIColor blueColor];
         [cell.contentView addSubview:timeStaticLabel];
         
-        UILabel *timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
+        timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
         timeLabel.text = @"今天  下午3:20";
         timeLabel.textAlignment = NSTextAlignmentRight;
         [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
@@ -124,12 +136,17 @@
             //        timeStaticLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:numberStaticLabel];
             
-            UILabel *numberLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
-            numberLabel.text = @"200 ml";
-            numberLabel.textAlignment = NSTextAlignmentRight;
-            [numberLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-            //        timeLabel.backgroundColor = [UIColor blueColor];
-            [cell.contentView addSubview:numberLabel];
+            numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 230, 34)];
+            numberField.borderStyle = UITextBorderStyleNone;
+            numberField.font = [UIFont systemFontOfSize:16];
+            numberField.autocorrectionType = UITextAutocorrectionTypeNo;
+            numberField.keyboardType = UIKeyboardTypeNumberPad;
+//            numberField.clearButtonMode = UITextFieldViewModeWhileEditing;
+            numberField.placeholder = @"0ml";
+            numberField.delegate = self;
+            numberField.textColor = UIColorFromRGB(0xd57d9c);
+            numberField.textAlignment = NSTextAlignmentRight;
+            [cell.contentView addSubview:numberField];
         }else{
             UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
             noteStaticLabel.text = @"备注";
@@ -137,12 +154,16 @@
             //        timeStaticLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:noteStaticLabel];
             
-            UILabel *noteLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
-            noteLabel.text = @"比上午略少";
-            noteLabel.textAlignment = NSTextAlignmentRight;
-            [noteLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-            //        timeLabel.backgroundColor = [UIColor blueColor];
-            [cell.contentView addSubview:noteLabel];
+            noteField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 230, 34)];
+            noteField.borderStyle = UITextBorderStyleNone;
+            noteField.font = [UIFont systemFontOfSize:16];
+            noteField.autocorrectionType = UITextAutocorrectionTypeNo;
+            noteField.keyboardType = UIKeyboardTypeDefault;
+//            noteField.clearButtonMode = UITextFieldViewModeWhileEditing;
+            noteField.delegate = self;
+            noteField.textAlignment = NSTextAlignmentRight;
+            noteField.textColor = UIColorFromRGB(0xd57d9c);
+            [cell.contentView addSubview:noteField];
         }
     }else{
         UILabel *nextStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
@@ -162,7 +183,22 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        [self showDatePicker];
+    }
+}
+-(void)showDatePicker
+{
+    datePicker.hidden = NO;
+}
+-(void)updateDateLable
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
     
+    timeLabel.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[datePicker date]]];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
