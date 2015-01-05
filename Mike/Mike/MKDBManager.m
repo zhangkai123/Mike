@@ -149,7 +149,6 @@
         sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
         
         while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
-//            int recordId = sqlite3_column_int(compiledStatement, 0);
             NSString *recordDate = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 1)];
             NSString *recordTime = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 2)];
             float milkNum = sqlite3_column_double(compiledStatement, 3);

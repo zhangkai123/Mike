@@ -9,9 +9,7 @@
 #import "MKRootViewController.h"
 #import "MKSettingViewController.h"
 #import "MKAddViewController.h"
-//#import "MKTopView.h"
 #import "MKCommon.h"
-//#import "MKChartView.h"
 #import "MKMilkViewController.h"
 #import "MKRecordsViewController.h"
 #import "MKDataController.h"
@@ -66,18 +64,7 @@
     bottleLabel.center = CGPointMake(bottleView.center.x + 15, bottleView.center.y + 2);
     [bottleView addSubview:bottleLabel];
     self.navigationItem.titleView = bottleView;
-    
-//    MKTopView *topView = [[MKTopView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 49)];
-//    [self.view addSubview:topView];
-//    
-//    MKChartView *chartView = [[MKChartView alloc]initWithFrame:CGRectMake(0, 49, self.view.frame.size.width, 216)];
-//    [self.view addSubview:chartView];
-//    
-//    UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2 - 23, 49 - 25, 46, 46)];
-//    [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
-//    [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:shareButton];
-    
+        
     milkViewController = [[MKMilkViewController alloc]init];
     [self addChildViewController:milkViewController];
     milkViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, 265);

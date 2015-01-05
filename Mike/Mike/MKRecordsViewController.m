@@ -35,10 +35,6 @@
     recordsTableView.delegate = self;
     recordsTableView.dataSource = self;
     recordsTableView.clipsToBounds = YES;
-    //        likeTableView.pagingEnabled = YES;
-    //        chartTableView.showsVerticalScrollIndicator = NO;
-    //        recordsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    //        recordsTableView.rowHeight = 44;
     [self.view addSubview:recordsTableView];
     
     oldDateFormat = [[NSDateFormatter alloc] init];

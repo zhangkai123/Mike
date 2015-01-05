@@ -22,10 +22,6 @@
     });
     return dataController;
 }
-//-(void)updateDates:(NSString *)theDate
-//{
-//    [[MKDBManager sharedDBManager]insertDate:theDate];
-//}
 -(NSArray *)getDates
 {
      return [[MKDBManager sharedDBManager]getDates];

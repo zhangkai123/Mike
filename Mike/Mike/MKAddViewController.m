@@ -97,14 +97,6 @@
     }
     return sectionRow;
 }
-//- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    if (section == 0) {
-//        return 1.0;
-//    }
-//    
-//    return 1.0;
-//}
 
 - (CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
 {
