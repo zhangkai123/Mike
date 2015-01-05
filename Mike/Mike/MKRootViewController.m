@@ -12,25 +12,21 @@
 #import "MKTopView.h"
 #import "MKCommon.h"
 #import "MKChartView.h"
-#import "MKRecordsView.h"
+//#import "MKRecordsView.h"
+#import "MKRecordsViewController.h"
+#import "MKDataController.h"
 
-@interface MKRootViewController ()
-
+@interface MKRootViewController ()<MKAddViewControllerDelegate>
+{
+//    MKRecordsView *recordsView;
+    MKRecordsViewController *recordsViewController;
+}
 @end
 
 @implementation MKRootViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    NSArray *ver = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
-//    if ([[ver objectAtIndex:0] intValue] >= 7) {
-//        // iOS 7.0 or later
-//        self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
-//        self.navigationController.navigationBar.translucent = NO;
-//    }else {
-//        // iOS 6.1 or earlier
-//        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-//    }
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
     
     [navigationBar setBackgroundImage:[UIImage imageNamed:@"NavigationBarBackground"]
@@ -83,8 +79,23 @@
     [self.view addSubview:shareButton];
     
     float recordsViewY = chartView.frame.size.height + chartView.frame.origin.y;
-    MKRecordsView *recordsView = [[MKRecordsView alloc]initWithFrame:CGRectMake(0, recordsViewY, ScreenWidth, ScreenHeight- recordsViewY - 64)];
-    [self.view addSubview:recordsView];
+//    recordsView = [[MKRecordsView alloc]initWithFrame:CGRectMake(0, recordsViewY, ScreenWidth, ScreenHeight- recordsViewY - 64)];
+//    recordsView.datesArray = [[MKDataController sharedDataController]getDates];
+//    [self.view addSubview:recordsView];
+    
+    recordsViewController = [[MKRecordsViewController alloc]init];
+    recordsViewController.view.frame = CGRectMake(0, recordsViewY, ScreenWidth, ScreenHeight- recordsViewY);
+    [self addChildViewController:recordsViewController];
+    [self.view addSubview:recordsViewController.view];
+    [recordsViewController didMoveToParentViewController:self];
+}
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 -(void)goToSetting
 {
@@ -94,12 +105,21 @@
 -(void)addRecord
 {
     MKAddViewController *addViewController = [[MKAddViewController alloc]init];
+    addViewController.delegate = self;
     UINavigationController *navigaitonController = [[UINavigationController alloc]initWithRootViewController:addViewController];
     [self presentViewController:navigaitonController animated:YES completion:nil];
 }
 -(void)shareNumber
 {
     
+}
+#pragma MKAddViewControllerDelegate
+-(void)finishAddRecord
+{
+//    recordsView.datesArray = [[MKDataController sharedDataController]getDates];
+//    recordsView.recordsArray = [[MKDataController sharedDataController]getRecords];
+//    [recordsView reloadTableView];
+    [recordsViewController reloadTableView];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

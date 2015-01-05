@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 #import "MKRecord.h"
+#import "MKDate.h"
 
 @interface MKDBManager : NSObject
 {
     NSString		*databasePath;
 }
 +(id)sharedDBManager;
--(void)insertDate:(NSString *)recordDate;
 -(NSArray *)getDates;
 -(void)insertRecord:(MKRecord *)record;
 -(NSArray *)getRecords;

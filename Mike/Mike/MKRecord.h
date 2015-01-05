@@ -14,4 +14,5 @@
 @property(nonatomic,strong) NSString *time;
 @property(nonatomic,assign) float milkNum;
 @property(nonatomic,strong) NSString *noteStr;
+@property(nonatomic,strong) NSString *fullDate;
 @end

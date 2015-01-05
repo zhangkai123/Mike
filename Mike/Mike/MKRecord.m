@@ -9,6 +9,6 @@
 #import "MKRecord.h"
 
 @implementation MKRecord
-@synthesize date ,time ,milkNum ,noteStr;
+@synthesize date ,time ,milkNum ,noteStr ,fullDate;
 
 @end

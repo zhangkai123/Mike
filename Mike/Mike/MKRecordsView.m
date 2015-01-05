@@ -9,9 +9,17 @@
 #import "MKRecordsView.h"
 #import "MKRecordTableViewCell.h"
 #import "MKCommon.h"
-#import "MKDataController.h"
+#import "MKRecord.h"
+
+@interface MKRecordsView()
+{
+    NSDateFormatter *oldDateFormat;
+    NSDateFormatter *dateFormatter;
+}
+@end
 
 @implementation MKRecordsView
+@synthesize datesArray ,recordsArray;
 
 -(id)initWithFrame:(CGRect)frame
 {
@@ -26,27 +34,42 @@
 //        recordsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //        recordsTableView.rowHeight = 44;
         [self addSubview:recordsTableView];
+        
+        datesArray = [[NSArray alloc]init];
+        recordsArray = [[NSArray alloc]init];
+        
+        oldDateFormat = [[NSDateFormatter alloc] init];
+        [oldDateFormat setDateFormat:@"yyyy-MM-dd"];
+        
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [dateFormatter setLocale:[NSLocale currentLocale]];
     }
     return self;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[[MKDataController sharedDataController]getDates]count];
+    return [self.datesArray count];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    return [recordsArray count];
 }
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"11月26日";
+    return @"11";
 }
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    NSString *oldDateStr = [self.datesArray objectAtIndex:section];
+    NSDate *myDate =[oldDateFormat dateFromString:oldDateStr];
+    NSString *newDate = [dateFormatter stringFromDate:myDate];
+    
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 29)];
     headerView.backgroundColor = UIColorFromRGB(0xfff1f6);
-    UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 80, 29)];
-    dateLabel.text = @"11月27日";
+    UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 29)];
+    dateLabel.text = newDate;
     dateLabel.textAlignment = NSTextAlignmentCenter;
     [dateLabel setFont:[UIFont boldSystemFontOfSize:12]];
     [dateLabel setTextColor:UIColorFromRGB(0xd57d9c)];
@@ -59,6 +82,14 @@
     if (!cell) {
         cell = [[MKRecordTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    MKRecord *record = [recordsArray objectAtIndex:indexPath.row];
+    cell.timeLabel.text = record.time;
+    cell.numberLabel.text = [NSString stringWithFormat:@"%f",record.milkNum];
+    cell.noteLabel.text = record.noteStr;
     return cell;
+}
+-(void)reloadTableView
+{
+    [recordsTableView reloadData];
 }
 @end

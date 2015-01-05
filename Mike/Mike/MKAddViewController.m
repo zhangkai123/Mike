@@ -17,10 +17,13 @@
     UILabel *timeLabel;
     UITextField* numberField;
     UITextField* noteField;
+    
+    NSDate *theDate;
 }
 @end
 
 @implementation MKAddViewController
+@synthesize delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,13 +62,28 @@
 }
 -(void)save
 {
-    NSString *dateTime = timeLabel.text;
-    NSArray *dateTimeArray = [dateTime componentsSeparatedByString:@" "];
-    NSString *dateStr = [dateTimeArray objectAtIndex:0];
-    NSString *timeStr = [dateTimeArray objectAtIndex:1];
-    [[MKDataController sharedDataController]updateDates:dateStr];
-    [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteField.text];
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+//    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+//    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr = [dateFormatter stringFromDate:theDate];
+    
+    NSDateFormatter *fullDateFormatter = [[NSDateFormatter alloc] init];
+    [fullDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *fullDateStr = [fullDateFormatter stringFromDate:theDate];
+    
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [timeFormatter setDateStyle:NSDateFormatterNoStyle];
+    [timeFormatter setLocale:[NSLocale currentLocale]];
+    NSString *timeStr = [timeFormatter stringFromDate:theDate];
+
+//    [[MKDataController sharedDataController]updateDates:dateStr];
+    [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteField.text fullDate:fullDateStr];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^(void){
+        [self.delegate finishAddRecord];
+    }];
 }
 
 #pragma uitableview delegate and datasource
@@ -205,7 +223,8 @@
     [dateFormatter setDateStyle:NSDateFormatterShortStyle];
     [dateFormatter setLocale:[NSLocale currentLocale]];
     
-    timeLabel.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:[datePicker date]]];
+    theDate = [datePicker date];
+    timeLabel.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:theDate]];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

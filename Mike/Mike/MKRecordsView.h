@@ -12,4 +12,8 @@
 {
     UITableView *recordsTableView;
 }
+@property(nonatomic,strong) NSArray *datesArray;
+@property(nonatomic,strong) NSArray *recordsArray;
+
+-(void)reloadTableView;
 @end

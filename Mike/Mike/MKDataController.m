@@ -22,22 +22,23 @@
     });
     return dataController;
 }
--(void)updateDates:(NSString *)theDate
-{
-    [[MKDBManager sharedDBManager]insertDate:theDate];
-}
+//-(void)updateDates:(NSString *)theDate
+//{
+//    [[MKDBManager sharedDBManager]insertDate:theDate];
+//}
 -(NSArray *)getDates
 {
      return [[MKDBManager sharedDBManager]getDates];
 }
--(void)insertRecord:(NSString *)theDate recordTime:(NSString *)theTime milkNum:(float)milkNumber note:(NSString *)noteStr
+-(void)insertRecord:(NSString *)theDate recordTime:(NSString *)theTime milkNum:(float)milkNumber note:(NSString *)noteStr fullDate:(NSString *)fullD
 {
     MKRecord *record = [[MKRecord alloc]init];
     record.date = theDate;
     record.time = theTime;
     record.milkNum = milkNumber;
     record.noteStr = noteStr;
-
+    record.fullDate = fullD;
+    
     [[MKDBManager sharedDBManager]insertRecord:record];
 }
 -(NSArray *)getRecords

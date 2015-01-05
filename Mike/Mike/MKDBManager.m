@@ -41,7 +41,7 @@
     sqlite3_stmt *compiledStatement;
     
     if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-        NSString *insertCommand = [NSString stringWithFormat:@"insert into MKDate (date,recordsNum) VALUES('%@','%d') " ,recordDate,0];
+        NSString *insertCommand = [NSString stringWithFormat:@"insert into MKDate (date,recordsNum) VALUES('%@','%d') " ,recordDate,1];
         const char *insertSqlCommand = [insertCommand UTF8String];
         if (sqlite3_prepare_v2(database, insertSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
             if (sqlite3_step(compiledStatement) == SQLITE_DONE) {
@@ -60,18 +60,58 @@
     
     NSMutableArray *datesArray = [[NSMutableArray alloc]init];
     if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-        NSString *getCommand = @"select * from MKDate order by id ASC";
+        NSString *getCommand = @"select * from MKDate order by date DESC";
         const char *getSqlCommand = [getCommand UTF8String];
         sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
         
         while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
            
             NSString *recordDate = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 1)];
-            [datesArray addObject:recordDate];
+            int recordsNum = sqlite3_column_int(compiledStatement, 2);
+            MKDate *theDate = [[MKDate alloc]init];
+            theDate.dateStr = recordDate;
+            theDate.recordsNum = recordsNum;
+            [datesArray addObject:theDate];
         }
     }
     sqlite3_close(database);
     return datesArray;
+}
+-(void)updateRecordNumInDatesTable:(NSString *)dateStr recordsCount:(int)recordsC
+{
+    sqlite3 *database;
+    sqlite3_stmt *compiledStatement;
+    
+    if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+        NSString *updateCommand = [NSString stringWithFormat:@"update MKDate set recordsNum = '%d' where date = '%@'",recordsC,dateStr];
+        const char *updateSqlCommand = [updateCommand UTF8String];
+        sqlite3_prepare_v2(database, updateSqlCommand, -1, &compiledStatement, NULL);
+        
+        while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            compiledStatement = nil;
+        }
+    }
+    sqlite3_close(database);
+}
+-(int)getRecordsNumWithDate:(NSString *)dateStr
+{
+    sqlite3 *database;
+    sqlite3_stmt *compiledStatement;
+    int count;
+    
+    if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+        NSString *countCommand = [NSString stringWithFormat:@"SELECT COUNT(*) FROM MKRecord WHERE date = '%@'",dateStr];
+        const char *countCommandSql = [countCommand UTF8String];
+        if (sqlite3_prepare_v2(database, countCommandSql, -1, &compiledStatement, NULL) == SQLITE_OK) {
+            while( sqlite3_step(compiledStatement) == SQLITE_ROW )
+            {
+                count = sqlite3_column_int(compiledStatement, 0);
+            }
+        }
+        
+    }
+    sqlite3_close(database);
+    return count;
 }
 -(void)insertRecord:(MKRecord *)record
 {
@@ -79,13 +119,19 @@
     sqlite3_stmt *compiledStatement;
     
     if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-        NSString *insertCommand = [NSString stringWithFormat:@"insert into MKRecord (date,time,milkNum,note) VALUES('%@','%@','%f','%@')" ,record.date,record.time ,record.milkNum,record.noteStr];
+        NSString *insertCommand = [NSString stringWithFormat:@"insert into MKRecord (date,time,milkNum,note,fullDate) VALUES('%@','%@','%f','%@','%@')" ,record.date,record.time ,record.milkNum,record.noteStr,record.fullDate];
         const char *insertSqlCommand = [insertCommand UTF8String];
         if (sqlite3_prepare_v2(database, insertSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
             if (sqlite3_step(compiledStatement) == SQLITE_DONE) {
                 compiledStatement = nil;
             }
             printf("ok\n");
+            int recordsNum = [self getRecordsNumWithDate:record.date];
+            if (recordsNum == 1) {
+                [self insertDate:record.date];
+            }else{
+                [self updateRecordNumInDatesTable:record.date recordsCount:recordsNum];
+            }
         }
         
     }
@@ -98,7 +144,7 @@
     
     NSMutableArray *recordsArray = [[NSMutableArray alloc]init];
     if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-        NSString *getCommand = @"select * from MKRecord order by id ASC";
+        NSString *getCommand = @"select * from MKRecord order by fullDate DESC";
         const char *getSqlCommand = [getCommand UTF8String];
         sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
         
