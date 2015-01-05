@@ -9,14 +9,16 @@
 #import "MKRootViewController.h"
 #import "MKSettingViewController.h"
 #import "MKAddViewController.h"
-#import "MKTopView.h"
+//#import "MKTopView.h"
 #import "MKCommon.h"
-#import "MKChartView.h"
+//#import "MKChartView.h"
+#import "MKMilkViewController.h"
 #import "MKRecordsViewController.h"
 #import "MKDataController.h"
 
 @interface MKRootViewController ()<MKAddViewControllerDelegate>
 {
+    MKMilkViewController *milkViewController;
     MKRecordsViewController *recordsViewController;
 }
 @end
@@ -65,21 +67,26 @@
     [bottleView addSubview:bottleLabel];
     self.navigationItem.titleView = bottleView;
     
-    MKTopView *topView = [[MKTopView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 49)];
-    [self.view addSubview:topView];
+//    MKTopView *topView = [[MKTopView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 49)];
+//    [self.view addSubview:topView];
+//    
+//    MKChartView *chartView = [[MKChartView alloc]initWithFrame:CGRectMake(0, 49, self.view.frame.size.width, 216)];
+//    [self.view addSubview:chartView];
+//    
+//    UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2 - 23, 49 - 25, 46, 46)];
+//    [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+//    [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:shareButton];
     
-    MKChartView *chartView = [[MKChartView alloc]initWithFrame:CGRectMake(0, 49, self.view.frame.size.width, 216)];
-    [self.view addSubview:chartView];
+    milkViewController = [[MKMilkViewController alloc]init];
+    [self addChildViewController:milkViewController];
+    milkViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, 265);
+    [self.view addSubview:milkViewController.view];
+    [milkViewController didMoveToParentViewController:self];
     
-    UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth/2 - 23, topView.frame.size.height - 25, 46, 46)];
-    [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
-    [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:shareButton];
-    
-    float recordsViewY = chartView.frame.size.height + chartView.frame.origin.y;
     recordsViewController = [[MKRecordsViewController alloc]init];
-    recordsViewController.view.frame = CGRectMake(0, recordsViewY, ScreenWidth, ScreenHeight- recordsViewY);
     [self addChildViewController:recordsViewController];
+    recordsViewController.view.frame = CGRectMake(0, 265, ScreenWidth, ScreenHeight- 265 - 64);
     [self.view addSubview:recordsViewController.view];
     [recordsViewController didMoveToParentViewController:self];
 }
@@ -102,10 +109,6 @@
     addViewController.delegate = self;
     UINavigationController *navigaitonController = [[UINavigationController alloc]initWithRootViewController:addViewController];
     [self presentViewController:navigaitonController animated:YES completion:nil];
-}
--(void)shareNumber
-{
-    
 }
 #pragma MKAddViewControllerDelegate
 -(void)finishAddRecord

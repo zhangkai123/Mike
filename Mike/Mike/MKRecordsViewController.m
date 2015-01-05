@@ -29,6 +29,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor blueColor];
+    self.view.autoresizingMask = UIViewAutoresizingNone;
     
     recordsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, ScreenHeight- 265 - 64)];
     recordsTableView.delegate = self;
