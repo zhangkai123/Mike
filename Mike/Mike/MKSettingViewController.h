@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MKSettingViewController : UIViewController
-
+@interface MKSettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *UITableView1;
+    NSMutableArray *dataArray1;
+    NSMutableArray *dataArray2;
+}
 @end
