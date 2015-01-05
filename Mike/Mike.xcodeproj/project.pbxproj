@@ -7,17 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B040BD31A5939A200DF859F /* MKDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B040BD21A5939A100DF859F /* MKDataController.m */; };
+		4B040BD81A59468000DF859F /* MKDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B040BD71A59468000DF859F /* MKDBManager.m */; };
+		4B040BDA1A59474400DF859F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B040BD91A59474400DF859F /* libsqlite3.dylib */; };
+		4B040BDD1A59482100DF859F /* MKRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B040BDC1A59482100DF859F /* MKRecord.m */; };
+		4B51CA781A598478007EB8B9 /* MKDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B51CA771A598478007EB8B9 /* MKDataBase.sqlite */; };
+		4B5782E11A539DB80085BEAE /* NavigationBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */; };
+		4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5782E31A53A0C20085BEAE /* MKTopView.m */; };
 		4BC06A211A5252D700D62B3C /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1C1A5252D700D62B3C /* share@2x.png */; };
 		4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1D1A5252D700D62B3C /* bottle@2x.png */; };
 		4BC06A231A5252D700D62B3C /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1E1A5252D700D62B3C /* more@2x.png */; };
 		4BC06A241A5252D700D62B3C /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1F1A5252D700D62B3C /* add@2x.png */; };
 		4BC06A251A5252D700D62B3C /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A201A5252D700D62B3C /* setting@2x.png */; };
 		4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC06A271A52756600D62B3C /* MKSettingViewController.m */; };
+		4BC06A2C1A527FF600D62B3C /* MKAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC06A2B1A527FF600D62B3C /* MKAddViewController.m */; };
 		4BCF0CAE1A50F95900A2FF5D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF0CAD1A50F95900A2FF5D /* main.m */; };
 		4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF0CB01A50F95900A2FF5D /* AppDelegate.m */; };
 		4BCF0CB91A50F95900A2FF5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BCF0CB81A50F95900A2FF5D /* Images.xcassets */; };
 		4BCF0CC81A50F95A00A2FF5D /* MikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF0CC71A50F95A00A2FF5D /* MikeTests.m */; };
 		4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD18F9A1A51046200CC0F4D /* MKRootViewController.m */; };
+<<<<<<< HEAD
 		E2815C4C1A5938A000916F43 /* 打分鼓励，给个评价！.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */; };
 		E2815C4D1A5938A000916F43 /* 导出数据.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C451A5938A000916F43 /* 导出数据.png */; };
 		E2815C4E1A5938A000916F43 /* 关于我们.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C461A5938A000916F43 /* 关于我们.png */; };
@@ -26,6 +35,14 @@
 		E2815C511A5938A000916F43 /* 推荐给朋友.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C491A5938A000916F43 /* 推荐给朋友.png */; };
 		E2815C521A5938A000916F43 /* 意见反馈.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4A1A5938A000916F43 /* 意见反馈.png */; };
 		E2815C531A5938A000916F43 /* 应用推荐.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4B1A5938A000916F43 /* 应用推荐.png */; };
+=======
+		4BE59E111A53C738004CF8D9 /* MKChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E101A53C738004CF8D9 /* MKChartView.m */; };
+		4BE59E141A53CD35004CF8D9 /* MKChartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */; };
+		4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */; };
+		4BE59E181A53D3F2004CF8D9 /* chart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E161A53D3F2004CF8D9 /* chart@2x.png */; };
+		4BE59E1B1A53E3D6004CF8D9 /* MKRecordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */; };
+		4BE59E1E1A53F342004CF8D9 /* MKRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */; };
+>>>>>>> FETCH_HEAD
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +56,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B040BD11A5939A100DF859F /* MKDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDataController.h; sourceTree = "<group>"; };
+		4B040BD21A5939A100DF859F /* MKDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDataController.m; sourceTree = "<group>"; };
+		4B040BD61A59468000DF859F /* MKDBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDBManager.h; sourceTree = "<group>"; };
+		4B040BD71A59468000DF859F /* MKDBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDBManager.m; sourceTree = "<group>"; };
+		4B040BD91A59474400DF859F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		4B040BDB1A59482100DF859F /* MKRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecord.h; sourceTree = "<group>"; };
+		4B040BDC1A59482100DF859F /* MKRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecord.m; sourceTree = "<group>"; };
+		4B51CA771A598478007EB8B9 /* MKDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MKDataBase.sqlite; sourceTree = "<group>"; };
+		4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBarBackground.png; sourceTree = "<group>"; };
+		4B5782E21A53A0C20085BEAE /* MKTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTopView.h; sourceTree = "<group>"; };
+		4B5782E31A53A0C20085BEAE /* MKTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTopView.m; sourceTree = "<group>"; };
 		4BC06A1C1A5252D700D62B3C /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		4BC06A1D1A5252D700D62B3C /* bottle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottle@2x.png"; sourceTree = "<group>"; };
 		4BC06A1E1A5252D700D62B3C /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
@@ -46,6 +74,9 @@
 		4BC06A201A5252D700D62B3C /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
 		4BC06A261A52756600D62B3C /* MKSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSettingViewController.h; sourceTree = "<group>"; };
 		4BC06A271A52756600D62B3C /* MKSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSettingViewController.m; sourceTree = "<group>"; };
+		4BC06A291A527E2D00D62B3C /* MKCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCommon.h; sourceTree = "<group>"; };
+		4BC06A2A1A527FF600D62B3C /* MKAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAddViewController.h; sourceTree = "<group>"; };
+		4BC06A2B1A527FF600D62B3C /* MKAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAddViewController.m; sourceTree = "<group>"; };
 		4BCF0CA81A50F95900A2FF5D /* Mike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BCF0CAC1A50F95900A2FF5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BCF0CAD1A50F95900A2FF5D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -57,6 +88,7 @@
 		4BCF0CC71A50F95A00A2FF5D /* MikeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MikeTests.m; sourceTree = "<group>"; };
 		4BD18F991A51046200CC0F4D /* MKRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRootViewController.h; sourceTree = "<group>"; };
 		4BD18F9A1A51046200CC0F4D /* MKRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRootViewController.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "打分鼓励，给个评价！.png"; sourceTree = "<group>"; };
 		E2815C451A5938A000916F43 /* 导出数据.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "导出数据.png"; sourceTree = "<group>"; };
 		E2815C461A5938A000916F43 /* 关于我们.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关于我们.png"; sourceTree = "<group>"; };
@@ -65,6 +97,18 @@
 		E2815C491A5938A000916F43 /* 推荐给朋友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "推荐给朋友.png"; sourceTree = "<group>"; };
 		E2815C4A1A5938A000916F43 /* 意见反馈.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "意见反馈.png"; sourceTree = "<group>"; };
 		E2815C4B1A5938A000916F43 /* 应用推荐.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "应用推荐.png"; sourceTree = "<group>"; };
+=======
+		4BE59E0F1A53C738004CF8D9 /* MKChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKChartView.h; sourceTree = "<group>"; };
+		4BE59E101A53C738004CF8D9 /* MKChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKChartView.m; sourceTree = "<group>"; };
+		4BE59E121A53CD35004CF8D9 /* MKChartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKChartTableViewCell.h; sourceTree = "<group>"; };
+		4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKChartTableViewCell.m; sourceTree = "<group>"; };
+		4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "奶量条前景.png"; sourceTree = "<group>"; };
+		4BE59E161A53D3F2004CF8D9 /* chart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart@2x.png"; sourceTree = "<group>"; };
+		4BE59E191A53E3D6004CF8D9 /* MKRecordsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordsView.h; sourceTree = "<group>"; };
+		4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecordsView.m; sourceTree = "<group>"; };
+		4BE59E1C1A53F342004CF8D9 /* MKRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordTableViewCell.h; sourceTree = "<group>"; };
+		4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecordTableViewCell.m; sourceTree = "<group>"; };
+>>>>>>> FETCH_HEAD
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B040BDA1A59474400DF859F /* libsqlite3.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +133,7 @@
 		4BC06A1B1A5252B300D62B3C /* images */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */,
 				E2815C451A5938A000916F43 /* 导出数据.png */,
 				E2815C461A5938A000916F43 /* 关于我们.png */,
@@ -96,6 +142,11 @@
 				E2815C491A5938A000916F43 /* 推荐给朋友.png */,
 				E2815C4A1A5938A000916F43 /* 意见反馈.png */,
 				E2815C4B1A5938A000916F43 /* 应用推荐.png */,
+=======
+				4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */,
+				4BE59E161A53D3F2004CF8D9 /* chart@2x.png */,
+				4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */,
+>>>>>>> FETCH_HEAD
 				4BC06A1C1A5252D700D62B3C /* share@2x.png */,
 				4BC06A1D1A5252D700D62B3C /* bottle@2x.png */,
 				4BC06A1E1A5252D700D62B3C /* more@2x.png */,
@@ -108,6 +159,7 @@
 		4BCF0C9F1A50F95900A2FF5D = {
 			isa = PBXGroup;
 			children = (
+				4B040BD91A59474400DF859F /* libsqlite3.dylib */,
 				4BCF0CAA1A50F95900A2FF5D /* Mike */,
 				4BCF0CC41A50F95A00A2FF5D /* MikeTests */,
 				4BCF0CA91A50F95900A2FF5D /* Products */,
@@ -126,6 +178,7 @@
 		4BCF0CAA1A50F95900A2FF5D /* Mike */ = {
 			isa = PBXGroup;
 			children = (
+				4BC06A291A527E2D00D62B3C /* MKCommon.h */,
 				4BCF0CAF1A50F95900A2FF5D /* AppDelegate.h */,
 				4BCF0CB01A50F95900A2FF5D /* AppDelegate.m */,
 				4BCF0CB81A50F95900A2FF5D /* Images.xcassets */,
@@ -134,6 +187,24 @@
 				4BD18F9A1A51046200CC0F4D /* MKRootViewController.m */,
 				4BC06A261A52756600D62B3C /* MKSettingViewController.h */,
 				4BC06A271A52756600D62B3C /* MKSettingViewController.m */,
+				4BC06A2A1A527FF600D62B3C /* MKAddViewController.h */,
+				4BC06A2B1A527FF600D62B3C /* MKAddViewController.m */,
+				4B5782E21A53A0C20085BEAE /* MKTopView.h */,
+				4B5782E31A53A0C20085BEAE /* MKTopView.m */,
+				4BE59E0F1A53C738004CF8D9 /* MKChartView.h */,
+				4BE59E101A53C738004CF8D9 /* MKChartView.m */,
+				4BE59E121A53CD35004CF8D9 /* MKChartTableViewCell.h */,
+				4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */,
+				4BE59E191A53E3D6004CF8D9 /* MKRecordsView.h */,
+				4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */,
+				4BE59E1C1A53F342004CF8D9 /* MKRecordTableViewCell.h */,
+				4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */,
+				4B040BD11A5939A100DF859F /* MKDataController.h */,
+				4B040BD21A5939A100DF859F /* MKDataController.m */,
+				4B040BD61A59468000DF859F /* MKDBManager.h */,
+				4B040BD71A59468000DF859F /* MKDBManager.m */,
+				4B040BDB1A59482100DF859F /* MKRecord.h */,
+				4B040BDC1A59482100DF859F /* MKRecord.m */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -141,6 +212,7 @@
 		4BCF0CAB1A50F95900A2FF5D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4B51CA771A598478007EB8B9 /* MKDataBase.sqlite */,
 				4BC06A1B1A5252B300D62B3C /* images */,
 				4BCF0CAC1A50F95900A2FF5D /* Info.plist */,
 				4BCF0CAD1A50F95900A2FF5D /* main.m */,
@@ -245,17 +317,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B51CA781A598478007EB8B9 /* MKDataBase.sqlite in Resources */,
+				4B5782E11A539DB80085BEAE /* NavigationBarBackground.png in Resources */,
 				4BC06A241A5252D700D62B3C /* add@2x.png in Resources */,
 				E2815C531A5938A000916F43 /* 应用推荐.png in Resources */,
 				E2815C521A5938A000916F43 /* 意见反馈.png in Resources */,
 				4BC06A211A5252D700D62B3C /* share@2x.png in Resources */,
 				E2815C4C1A5938A000916F43 /* 打分鼓励，给个评价！.png in Resources */,
 				4BCF0CB91A50F95900A2FF5D /* Images.xcassets in Resources */,
+<<<<<<< HEAD
 				E2815C4E1A5938A000916F43 /* 关于我们.png in Resources */,
+=======
+				4BE59E181A53D3F2004CF8D9 /* chart@2x.png in Resources */,
+>>>>>>> FETCH_HEAD
 				4BC06A251A5252D700D62B3C /* setting@2x.png in Resources */,
 				E2815C4F1A5938A000916F43 /* 商务合作.png in Resources */,
 				4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */,
+<<<<<<< HEAD
 				E2815C501A5938A000916F43 /* 提醒设置.png in Resources */,
+=======
+				4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */,
+>>>>>>> FETCH_HEAD
 				4BC06A231A5252D700D62B3C /* more@2x.png in Resources */,
 				E2815C4D1A5938A000916F43 /* 导出数据.png in Resources */,
 				E2815C511A5938A000916F43 /* 推荐给朋友.png in Resources */,
@@ -277,9 +359,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */,
+				4BE59E1B1A53E3D6004CF8D9 /* MKRecordsView.m in Sources */,
+				4BC06A2C1A527FF600D62B3C /* MKAddViewController.m in Sources */,
 				4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */,
 				4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */,
+				4B040BD81A59468000DF859F /* MKDBManager.m in Sources */,
+				4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */,
+				4BE59E1E1A53F342004CF8D9 /* MKRecordTableViewCell.m in Sources */,
 				4BCF0CAE1A50F95900A2FF5D /* main.m in Sources */,
+				4B040BD31A5939A200DF859F /* MKDataController.m in Sources */,
+				4B040BDD1A59482100DF859F /* MKRecord.m in Sources */,
+				4BE59E141A53CD35004CF8D9 /* MKChartTableViewCell.m in Sources */,
+				4BE59E111A53C738004CF8D9 /* MKChartView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

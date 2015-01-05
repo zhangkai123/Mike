@@ -33,6 +33,15 @@
     
     UITableView1.backgroundColor=bgColor;
     UITableView1.sectionFooterHeight=0;
+//    UITableView1.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
+    if ([UITableView1 respondsToSelector:@selector(setSeparatorInset:)]) {
+        [UITableView1 setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([UITableView1 respondsToSelector:@selector(setLayoutMargins:)]) {
+        [UITableView1 setLayoutMargins:UIEdgeInsetsZero];
+    }
     
     UIBarButtonItem* btnBack=[[UIBarButtonItem alloc] initWithTitle:@"< 返回" style:UIBarButtonItemStylePlain target:self action:@selector(backRootView)];
     self.navigationItem.leftBarButtonItem=btnBack;
@@ -96,7 +105,7 @@
     switch (indexPath.section) {
     　　case 0://对应各自的分区
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            
+
             cell.textLabel.text=[dataArray1 objectAtIndex:indexPath.row];//给cell添加数据
     　　　　break;
     　　case 1:
