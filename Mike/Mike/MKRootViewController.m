@@ -12,13 +12,11 @@
 #import "MKTopView.h"
 #import "MKCommon.h"
 #import "MKChartView.h"
-//#import "MKRecordsView.h"
 #import "MKRecordsViewController.h"
 #import "MKDataController.h"
 
 @interface MKRootViewController ()<MKAddViewControllerDelegate>
 {
-//    MKRecordsView *recordsView;
     MKRecordsViewController *recordsViewController;
 }
 @end
@@ -79,10 +77,6 @@
     [self.view addSubview:shareButton];
     
     float recordsViewY = chartView.frame.size.height + chartView.frame.origin.y;
-//    recordsView = [[MKRecordsView alloc]initWithFrame:CGRectMake(0, recordsViewY, ScreenWidth, ScreenHeight- recordsViewY - 64)];
-//    recordsView.datesArray = [[MKDataController sharedDataController]getDates];
-//    [self.view addSubview:recordsView];
-    
     recordsViewController = [[MKRecordsViewController alloc]init];
     recordsViewController.view.frame = CGRectMake(0, recordsViewY, ScreenWidth, ScreenHeight- recordsViewY);
     [self addChildViewController:recordsViewController];
@@ -116,9 +110,6 @@
 #pragma MKAddViewControllerDelegate
 -(void)finishAddRecord
 {
-//    recordsView.datesArray = [[MKDataController sharedDataController]getDates];
-//    recordsView.recordsArray = [[MKDataController sharedDataController]getRecords];
-//    [recordsView reloadTableView];
     [recordsViewController reloadTableView];
 }
 - (void)didReceiveMemoryWarning {

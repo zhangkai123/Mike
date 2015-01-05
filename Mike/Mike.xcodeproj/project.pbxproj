@@ -32,7 +32,6 @@
 		4BE59E141A53CD35004CF8D9 /* MKChartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */; };
 		4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */; };
 		4BE59E181A53D3F2004CF8D9 /* chart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E161A53D3F2004CF8D9 /* chart@2x.png */; };
-		4BE59E1B1A53E3D6004CF8D9 /* MKRecordsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */; };
 		4BE59E1E1A53F342004CF8D9 /* MKRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */; };
 		E2109BF91A5A43220031119C /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = E2109BF81A5A43220031119C /* back.png */; };
 		E2815C4C1A5938A000916F43 /* 打分鼓励，给个评价！.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */; };
@@ -98,8 +97,6 @@
 		4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKChartTableViewCell.m; sourceTree = "<group>"; };
 		4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "奶量条前景.png"; sourceTree = "<group>"; };
 		4BE59E161A53D3F2004CF8D9 /* chart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chart@2x.png"; sourceTree = "<group>"; };
-		4BE59E191A53E3D6004CF8D9 /* MKRecordsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordsView.h; sourceTree = "<group>"; };
-		4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecordsView.m; sourceTree = "<group>"; };
 		4BE59E1C1A53F342004CF8D9 /* MKRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordTableViewCell.h; sourceTree = "<group>"; };
 		4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecordTableViewCell.m; sourceTree = "<group>"; };
 		E2109BF81A5A43220031119C /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -132,6 +129,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B374D9B1A5A75B90026CFF4 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				4B040BDB1A59482100DF859F /* MKRecord.h */,
+				4B040BDC1A59482100DF859F /* MKRecord.m */,
+				4B374D891A5A60AE0026CFF4 /* MKDate.h */,
+				4B374D8A1A5A60AE0026CFF4 /* MKDate.m */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
+		4B374D9C1A5A75D40026CFF4 /* DataController */ = {
+			isa = PBXGroup;
+			children = (
+				4B040BD11A5939A100DF859F /* MKDataController.h */,
+				4B040BD21A5939A100DF859F /* MKDataController.m */,
+				4B040BD61A59468000DF859F /* MKDBManager.h */,
+				4B040BD71A59468000DF859F /* MKDBManager.m */,
+			);
+			name = DataController;
+			sourceTree = "<group>";
+		};
+		4B374D9D1A5A75F20026CFF4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4B5782E21A53A0C20085BEAE /* MKTopView.h */,
+				4B5782E31A53A0C20085BEAE /* MKTopView.m */,
+				4BE59E0F1A53C738004CF8D9 /* MKChartView.h */,
+				4BE59E101A53C738004CF8D9 /* MKChartView.m */,
+				4BE59E121A53CD35004CF8D9 /* MKChartTableViewCell.h */,
+				4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */,
+				4BE59E1C1A53F342004CF8D9 /* MKRecordTableViewCell.h */,
+				4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		4BC06A1B1A5252B300D62B3C /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +212,9 @@
 		4BCF0CAA1A50F95900A2FF5D /* Mike */ = {
 			isa = PBXGroup;
 			children = (
+				4B374D9D1A5A75F20026CFF4 /* Views */,
+				4B374D9C1A5A75D40026CFF4 /* DataController */,
+				4B374D9B1A5A75B90026CFF4 /* DataModel */,
 				4BC06A291A527E2D00D62B3C /* MKCommon.h */,
 				4BCF0CAF1A50F95900A2FF5D /* AppDelegate.h */,
 				4BCF0CB01A50F95900A2FF5D /* AppDelegate.m */,
@@ -189,24 +226,6 @@
 				4BC06A271A52756600D62B3C /* MKSettingViewController.m */,
 				4BC06A2A1A527FF600D62B3C /* MKAddViewController.h */,
 				4BC06A2B1A527FF600D62B3C /* MKAddViewController.m */,
-				4B5782E21A53A0C20085BEAE /* MKTopView.h */,
-				4B5782E31A53A0C20085BEAE /* MKTopView.m */,
-				4BE59E0F1A53C738004CF8D9 /* MKChartView.h */,
-				4BE59E101A53C738004CF8D9 /* MKChartView.m */,
-				4BE59E121A53CD35004CF8D9 /* MKChartTableViewCell.h */,
-				4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */,
-				4BE59E191A53E3D6004CF8D9 /* MKRecordsView.h */,
-				4BE59E1A1A53E3D6004CF8D9 /* MKRecordsView.m */,
-				4BE59E1C1A53F342004CF8D9 /* MKRecordTableViewCell.h */,
-				4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */,
-				4B040BD11A5939A100DF859F /* MKDataController.h */,
-				4B040BD21A5939A100DF859F /* MKDataController.m */,
-				4B040BD61A59468000DF859F /* MKDBManager.h */,
-				4B040BD71A59468000DF859F /* MKDBManager.m */,
-				4B040BDB1A59482100DF859F /* MKRecord.h */,
-				4B040BDC1A59482100DF859F /* MKRecord.m */,
-				4B374D891A5A60AE0026CFF4 /* MKDate.h */,
-				4B374D8A1A5A60AE0026CFF4 /* MKDate.m */,
 				4B374D8C1A5A629B0026CFF4 /* MKRecordsViewController.h */,
 				4B374D8D1A5A629B0026CFF4 /* MKRecordsViewController.m */,
 			);
@@ -358,7 +377,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */,
-				4BE59E1B1A53E3D6004CF8D9 /* MKRecordsView.m in Sources */,
 				4BC06A2C1A527FF600D62B3C /* MKAddViewController.m in Sources */,
 				4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */,
 				4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */,

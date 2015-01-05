@@ -63,9 +63,6 @@
 -(void)save
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-//    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-//    [dateFormatter setLocale:[NSLocale currentLocale]];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateStr = [dateFormatter stringFromDate:theDate];
     
@@ -74,12 +71,9 @@
     NSString *fullDateStr = [fullDateFormatter stringFromDate:theDate];
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setTimeStyle:NSDateFormatterShortStyle];
-    [timeFormatter setDateStyle:NSDateFormatterNoStyle];
-    [timeFormatter setLocale:[NSLocale currentLocale]];
+    [timeFormatter setDateFormat:@"HH:mm"];
     NSString *timeStr = [timeFormatter stringFromDate:theDate];
 
-//    [[MKDataController sharedDataController]updateDates:dateStr];
     [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteField.text fullDate:fullDateStr];
     [self.navigationController dismissViewControllerAnimated:YES completion:^(void){
         [self.delegate finishAddRecord];
