@@ -7,7 +7,7 @@
 //
 
 #import "MKSettingViewController.h"
-
+#import "MKCommon.h"
 @interface MKSettingViewController()
 {
     UIColor* bgColor;
@@ -20,6 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //设置导航栏的背景为白色
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"NavigationBarBackground"]
+                       forBarPosition:UIBarPositionAny
+                           barMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
     bgColor=[UIColor colorWithRed:(float)(255/255.0f)green:(float)(241 / 255.0f) blue:(float)(246 / 255.0f)alpha:1.0f];
     textColor=[UIColor colorWithRed:(float)(219/255.0f)green:(float)(142 / 255.0f) blue:(float)(169 / 255.0f)alpha:1.0f];
     
@@ -33,31 +39,43 @@
     
     UITableView1.backgroundColor=bgColor;
     UITableView1.sectionFooterHeight=0;
-//    UITableView1.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    UITableView1.separatorStyle = UITableViewCellSeparatorStyleNone;//隐藏分割线
+    UITableView1.showsHorizontalScrollIndicator = NO;
+    UITableView1.showsVerticalScrollIndicator = NO;
     
-    if ([UITableView1 respondsToSelector:@selector(setSeparatorInset:)]) {
-        [UITableView1 setSeparatorInset:UIEdgeInsetsZero];
-    }
-    
-    if ([UITableView1 respondsToSelector:@selector(setLayoutMargins:)]) {
-        [UITableView1 setLayoutMargins:UIEdgeInsetsZero];
-    }
-    
-    UIBarButtonItem* btnBack=[[UIBarButtonItem alloc] initWithTitle:@"< 返回" style:UIBarButtonItemStylePlain target:self action:@selector(backRootView)];
-    self.navigationItem.leftBarButtonItem=btnBack;
-    btnBack.tintColor=textColor;
-    [btnBack setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:12.0f], UITextAttributeFont,nil] forState:UIControlStateNormal];
+//    if ([UITableView1 respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [UITableView1 setSeparatorInset:UIEdgeInsetsZero];
+//    }
 
+//    if ([UITableView1 respondsToSelector:@selector(setLayoutMargins:)]) {
+//        [UITableView1 setLayoutMargins:UIEdgeInsetsMake(0, -50, 0, 0)];//
+//    }
+    
+    UIImage *backButtonImage = [UIImage imageNamed:@"back.png"];
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [backButton setImage:backButtonImage forState:UIControlStateNormal];
+    backButton.frame = CGRectMake(0, 0, backButtonImage.size.width/2, backButtonImage.size.height/2);
+    [backButton addTarget:self action:@selector(backToRootView) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    
+//    UIImageView *backImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"back.png"]];
+    
+//    UIBarButtonItem* btnBack=[[UIBarButtonItem alloc] initWithCustomView:backImageView];
+//    self.navigationItem.leftBarButtonItem=btnBack;
+//    self.navigationItem.leftBarButtonItem.action=@selector(backToRootView);
+//    btnBack.tintColor=textColor;
+//    [btnBack setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:12.0f], UITextAttributeFont,nil] forState:UIControlStateNormal];
+    
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.text = @"设置";
     titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    titleLabel.font = [UIFont boldSystemFontOfSize:18];
     titleLabel.textColor = textColor;
     self.navigationItem.titleView = titleLabel;
     [titleLabel sizeToFit];
 }
--(void)backRootView
+-(void)backToRootView
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -94,19 +112,20 @@
 }
 //绘制Cell
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    //    声明静态字符串型对象，用来标记重用单元格
-    static NSString *TableSampleIdentifier = @"TableSampleIdentifier";
-    //    用TableSampleIdentifier表示需要重用的单元
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableSampleIdentifier];
-    //    如果如果没有多余单元，则需要创建新的单元
-    if (cell == nil)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:TableSampleIdentifier];
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell)
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+
     switch (indexPath.section) {
     　　case 0://对应各自的分区
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            {
+                UIImageView *IndicatorImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"more@2x.png"]];
+                IndicatorImageView.center = CGPointMake(cell.center.x*1.85, cell.center.y);
+                [cell.contentView addSubview:IndicatorImageView];
 
-            cell.textLabel.text=[dataArray1 objectAtIndex:indexPath.row];//给cell添加数据
+                cell.textLabel.text=[dataArray1 objectAtIndex:indexPath.row];//给cell添加数据
+            }
     　　　　break;
     　　case 1:
             cell.textLabel.text=[dataArray2 objectAtIndex:indexPath.row];//给cell添加数据
@@ -124,10 +143,22 @@
     cell.imageView.image=[UIImage imageNamed:str ];
     cell.imageView.contentMode = UIViewContentModeScaleToFill;
     cell.imageView.transform=CGAffineTransformMakeScale(0.5,0.5);
+
+    if (indexPath.row == 0) {
+        UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, -1, 320, 1)];
+        topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
+        [cell.contentView addSubview:topLineView];
+    }
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.frame.size.height, 320, 1)];
+    lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
+    [cell.contentView addSubview:lineView];
     
     return cell;
 }
-
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
