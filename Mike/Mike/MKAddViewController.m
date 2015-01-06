@@ -19,6 +19,7 @@
     UITextField* noteField;
     
     NSDate *theDate;
+    NSDateFormatter *labelDateFormatter;
 }
 @end
 
@@ -55,6 +56,12 @@
     [datePicker addTarget:self action:@selector(updateDateLable) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:datePicker];
     datePicker.hidden = YES;
+    
+    labelDateFormatter = [[NSDateFormatter alloc] init];
+    [labelDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [labelDateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [labelDateFormatter setLocale:[NSLocale currentLocale]];
+    labelDateFormatter.doesRelativeDateFormatting = YES;
 }
 -(void)cancel
 {
@@ -62,6 +69,9 @@
 }
 -(void)save
 {
+    if (theDate == nil) {
+        theDate = [NSDate date];
+    }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateStr = [dateFormatter stringFromDate:theDate];
@@ -134,7 +144,7 @@
         [cell.contentView addSubview:timeStaticLabel];
         
         timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
-        timeLabel.text = @"今天  下午3:20";
+        timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:[NSDate date]]];
         timeLabel.textAlignment = NSTextAlignmentRight;
         [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
 //        timeLabel.backgroundColor = [UIColor blueColor];
@@ -204,13 +214,13 @@
 }
 -(void)updateDateLable
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-    [dateFormatter setLocale:[NSLocale currentLocale]];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+//    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+//    [dateFormatter setLocale:[NSLocale currentLocale]];
     
     theDate = [datePicker date];
-    timeLabel.text = [NSString stringWithFormat:@"%@",[dateFormatter stringFromDate:theDate]];
+    timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:theDate]];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
