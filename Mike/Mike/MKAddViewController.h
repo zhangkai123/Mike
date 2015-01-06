@@ -8,15 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol MKAddViewControllerDelegate <NSObject>
-
--(void)finishAddRecord;
-
-@end
-
 @interface MKAddViewController : UIViewController
-{
-    __unsafe_unretained id<MKAddViewControllerDelegate> delegate;
-}
-@property(nonatomic,unsafe_unretained) id<MKAddViewControllerDelegate> delegate;
 @end

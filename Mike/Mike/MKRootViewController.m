@@ -14,11 +14,7 @@
 #import "MKRecordsViewController.h"
 #import "MKDataController.h"
 
-@interface MKRootViewController ()<MKAddViewControllerDelegate>
-{
-    MKMilkViewController *milkViewController;
-    MKRecordsViewController *recordsViewController;
-}
+@interface MKRootViewController ()
 @end
 
 @implementation MKRootViewController
@@ -65,13 +61,13 @@
     [bottleView addSubview:bottleLabel];
     self.navigationItem.titleView = bottleView;
         
-    milkViewController = [[MKMilkViewController alloc]init];
+    MKMilkViewController *milkViewController = [[MKMilkViewController alloc]init];
     [self addChildViewController:milkViewController];
     milkViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, 265);
     [self.view addSubview:milkViewController.view];
     [milkViewController didMoveToParentViewController:self];
     
-    recordsViewController = [[MKRecordsViewController alloc]init];
+    MKRecordsViewController *recordsViewController = [[MKRecordsViewController alloc]init];
     [self addChildViewController:recordsViewController];
     recordsViewController.view.frame = CGRectMake(0, 265, ScreenWidth, ScreenHeight- 265 - 64);
     [self.view addSubview:recordsViewController.view];
@@ -93,14 +89,8 @@
 -(void)addRecord
 {
     MKAddViewController *addViewController = [[MKAddViewController alloc]init];
-    addViewController.delegate = self;
     UINavigationController *navigaitonController = [[UINavigationController alloc]initWithRootViewController:addViewController];
     [self presentViewController:navigaitonController animated:YES completion:nil];
-}
-#pragma MKAddViewControllerDelegate
--(void)finishAddRecord
-{
-    [recordsViewController reloadTableView];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

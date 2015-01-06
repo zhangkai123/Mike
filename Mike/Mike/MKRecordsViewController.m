@@ -24,7 +24,10 @@
 @end
 
 @implementation MKRecordsViewController
-
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -49,6 +52,8 @@
     recordsArray = [[NSArray alloc]init];
     datesArray = [[MKDataController sharedDataController]getDates];
     recordsArray = [[MKDataController sharedDataController]getRecords];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

@@ -12,5 +12,4 @@
 {
     UITableView *recordsTableView;
 }
--(void)reloadTableView;
 @end

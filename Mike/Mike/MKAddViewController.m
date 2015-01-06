@@ -24,7 +24,7 @@
 @end
 
 @implementation MKAddViewController
-@synthesize delegate;
+//@synthesize delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -86,7 +86,7 @@
 
     [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteField.text fullDate:fullDateStr];
     [self.navigationController dismissViewControllerAnimated:YES completion:^(void){
-        [self.delegate finishAddRecord];
+        [[NSNotificationCenter defaultCenter]postNotificationName:Mike_ADD_RECORD_NOTIFICATION object:nil];
     }];
 }
 
@@ -213,12 +213,7 @@
     datePicker.hidden = NO;
 }
 -(void)updateDateLable
-{
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-//    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-//    [dateFormatter setLocale:[NSLocale currentLocale]];
-    
+{    
     theDate = [datePicker date];
     timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:theDate]];
 }

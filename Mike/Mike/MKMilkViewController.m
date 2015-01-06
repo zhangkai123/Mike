@@ -15,6 +15,7 @@
 @interface MKMilkViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *chartTableView;
+    MKTopView *topView;
 }
 @end
 
@@ -26,16 +27,9 @@
 //    self.view.backgroundColor = [UIColor yellowColor];
     self.view.autoresizingMask = UIViewAutoresizingNone;
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *dateStr = [dateFormatter stringFromDate:[NSDate date]];
-    float todayNum = [[MKDataController sharedDataController]getTodayNumber:dateStr];
-    float totalNum = [[MKDataController sharedDataController]getTotalNumber];
-    
-    MKTopView *topView = [[MKTopView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 49)];
-    topView.todayNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)todayNum];
-    topView.totalNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)totalNum];
+    topView = [[MKTopView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 49)];
     [self.view addSubview:topView];
+    [self loadTopviewData];
     
     chartTableView = [[UITableView alloc]initWithFrame:CGRectZero];
     chartTableView.delegate = self;
@@ -55,6 +49,19 @@
     [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shareButton];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loadTopviewData) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
+}
+-(void)loadTopviewData
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr = [dateFormatter stringFromDate:[NSDate date]];
+    float todayNum = [[MKDataController sharedDataController]getTodayNumber:dateStr];
+    float totalNum = [[MKDataController sharedDataController]getTotalNumber];
+
+    topView.todayNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)todayNum];
+    topView.totalNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)totalNum];
 }
 -(void)shareNumber
 {
