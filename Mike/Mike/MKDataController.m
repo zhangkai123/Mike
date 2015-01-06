@@ -41,4 +41,12 @@
 {
     return [[MKDBManager sharedDBManager]getRecords];
 }
+-(float)getTodayNumber:(NSString *)dateStr
+{
+    return [[MKDBManager sharedDBManager]getTodayNumber:dateStr];
+}
+-(float)getTotalNumber
+{
+    return [[MKDBManager sharedDBManager]getTotalNumber];
+}
 @end

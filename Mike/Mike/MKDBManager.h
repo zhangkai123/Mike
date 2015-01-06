@@ -19,4 +19,6 @@
 -(NSArray *)getDates;
 -(void)insertRecord:(MKRecord *)record;
 -(NSArray *)getRecords;
+-(float)getTodayNumber:(NSString *)dateStr;
+-(float)getTotalNumber;
 @end

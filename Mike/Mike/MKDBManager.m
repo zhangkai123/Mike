@@ -35,13 +35,51 @@
     }
     return self;
 }
--(void)insertDate:(NSString *)recordDate
+-(float)getTodayNumber:(NSString *)dateStr
+{
+    sqlite3 *database;
+    sqlite3_stmt *compiledStatement;
+    
+    float todayNum = 0;
+    if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+        NSString *getCommand = [NSString stringWithFormat: @"select * from MKDate where date = '%@'",dateStr];
+        const char *getSqlCommand = [getCommand UTF8String];
+        sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
+        
+        while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            
+            todayNum = sqlite3_column_double(compiledStatement, 3);
+        }
+    }
+    sqlite3_close(database);
+    return todayNum;
+}
+-(float)getTotalNumber
+{
+    sqlite3 *database;
+    sqlite3_stmt *compiledStatement;
+    
+    float totalNum = 0;
+    if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+        NSString *getCommand = @"SELECT sum(milkNum) FROM MKDate";
+        const char *getSqlCommand = [getCommand UTF8String];
+        sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
+        
+        while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            
+            totalNum = sqlite3_column_double(compiledStatement, 0);
+        }
+    }
+    sqlite3_close(database);
+    return totalNum;
+}
+-(void)insertDate:(NSString *)recordDate milkNumber:(float)milkNum
 {
     sqlite3 *database;
     sqlite3_stmt *compiledStatement;
     
     if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-        NSString *insertCommand = [NSString stringWithFormat:@"insert into MKDate (date,recordsNum) VALUES('%@','%d') " ,recordDate,1];
+        NSString *insertCommand = [NSString stringWithFormat:@"insert into MKDate (date,recordsNum,milkNum) VALUES('%@','%d','%f') " ,recordDate,1,milkNum];
         const char *insertSqlCommand = [insertCommand UTF8String];
         if (sqlite3_prepare_v2(database, insertSqlCommand, -1, &compiledStatement, NULL) == SQLITE_OK) {
             if (sqlite3_step(compiledStatement) == SQLITE_DONE) {
@@ -77,13 +115,13 @@
     sqlite3_close(database);
     return datesArray;
 }
--(void)updateRecordNumInDatesTable:(NSString *)dateStr recordsCount:(int)recordsC
+-(void)updateDate:(NSString *)dateStr date:(MKDate *)theDate
 {
     sqlite3 *database;
     sqlite3_stmt *compiledStatement;
     
     if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-        NSString *updateCommand = [NSString stringWithFormat:@"update MKDate set recordsNum = '%d' where date = '%@'",recordsC,dateStr];
+        NSString *updateCommand = [NSString stringWithFormat:@"update MKDate set recordsNum = '%d',milkNum = '%f' where date = '%@'",theDate.recordsNum,theDate.milkNum,dateStr];
         const char *updateSqlCommand = [updateCommand UTF8String];
         sqlite3_prepare_v2(database, updateSqlCommand, -1, &compiledStatement, NULL);
         
@@ -93,25 +131,27 @@
     }
     sqlite3_close(database);
 }
--(int)getRecordsNumWithDate:(NSString *)dateStr
+-(MKDate *)getDateFromRecordsWithTime:(NSString *)dateStr
 {
     sqlite3 *database;
     sqlite3_stmt *compiledStatement;
-    int count;
+    MKDate *theDate = nil;
     
     if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-        NSString *countCommand = [NSString stringWithFormat:@"SELECT COUNT(*) FROM MKRecord WHERE date = '%@'",dateStr];
+        NSString *countCommand = [NSString stringWithFormat:@"SELECT COUNT(*),sum(milkNum) FROM MKRecord WHERE date = '%@'",dateStr];
         const char *countCommandSql = [countCommand UTF8String];
         if (sqlite3_prepare_v2(database, countCommandSql, -1, &compiledStatement, NULL) == SQLITE_OK) {
             while( sqlite3_step(compiledStatement) == SQLITE_ROW )
             {
-                count = sqlite3_column_int(compiledStatement, 0);
+                theDate = [[MKDate alloc]init];
+                theDate.recordsNum = sqlite3_column_int(compiledStatement, 0);
+                theDate.milkNum = sqlite3_column_double(compiledStatement, 1);
             }
         }
         
     }
     sqlite3_close(database);
-    return count;
+    return theDate;
 }
 -(void)insertRecord:(MKRecord *)record
 {
@@ -126,11 +166,11 @@
                 compiledStatement = nil;
             }
             printf("ok\n");
-            int recordsNum = [self getRecordsNumWithDate:record.date];
-            if (recordsNum == 1) {
-                [self insertDate:record.date];
+            MKDate *theDate = [self getDateFromRecordsWithTime:record.date];
+            if (theDate.recordsNum == 1) {
+                [self insertDate:record.date milkNumber:record.milkNum];
             }else{
-                [self updateRecordNumInDatesTable:record.date recordsCount:recordsNum];
+                [self updateDate:record.date date:theDate];
             }
         }
         
