@@ -11,11 +11,17 @@
 #import "MKCommon.h"
 #import "MKChartTableViewCell.h"
 #import "MKDataController.h"
+#import "MKDate.h"
 
 @interface MKMilkViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *chartTableView;
     MKTopView *topView;
+    
+    NSMutableArray *datesArray;
+    NSDateFormatter *dateFormatter;
+    NSDateFormatter *weekDayFormatter;
+    NSDateFormatter *monthDayFormatter;
 }
 @end
 
@@ -26,6 +32,16 @@
     // Do any additional setup after loading the view.
 //    self.view.backgroundColor = [UIColor yellowColor];
     self.view.autoresizingMask = UIViewAutoresizingNone;
+    
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    weekDayFormatter = [[NSDateFormatter alloc]init];
+    [weekDayFormatter setLocale:[NSLocale currentLocale]];
+    weekDayFormatter.dateFormat=@"EEE";
+    monthDayFormatter = [[NSDateFormatter alloc] init];
+    [monthDayFormatter setTimeStyle:NSDateFormatterNoStyle];
+    [monthDayFormatter setDateStyle:NSDateFormatterShortStyle];
+    [monthDayFormatter setLocale:[NSLocale currentLocale]];
     
     topView = [[MKTopView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 49)];
     [self.view addSubview:topView];
@@ -50,12 +66,13 @@
     [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shareButton];
     
+    NSArray *datesA = [[MKDataController sharedDataController]getDates];
+    datesArray = [NSMutableArray arrayWithArray:datesA];
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loadTopviewData) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
 }
 -(void)loadTopviewData
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateStr = [dateFormatter stringFromDate:[NSDate date]];
     float todayNum = [[MKDataController sharedDataController]getTodayNumber:dateStr];
     float totalNum = [[MKDataController sharedDataController]getTotalNumber];
@@ -69,7 +86,7 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 14;
+    return [datesArray count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -77,9 +94,31 @@
     if (!cell) {
         cell = [[MKChartTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    MKDate *theDate = [datesArray objectAtIndex:indexPath.row];
     cell.transform = CGAffineTransformMakeRotation(M_PI_2);
+    cell.numberLabel.text = [NSString stringWithFormat:@"%d",(int)theDate.milkNum];
+    
+    NSDate *originDate = [dateFormatter dateFromString:theDate.dateStr];
+    cell.dayLabel.text = [self getWeekDayFromDate:originDate];
+    cell.dateLabel.text = [self getMonthDayFromDate:originDate];
     return cell;
 }
+-(NSString *)getWeekDayFromDate:(NSDate *)theDate
+{
+    NSString *weekDay = [[weekDayFormatter stringFromDate:theDate] capitalizedString];
+    return weekDay;
+}
+-(NSString *)getMonthDayFromDate:(NSDate *)theDate
+{
+    NSString *yearMonthDay = [monthDayFormatter stringFromDate:theDate];
+    NSArray *theArray = [yearMonthDay componentsSeparatedByString:@"/"];
+    NSString *monthDay = nil;
+    if ([theArray count] > 2) {
+        monthDay = [NSString stringWithFormat:@"%@/%@",[theArray objectAtIndex:1],[theArray objectAtIndex:2]];
+    }
+    return monthDay;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

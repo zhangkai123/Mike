@@ -106,9 +106,11 @@
            
             NSString *recordDate = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 1)];
             int recordsNum = sqlite3_column_int(compiledStatement, 2);
+            float milkNum = sqlite3_column_double(compiledStatement, 3);
             MKDate *theDate = [[MKDate alloc]init];
             theDate.dateStr = recordDate;
             theDate.recordsNum = recordsNum;
+            theDate.milkNum = milkNum;
             [datesArray addObject:theDate];
         }
     }

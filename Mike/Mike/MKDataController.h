@@ -14,6 +14,7 @@
 -(NSArray *)getDates;
 -(void)insertRecord:(NSString *)theDate recordTime:(NSString *)theTime milkNum:(float)milkNumber note:(NSString *)noteStr fullDate:(NSString *)fullD;
 -(NSArray *)getRecords;
+
 -(float)getTodayNumber:(NSString *)dateStr;
 -(float)getTotalNumber;
 @end
