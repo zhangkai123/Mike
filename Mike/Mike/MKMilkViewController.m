@@ -10,6 +10,7 @@
 #import "MKTopView.h"
 #import "MKCommon.h"
 #import "MKChartTableViewCell.h"
+#import "MKDataController.h"
 
 @interface MKMilkViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -25,7 +26,15 @@
 //    self.view.backgroundColor = [UIColor yellowColor];
     self.view.autoresizingMask = UIViewAutoresizingNone;
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr = [dateFormatter stringFromDate:[NSDate date]];
+    float todayNum = [[MKDataController sharedDataController]getTodayNumber:dateStr];
+    float totalNum = [[MKDataController sharedDataController]getTotalNumber];
+    
     MKTopView *topView = [[MKTopView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 49)];
+    topView.todayNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)todayNum];
+    topView.totalNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)totalNum];
     [self.view addSubview:topView];
     
     chartTableView = [[UITableView alloc]initWithFrame:CGRectZero];

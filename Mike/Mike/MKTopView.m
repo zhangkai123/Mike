@@ -27,7 +27,7 @@
         [self addSubview:todayLabel];
         
         self.todayNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(52, 0, 80, self.frame.size.height)];
-        self.todayNumberLabel.text = @"380 ml";
+        self.todayNumberLabel.text = @"0 ml";
         [self.todayNumberLabel setFont:[UIFont boldSystemFontOfSize:17]];
         [self.todayNumberLabel setTextColor:[UIColor whiteColor]];
         [self addSubview:self.todayNumberLabel];
@@ -41,7 +41,7 @@
         [self addSubview:totalLabel];
         
         self.totalNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth/2 + 75, 0, 80, self.frame.size.height)];
-        self.totalNumberLabel.text = @"21000 ml";
+        self.totalNumberLabel.text = @"0 ml";
         [self.totalNumberLabel setFont:[UIFont boldSystemFontOfSize:17]];
         [self.totalNumberLabel setTextColor:[UIColor whiteColor]];
         [self addSubview:self.totalNumberLabel];
