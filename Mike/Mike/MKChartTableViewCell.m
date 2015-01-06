@@ -10,7 +10,7 @@
 #import "MKCommon.h"
 
 @implementation MKChartTableViewCell
-@synthesize numberLabel ,dayLabel ,dateLabel;
+@synthesize numberLabel ,dayLabel ,dateLabel ,milkNum;
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -23,9 +23,17 @@
         [self addSubview:self.numberLabel];
         //self.numberLabel.backgroundColor = [UIColor yellowColor];
         
-        UIImageView *chartBackgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"chart"]];
+        chartBackgroundView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"chart"]];
         chartBackgroundView.center = CGPointMake(44/2, 216/2);
         [self addSubview:chartBackgroundView];
+        
+        UIImageView *zeroImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"zero"]];
+        zeroImageView.frame = CGRectMake(1.5, chartBackgroundView.frame.size.height - 5, 14, 5);
+        [chartBackgroundView addSubview:zeroImageView];
+        
+        chartForegroundView = [[UIView alloc]initWithFrame:CGRectZero];
+        chartForegroundView.backgroundColor = UIColorFromRGB(0xedfaff);
+        [chartBackgroundView addSubview:chartForegroundView];
         
         self.dayLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, chartBackgroundView.frame.size.height + chartBackgroundView.frame.origin.y + 4, 44, 30)];
         self.dayLabel.text = @"周一";
@@ -43,7 +51,14 @@
     }
     return self;
 }
-
+-(void)setMilkNum:(int)milkN
+{
+    milkNum = milkN;
+    
+    //94 is the full height of chart view,400 is the biggest milk num,deault is 400. note:need to set a mini chart view height value
+    int chartHeight = 94*milkNum/400;
+    chartForegroundView.frame = CGRectMake(1.5, chartBackgroundView.frame.size.height - 5 - chartHeight, 14, chartHeight);
+}
 - (void)awakeFromNib {
     // Initialization code
 }

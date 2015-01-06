@@ -14,6 +14,7 @@
 		4B374D8B1A5A60AE0026CFF4 /* MKDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8A1A5A60AE0026CFF4 /* MKDate.m */; };
 		4B374D8E1A5A629B0026CFF4 /* MKRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8D1A5A629B0026CFF4 /* MKRecordsViewController.m */; };
 		4B3D3B1F1A5BEAD80069707C /* MKDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B3D3B1E1A5BEAD80069707C /* MKDataBase.sqlite */; };
+		4B3D3B211A5C276A0069707C /* zero@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B3D3B201A5C276A0069707C /* zero@2x.png */; };
 		4B5782E11A539DB80085BEAE /* NavigationBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */; };
 		4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5782E31A53A0C20085BEAE /* MKTopView.m */; };
 		4BC06A211A5252D700D62B3C /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1C1A5252D700D62B3C /* share@2x.png */; };
@@ -67,6 +68,7 @@
 		4B374D8C1A5A629B0026CFF4 /* MKRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordsViewController.h; sourceTree = "<group>"; };
 		4B374D8D1A5A629B0026CFF4 /* MKRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecordsViewController.m; sourceTree = "<group>"; };
 		4B3D3B1E1A5BEAD80069707C /* MKDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MKDataBase.sqlite; sourceTree = "<group>"; };
+		4B3D3B201A5C276A0069707C /* zero@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zero@2x.png"; sourceTree = "<group>"; };
 		4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBarBackground.png; sourceTree = "<group>"; };
 		4B5782E21A53A0C20085BEAE /* MKTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTopView.h; sourceTree = "<group>"; };
 		4B5782E31A53A0C20085BEAE /* MKTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTopView.m; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 		4BC06A1B1A5252B300D62B3C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4B3D3B201A5C276A0069707C /* zero@2x.png */,
 				E2109BF81A5A43220031119C /* back.png */,
 				E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */,
 				E2815C451A5938A000916F43 /* 导出数据.png */,
@@ -356,6 +359,7 @@
 				4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */,
 				E2815C501A5938A000916F43 /* 提醒设置.png in Resources */,
 				4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */,
+				4B3D3B211A5C276A0069707C /* zero@2x.png in Resources */,
 				4BC06A231A5252D700D62B3C /* more@2x.png in Resources */,
 				E2815C4D1A5938A000916F43 /* 导出数据.png in Resources */,
 				E2815C511A5938A000916F43 /* 推荐给朋友.png in Resources */,
