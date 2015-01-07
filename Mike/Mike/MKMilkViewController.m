@@ -13,6 +13,7 @@
 #import "MKDataController.h"
 #import "MKDate.h"
 
+NSInteger biggestMilkNum;
 @interface MKMilkViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *chartTableView;
@@ -68,6 +69,12 @@
     
     NSArray *datesA = [[MKDataController sharedDataController]getDates];
     datesArray = [NSMutableArray arrayWithArray:datesA];
+    
+    biggestMilkNum = 400;
+    int actualBiggestMilkNum = (int)[[MKDataController sharedDataController]getBiggestMilkNumber];
+    if (actualBiggestMilkNum > biggestMilkNum) {
+        biggestMilkNum = actualBiggestMilkNum;
+    }
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
 }

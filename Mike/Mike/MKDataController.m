@@ -49,4 +49,8 @@
 {
     return [[MKDBManager sharedDBManager]getTotalNumber];
 }
+-(float)getBiggestMilkNumber
+{
+    return [[MKDBManager sharedDBManager]getBiggestMilkNumber];
+}
 @end

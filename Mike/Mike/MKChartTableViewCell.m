@@ -56,8 +56,8 @@
     milkNum = milkN;
     
     //94 is the full height of chart view,400 is the biggest milk num,deault is 400. note:need to set a mini chart view height value
-    int chartHeight = 94*milkNum/400;
-    chartForegroundView.frame = CGRectMake(1.5, chartBackgroundView.frame.size.height - 5 - chartHeight, 14, chartHeight);
+    int chartHeight = (milkNum * 94)/biggestMilkNum;
+    chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 5 - chartHeight, 13, chartHeight);
 }
 - (void)awakeFromNib {
     // Initialization code

@@ -17,4 +17,5 @@
 
 -(float)getTodayNumber:(NSString *)dateStr;
 -(float)getTotalNumber;
+-(float)getBiggestMilkNumber;
 @end

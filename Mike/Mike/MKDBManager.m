@@ -73,6 +73,25 @@
     sqlite3_close(database);
     return totalNum;
 }
+-(float)getBiggestMilkNumber
+{
+    sqlite3 *database;
+    sqlite3_stmt *compiledStatement;
+    
+    float biggestNum = 0;
+    if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+        NSString *getCommand = @"SELECT MAX(milkNum) as milkNum FROM MKDate";
+        const char *getSqlCommand = [getCommand UTF8String];
+        sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
+        
+        while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            
+            biggestNum = sqlite3_column_double(compiledStatement, 0);
+        }
+    }
+    sqlite3_close(database);
+    return biggestNum;
+}
 -(void)insertDate:(NSString *)recordDate milkNumber:(float)milkNum
 {
     sqlite3 *database;

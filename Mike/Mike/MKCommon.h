@@ -16,4 +16,6 @@
 
 #define Mike_ADD_RECORD_NOTIFICATION @"add_record_notification"
 
+//int biggestMilkNum = 400;
+extern NSInteger biggestMilkNum;
 #endif
