@@ -70,11 +70,6 @@ NSInteger biggestMilkNum;
     NSArray *datesA = [[MKDataController sharedDataController]getDates];
     datesArray = [NSMutableArray arrayWithArray:datesA];
     
-//    biggestMilkNum = 400;
-//    int actualBiggestMilkNum = (int)[[MKDataController sharedDataController]getBiggestMilkNumber];
-//    if (actualBiggestMilkNum > biggestMilkNum) {
-//        biggestMilkNum = actualBiggestMilkNum;
-//    }
     [self setMaxMilkNumber];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
