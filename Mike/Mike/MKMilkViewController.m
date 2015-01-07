@@ -70,11 +70,12 @@ NSInteger biggestMilkNum;
     NSArray *datesA = [[MKDataController sharedDataController]getDates];
     datesArray = [NSMutableArray arrayWithArray:datesA];
     
-    biggestMilkNum = 400;
-    int actualBiggestMilkNum = (int)[[MKDataController sharedDataController]getBiggestMilkNumber];
-    if (actualBiggestMilkNum > biggestMilkNum) {
-        biggestMilkNum = actualBiggestMilkNum;
-    }
+//    biggestMilkNum = 400;
+//    int actualBiggestMilkNum = (int)[[MKDataController sharedDataController]getBiggestMilkNumber];
+//    if (actualBiggestMilkNum > biggestMilkNum) {
+//        biggestMilkNum = actualBiggestMilkNum;
+//    }
+    [self setMaxMilkNumber];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
 }
@@ -90,12 +91,22 @@ NSInteger biggestMilkNum;
 -(void)reloadData
 {
     [self loadTopviewData];
+    
+    [self setMaxMilkNumber];
     NSArray *datesA = [[MKDataController sharedDataController]getDates];
     if (datesArray != nil) {
         datesArray = nil;
         datesArray = [NSMutableArray arrayWithArray:datesA];
     }
     [chartTableView reloadData];
+}
+-(void)setMaxMilkNumber
+{
+    biggestMilkNum = 400;
+    int actualBiggestMilkNum = (int)[[MKDataController sharedDataController]getBiggestMilkNumber];
+    if (actualBiggestMilkNum > biggestMilkNum) {
+        biggestMilkNum = actualBiggestMilkNum;
+    }
 }
 -(void)shareNumber
 {
