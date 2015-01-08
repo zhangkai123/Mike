@@ -20,6 +20,8 @@
     
     NSDate *theDate;
     NSDateFormatter *labelDateFormatter;
+    
+    BOOL datePickerShowed;
 }
 @end
 
@@ -29,6 +31,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    UINavigationBar *navigationBar = self.navigationController.navigationBar;
+    
+    [navigationBar setBackgroundImage:[UIImage imageNamed:@"NavigationBarBackground"]
+                       forBarPosition:UIBarPositionAny
+                           barMetrics:UIBarMetricsDefault];
+    [navigationBar setShadowImage:[UIImage new]];
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
@@ -49,19 +57,13 @@
     
     [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    datePicker = [[UIDatePicker alloc]init];
-    [datePicker setDate:[NSDate date]];
-    datePicker.center = CGPointMake(160, 450);
-    datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-    [datePicker addTarget:self action:@selector(updateDateLable) forControlEvents:UIControlEventValueChanged];
-    [self.view addSubview:datePicker];
-    datePicker.hidden = YES;
-    
     labelDateFormatter = [[NSDateFormatter alloc] init];
     [labelDateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [labelDateFormatter setDateStyle:NSDateFormatterShortStyle];
     [labelDateFormatter setLocale:[NSLocale currentLocale]];
     labelDateFormatter.doesRelativeDateFormatting = YES;
+    
+    datePickerShowed = NO;
 }
 -(void)cancel
 {
@@ -99,7 +101,11 @@
 {
     int sectionRow = 0;
     if (section == 0) {
-        sectionRow = 1;
+        if (!datePickerShowed) {
+            sectionRow = 1;
+        }else{
+            sectionRow = 2;
+        }
     }else if(section == 1){
         sectionRow = 2;
     }else{
@@ -115,7 +121,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float rowHeight = 0;
-    if ((indexPath.section == 1)&&(indexPath.row == 0)) {
+    if ((indexPath.section == 0) && (indexPath.row == 1)) {
+        rowHeight = 200;
+    }else if ((indexPath.section == 1)&&(indexPath.row == 0)) {
         rowHeight = 45;
     }else{
         rowHeight = 44;
@@ -133,22 +141,35 @@
         topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
         [cell.contentView addSubview:topLineView];
     }
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.frame.size.height, 320, 1)];
-    lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
-    [cell.contentView addSubview:lineView];
+    if (!((indexPath.section == 0)&&(indexPath.row == 1))) {
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.frame.size.height, 320, 1)];
+        lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
+        [cell.contentView addSubview:lineView];
+    }
     if (indexPath.section == 0) {
-        UILabel *timeStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
-        timeStaticLabel.text = @"时间";
-        [timeStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-//        timeStaticLabel.backgroundColor = [UIColor blueColor];
-        [cell.contentView addSubview:timeStaticLabel];
-        
-        timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
-        timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:[NSDate date]]];
-        timeLabel.textAlignment = NSTextAlignmentRight;
-        [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-//        timeLabel.backgroundColor = [UIColor blueColor];
-        [cell.contentView addSubview:timeLabel];
+        if (indexPath.row == 0) {
+            UILabel *timeStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
+            timeStaticLabel.text = @"时间";
+            [timeStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+            //        timeStaticLabel.backgroundColor = [UIColor blueColor];
+            [cell.contentView addSubview:timeStaticLabel];
+            
+            timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
+            timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:[NSDate date]]];
+            timeLabel.textAlignment = NSTextAlignmentRight;
+            [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+            //        timeLabel.backgroundColor = [UIColor blueColor];
+            [cell.contentView addSubview:timeLabel];
+        }else{
+            if (datePicker == nil) {
+                datePicker = [[UIDatePicker alloc]init];
+                [datePicker setDate:[NSDate date]];
+                datePicker.center = CGPointMake(160, 100);
+                datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+                [datePicker addTarget:self action:@selector(updateDateLable) forControlEvents:UIControlEventValueChanged];
+                [cell addSubview:datePicker];
+            }
+        }
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
             UILabel *numberStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
@@ -200,17 +221,30 @@
         //        timeLabel.backgroundColor = [UIColor blueColor];
         [cell.contentView addSubview:nextLabel];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        [self showDatePicker];
+        if (!datePickerShowed) {
+            datePickerShowed = YES;
+            NSArray *insertIndexPaths = [NSArray arrayWithObjects:
+                                         [NSIndexPath indexPathForRow:1 inSection:0],
+                                         nil];
+            [tableView beginUpdates];
+            [tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationTop];
+            [tableView endUpdates];
+        }else{
+            datePickerShowed = NO;
+            NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
+                                         [NSIndexPath indexPathForRow:1 inSection:0],
+                                         nil];
+            [tableView beginUpdates];
+            [tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+            [tableView endUpdates];
+        }
     }
-}
--(void)showDatePicker
-{
-    datePicker.hidden = NO;
 }
 -(void)updateDateLable
 {    
