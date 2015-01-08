@@ -22,9 +22,9 @@
     });
     return dataController;
 }
--(NSArray *)getDates
+-(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder
 {
-     return [[MKDBManager sharedDBManager]getDates];
+     return [[MKDBManager sharedDBManager]getDatesWithASCOrder:ASCOrder];
 }
 -(void)insertRecord:(NSString *)theDate recordTime:(NSString *)theTime milkNum:(float)milkNumber note:(NSString *)noteStr fullDate:(NSString *)fullD
 {

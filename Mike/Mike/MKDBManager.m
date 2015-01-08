@@ -110,14 +110,20 @@
     }
     sqlite3_close(database);
 }
--(NSArray *)getDates
+-(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder
 {
     sqlite3 *database;
     sqlite3_stmt *compiledStatement;
     
     NSMutableArray *datesArray = [[NSMutableArray alloc]init];
     if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
-        NSString *getCommand = @"select * from MKDate order by date DESC";
+        NSString *order = nil;
+        if (ASCOrder) {
+            order = @"ASC";
+        }else{
+            order = @"DESC";
+        }
+        NSString *getCommand = [NSString stringWithFormat:@"select * from MKDate order by date %@",order];
         const char *getSqlCommand = [getCommand UTF8String];
         sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
         

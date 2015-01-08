@@ -67,7 +67,7 @@ NSInteger biggestMilkNum;
     [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shareButton];
     
-    NSArray *datesA = [[MKDataController sharedDataController]getDates];
+    NSArray *datesA = [[MKDataController sharedDataController]getDatesWithASCOrder:YES];
     datesArray = [NSMutableArray arrayWithArray:datesA];
     
     [self setMaxMilkNumber];
@@ -88,7 +88,7 @@ NSInteger biggestMilkNum;
     [self loadTopviewData];
     
     [self setMaxMilkNumber];
-    NSArray *datesA = [[MKDataController sharedDataController]getDates];
+    NSArray *datesA = [[MKDataController sharedDataController]getDatesWithASCOrder:YES];
     if (datesArray != nil) {
         datesArray = nil;
         datesArray = [NSMutableArray arrayWithArray:datesA];

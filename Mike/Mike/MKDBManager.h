@@ -16,7 +16,7 @@
     NSString		*databasePath;
 }
 +(id)sharedDBManager;
--(NSArray *)getDates;
+-(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder;
 -(void)insertRecord:(MKRecord *)record;
 -(NSArray *)getRecords;
 -(float)getTodayNumber:(NSString *)dateStr;

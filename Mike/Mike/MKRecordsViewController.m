@@ -50,7 +50,7 @@
     
     datesArray = [[NSArray alloc]init];
     recordsArray = [[NSArray alloc]init];
-    datesArray = [[MKDataController sharedDataController]getDates];
+    datesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
     recordsArray = [[MKDataController sharedDataController]getRecords];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
@@ -108,7 +108,7 @@
 }
 -(void)reloadTableView
 {
-    datesArray = [[MKDataController sharedDataController]getDates];
+    datesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
     recordsArray = [[MKDataController sharedDataController]getRecords];
     [recordsTableView reloadData];
 }

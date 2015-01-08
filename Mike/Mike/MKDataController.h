@@ -11,7 +11,7 @@
 @interface MKDataController : NSObject
 
 +(id)sharedDataController;
--(NSArray *)getDates;
+-(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder;
 -(void)insertRecord:(NSString *)theDate recordTime:(NSString *)theTime milkNum:(float)milkNumber note:(NSString *)noteStr fullDate:(NSString *)fullD;
 -(NSArray *)getRecords;
 
