@@ -42,6 +42,10 @@
         UIImageView *moreImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"more"]];
         moreImageView.frame = CGRectMake(ScreenWidth - moreImageView.frame.size.width - 8, 31/2, 8, 13);
         [self addSubview:moreImageView];
+        
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 43, ScreenWidth, 1)];
+        lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
+        [self addSubview:lineView];
     }
     return self;
 }
