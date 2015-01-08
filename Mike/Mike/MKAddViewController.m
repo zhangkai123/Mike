@@ -63,6 +63,7 @@
     [labelDateFormatter setLocale:[NSLocale currentLocale]];
     labelDateFormatter.doesRelativeDateFormatting = YES;
     
+//    [[UITextField appearance] setTintColor:UIColorFromRGB(0xd57d9c)];
     datePickerShowed = NO;
 }
 -(void)cancel
@@ -178,17 +179,25 @@
             //        timeStaticLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:numberStaticLabel];
             
-            numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 230, 34)];
+            numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 205, 34)];
             numberField.borderStyle = UITextBorderStyleNone;
             numberField.font = [UIFont systemFontOfSize:16];
             numberField.autocorrectionType = UITextAutocorrectionTypeNo;
             numberField.keyboardType = UIKeyboardTypeNumberPad;
 //            numberField.clearButtonMode = UITextFieldViewModeWhileEditing;
-            numberField.placeholder = @"0ml";
+            numberField.placeholder = @"0";
             numberField.delegate = self;
             numberField.textColor = UIColorFromRGB(0xd57d9c);
             numberField.textAlignment = NSTextAlignmentRight;
+            numberField.tintColor = UIColorFromRGB(0xd57d9c);
             [cell.contentView addSubview:numberField];
+//            numberField.backgroundColor = [UIColor yellowColor];
+            
+            UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(220 + 70, 5, 20, 34)];
+            mlLabel.text = @"ml";
+            mlLabel.font = [UIFont systemFontOfSize:16];
+            [mlLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+            [cell.contentView addSubview:mlLabel];
         }else{
             UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
             noteStaticLabel.text = @"备注";
@@ -205,6 +214,7 @@
             noteField.delegate = self;
             noteField.textAlignment = NSTextAlignmentRight;
             noteField.textColor = UIColorFromRGB(0xd57d9c);
+            noteField.tintColor = UIColorFromRGB(0xd57d9c);
             [cell.contentView addSubview:noteField];
         }
     }else{
