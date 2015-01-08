@@ -43,6 +43,8 @@
 		E2815C511A5938A000916F43 /* 推荐给朋友.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C491A5938A000916F43 /* 推荐给朋友.png */; };
 		E2815C521A5938A000916F43 /* 意见反馈.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4A1A5938A000916F43 /* 意见反馈.png */; };
 		E2815C531A5938A000916F43 /* 应用推荐.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4B1A5938A000916F43 /* 应用推荐.png */; };
+		E29FFCAA1A5E7EBC004273BE /* MKAboutUs.m in Sources */ = {isa = PBXBuildFile; fileRef = E29FFCA91A5E7EBC004273BE /* MKAboutUs.m */; };
+		E29FFCAD1A5E7ECE004273BE /* MKBusinessCooperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E29FFCAC1A5E7ECE004273BE /* MKBusinessCooperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,10 @@
 		E2815C491A5938A000916F43 /* 推荐给朋友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "推荐给朋友.png"; sourceTree = "<group>"; };
 		E2815C4A1A5938A000916F43 /* 意见反馈.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "意见反馈.png"; sourceTree = "<group>"; };
 		E2815C4B1A5938A000916F43 /* 应用推荐.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "应用推荐.png"; sourceTree = "<group>"; };
+		E29FFCA81A5E7EBC004273BE /* MKAboutUs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAboutUs.h; sourceTree = "<group>"; };
+		E29FFCA91A5E7EBC004273BE /* MKAboutUs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAboutUs.m; sourceTree = "<group>"; };
+		E29FFCAB1A5E7ECE004273BE /* MKBusinessCooperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBusinessCooperation.h; sourceTree = "<group>"; };
+		E29FFCAC1A5E7ECE004273BE /* MKBusinessCooperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBusinessCooperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +237,10 @@
 				4B374D8D1A5A629B0026CFF4 /* MKRecordsViewController.m */,
 				4BD2F4521A5A7FA00094AE5B /* MKMilkViewController.h */,
 				4BD2F4531A5A7FA00094AE5B /* MKMilkViewController.m */,
+				E29FFCA81A5E7EBC004273BE /* MKAboutUs.h */,
+				E29FFCA91A5E7EBC004273BE /* MKAboutUs.m */,
+				E29FFCAB1A5E7ECE004273BE /* MKBusinessCooperation.h */,
+				E29FFCAC1A5E7ECE004273BE /* MKBusinessCooperation.m */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -383,11 +393,13 @@
 				4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */,
 				4BC06A2C1A527FF600D62B3C /* MKAddViewController.m in Sources */,
 				4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */,
+				E29FFCAA1A5E7EBC004273BE /* MKAboutUs.m in Sources */,
 				4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */,
 				4B040BD81A59468000DF859F /* MKDBManager.m in Sources */,
 				4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */,
 				4BE59E1E1A53F342004CF8D9 /* MKRecordTableViewCell.m in Sources */,
 				4BCF0CAE1A50F95900A2FF5D /* main.m in Sources */,
+				E29FFCAD1A5E7ECE004273BE /* MKBusinessCooperation.m in Sources */,
 				4B040BD31A5939A200DF859F /* MKDataController.m in Sources */,
 				4B040BDD1A59482100DF859F /* MKRecord.m in Sources */,
 				4BD2F4541A5A7FA00094AE5B /* MKMilkViewController.m in Sources */,
