@@ -28,7 +28,7 @@
         [self addSubview:chartBackgroundView];
         
         UIImageView *zeroImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"zero"]];
-        zeroImageView.frame = CGRectMake(1.5, chartBackgroundView.frame.size.height - 5, 14, 5);
+        zeroImageView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 7, 13, 5.5);
         [chartBackgroundView addSubview:zeroImageView];
         
         chartForegroundView = [[UIView alloc]initWithFrame:CGRectZero];
@@ -56,8 +56,8 @@
     milkNum = milkN;
     
     //94 is the full height of chart view,400 is the biggest milk num,deault is 400. note:need to set a mini chart view height value
-    int chartHeight = (milkNum * 94)/biggestMilkNum;
-    chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 5 - chartHeight, 13, chartHeight);
+    int chartHeight = (milkNum * 90)/biggestMilkNum;
+    chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 7 - chartHeight, 13, chartHeight);
 }
 - (void)awakeFromNib {
     // Initialization code

@@ -125,6 +125,7 @@ NSInteger biggestMilkNum;
     cell.dayLabel.text = [self getWeekDayFromDate:originDate];
     cell.dateLabel.text = [self getMonthDayFromDate:originDate];
     cell.milkNum = (int)theDate.milkNum;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(NSString *)getWeekDayFromDate:(NSDate *)theDate
