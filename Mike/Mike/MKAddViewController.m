@@ -205,7 +205,7 @@
             UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(220 + 70, 5, 20, 34)];
             mlLabel.text = @"ml";
             mlLabel.font = [UIFont systemFontOfSize:16];
-            [mlLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+            [mlLabel setTextColor:[UIColor lightGrayColor]];
             [cell.contentView addSubview:mlLabel];
         }else{
             UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
