@@ -232,4 +232,23 @@
     sqlite3_close(database);
     return recordsArray;
 }
+-(int)getTotalRecordsNum
+{
+    sqlite3 *database;
+    sqlite3_stmt *compiledStatement;
+    
+    float totalRecordsNum = 0;
+    if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+        NSString *getCommand = @"SELECT COUNT(*) FROM MKRecord";
+        const char *getSqlCommand = [getCommand UTF8String];
+        sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
+        
+        while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            
+            totalRecordsNum = sqlite3_column_double(compiledStatement, 0);
+        }
+    }
+    sqlite3_close(database);
+    return totalRecordsNum;
+}
 @end

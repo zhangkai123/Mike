@@ -15,6 +15,9 @@
 #import "MKDataController.h"
 
 @interface MKRootViewController ()
+{
+    UILabel *bottleLabel;
+}
 @end
 
 @implementation MKRootViewController
@@ -53,8 +56,9 @@
     bottleImageView.center = CGPointMake(bottleView.center.x - 10, bottleView.center.y);
     [bottleView addSubview:bottleImageView];
     
-    UILabel *bottleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [bottleLabel setText:@"25"];
+    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
+    bottleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [bottleLabel setText:[NSString stringWithFormat:@"%d",recordsNum]];
     [bottleLabel setFont:[UIFont systemFontOfSize:15]];
     [bottleLabel setTextColor:UIColorFromRGB(0xfd6262)];
     bottleLabel.center = CGPointMake(bottleView.center.x + 15, bottleView.center.y + 2);
@@ -72,6 +76,13 @@
     recordsViewController.view.frame = CGRectMake(0, 265, ScreenWidth, ScreenHeight- 265 - 64);
     [self.view addSubview:recordsViewController.view];
     [recordsViewController didMoveToParentViewController:self];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
+}
+-(void)reloadData
+{
+    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
+    bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
 }
 -(void)viewWillAppear:(BOOL)animated
 {

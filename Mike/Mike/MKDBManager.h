@@ -19,6 +19,8 @@
 -(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder;
 -(void)insertRecord:(MKRecord *)record;
 -(NSArray *)getRecords;
+-(int)getTotalRecordsNum;
+
 -(float)getTodayNumber:(NSString *)dateStr;
 -(float)getTotalNumber;
 -(float)getBiggestMilkNumber;
