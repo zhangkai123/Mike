@@ -158,7 +158,7 @@
     }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            UILabel *timeStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 50, 34)];
+            UILabel *timeStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 50, 34)];
             timeStaticLabel.text = @"时间";
             [timeStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
 //            timeStaticLabel.backgroundColor = [UIColor blueColor];
@@ -182,7 +182,7 @@
         }
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
-            UILabel *numberStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 50, 34)];
+            UILabel *numberStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 50, 34)];
             numberStaticLabel.text = @"总共";
             [numberStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
 //            numberStaticLabel.backgroundColor = [UIColor blueColor];
@@ -208,13 +208,13 @@
             [mlLabel setTextColor:[UIColor lightGrayColor]];
             [cell.contentView addSubview:mlLabel];
         }else{
-            UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 50, 34)];
+            UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 50, 34)];
             noteStaticLabel.text = @"备注";
             [noteStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
 //            noteStaticLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:noteStaticLabel];
             
-            noteField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 230, 34)];
+            noteField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 220, 34)];
             noteField.borderStyle = UITextBorderStyleNone;
             noteField.font = [UIFont systemFontOfSize:16];
             noteField.autocorrectionType = UITextAutocorrectionTypeNo;
