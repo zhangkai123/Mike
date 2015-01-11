@@ -158,17 +158,17 @@
     }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            UILabel *timeStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
+            UILabel *timeStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 50, 34)];
             timeStaticLabel.text = @"时间";
             [timeStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-            //        timeStaticLabel.backgroundColor = [UIColor blueColor];
+//            timeStaticLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:timeStaticLabel];
             
-            timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
+            timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 220, 34)];
             timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:[NSDate date]]];
             timeLabel.textAlignment = NSTextAlignmentRight;
             [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-            //        timeLabel.backgroundColor = [UIColor blueColor];
+//            timeLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:timeLabel];
         }else{
             if (datePicker == nil) {
@@ -182,13 +182,13 @@
         }
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
-            UILabel *numberStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
+            UILabel *numberStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 50, 34)];
             numberStaticLabel.text = @"总共";
             [numberStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-            //        timeStaticLabel.backgroundColor = [UIColor blueColor];
+//            numberStaticLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:numberStaticLabel];
             
-            numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 205, 34)];
+            numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 195, 34)];
             numberField.borderStyle = UITextBorderStyleNone;
             numberField.font = [UIFont systemFontOfSize:16];
             numberField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -202,16 +202,16 @@
             [cell.contentView addSubview:numberField];
 //            numberField.backgroundColor = [UIColor yellowColor];
             
-            UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(220 + 70, 5, 20, 34)];
+            UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(280, 5, 20, 34)];
             mlLabel.text = @"ml";
             mlLabel.font = [UIFont systemFontOfSize:16];
             [mlLabel setTextColor:[UIColor lightGrayColor]];
             [cell.contentView addSubview:mlLabel];
         }else{
-            UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
+            UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 50, 34)];
             noteStaticLabel.text = @"备注";
             [noteStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-            //        timeStaticLabel.backgroundColor = [UIColor blueColor];
+//            noteStaticLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:noteStaticLabel];
             
             noteField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 230, 34)];
@@ -219,12 +219,13 @@
             noteField.font = [UIFont systemFontOfSize:16];
             noteField.autocorrectionType = UITextAutocorrectionTypeNo;
             noteField.keyboardType = UIKeyboardTypeDefault;
-//            noteField.clearButtonMode = UITextFieldViewModeWhileEditing;
+            //noteField.clearButtonMode = UITextFieldViewModeWhileEditing;
             noteField.delegate = self;
             noteField.textAlignment = NSTextAlignmentRight;
             noteField.textColor = UIColorFromRGB(0xd57d9c);
             noteField.tintColor = UIColorFromRGB(0xd57d9c);
             [cell.contentView addSubview:noteField];
+//            noteField.backgroundColor = [UIColor yellowColor];
         }
     }else{
 //        UILabel *nextStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
