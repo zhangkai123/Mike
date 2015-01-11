@@ -147,12 +147,12 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     if (indexPath.row == 0) {
-        UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, -1, 320, 1)];
+        UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 0.5)];
         topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
         [cell.contentView addSubview:topLineView];
     }
     if (!((indexPath.section == 0)&&(indexPath.row == 1))) {
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.frame.size.height, 320, 1)];
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.frame.size.height - 0.5, 320, 0.5)];
         lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
         [cell.contentView addSubview:lineView];
     }

@@ -80,15 +80,10 @@
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 29)];
     headerView.backgroundColor = UIColorFromRGB(0xfff1f6);
-    if (section == 0) {
-        headerView.frame = CGRectMake(0, 0, tableView.bounds.size.width, 30);
-        UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 1)];
-        topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
-        [headerView addSubview:topLineView];
-    }
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 28, ScreenWidth, 1)];
-    lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
-    [headerView addSubview:lineView];
+    UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 0.5)];
+    topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
+    [headerView addSubview:topLineView];
+    
     UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 29)];
     dateLabel.text = newDate;
     dateLabel.textAlignment = NSTextAlignmentCenter;
