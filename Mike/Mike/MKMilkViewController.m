@@ -27,11 +27,6 @@ NSInteger biggestMilkNum;
 @end
 
 @implementation MKMilkViewController
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self loadTableToBottom];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,6 +69,8 @@ NSInteger biggestMilkNum;
     
     NSArray *datesA = [[MKDataController sharedDataController]getDatesWithASCOrder:YES];
     datesArray = [NSMutableArray arrayWithArray:datesA];
+    
+    [self loadTableToBottom];
     
     [self setMaxMilkNumber];
     
