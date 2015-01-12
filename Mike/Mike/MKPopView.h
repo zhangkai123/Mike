@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MKPopView : UIView
-
+{
+    UIView *sharedView;
+}
 @property(nonatomic,strong) UILabel *bottleNumLabel;
 @property(nonatomic,strong) UITextView *shareTextView;
 @end
