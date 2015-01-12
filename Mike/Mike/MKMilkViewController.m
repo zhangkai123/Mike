@@ -27,6 +27,11 @@ NSInteger biggestMilkNum;
 @end
 
 @implementation MKMilkViewController
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadTableToBottom];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -94,6 +99,7 @@ NSInteger biggestMilkNum;
         datesArray = [NSMutableArray arrayWithArray:datesA];
     }
     [chartTableView reloadData];
+    [self loadTableToBottom];
 }
 -(void)setMaxMilkNumber
 {
@@ -143,7 +149,11 @@ NSInteger biggestMilkNum;
     }
     return monthDay;
 }
-
+-(void)loadTableToBottom
+{
+    NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:([datesArray count] - 1) inSection:0];
+    [chartTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
