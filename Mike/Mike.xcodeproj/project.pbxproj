@@ -20,6 +20,7 @@
 		4BA38C991A63704E009D25A0 /* MKPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA38C981A63704E009D25A0 /* MKPopView.m */; };
 		4BA38C9D1A637095009D25A0 /* moments.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA38C9B1A637095009D25A0 /* moments.png */; };
 		4BA38C9E1A637095009D25A0 /* sinaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA38C9C1A637095009D25A0 /* sinaIcon.png */; };
+		4BA38CA11A63E920009D25A0 /* MKTouchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA38CA01A63E920009D25A0 /* MKTouchableView.m */; };
 		4BC06A211A5252D700D62B3C /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1C1A5252D700D62B3C /* share@2x.png */; };
 		4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1D1A5252D700D62B3C /* bottle@2x.png */; };
 		4BC06A231A5252D700D62B3C /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1E1A5252D700D62B3C /* more@2x.png */; };
@@ -81,6 +82,8 @@
 		4BA38C981A63704E009D25A0 /* MKPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPopView.m; sourceTree = "<group>"; };
 		4BA38C9B1A637095009D25A0 /* moments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moments.png; sourceTree = "<group>"; };
 		4BA38C9C1A637095009D25A0 /* sinaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinaIcon.png; sourceTree = "<group>"; };
+		4BA38C9F1A63E920009D25A0 /* MKTouchableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTouchableView.h; sourceTree = "<group>"; };
+		4BA38CA01A63E920009D25A0 /* MKTouchableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTouchableView.m; sourceTree = "<group>"; };
 		4BC06A1C1A5252D700D62B3C /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		4BC06A1D1A5252D700D62B3C /* bottle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottle@2x.png"; sourceTree = "<group>"; };
 		4BC06A1E1A5252D700D62B3C /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 				4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */,
 				4BE59E1C1A53F342004CF8D9 /* MKRecordTableViewCell.h */,
 				4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */,
+				4BA38C9F1A63E920009D25A0 /* MKTouchableView.h */,
+				4BA38CA01A63E920009D25A0 /* MKTouchableView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				4B040BD81A59468000DF859F /* MKDBManager.m in Sources */,
 				4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */,
 				4BE59E1E1A53F342004CF8D9 /* MKRecordTableViewCell.m in Sources */,
+				4BA38CA11A63E920009D25A0 /* MKTouchableView.m in Sources */,
 				4BCF0CAE1A50F95900A2FF5D /* main.m in Sources */,
 				E29FFCAD1A5E7ECE004273BE /* MKBusinessCooperation.m in Sources */,
 				4B040BD31A5939A200DF859F /* MKDataController.m in Sources */,

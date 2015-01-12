@@ -21,8 +21,9 @@
         
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
         
-        sharedView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 260, 233)];
+        sharedView = [[MKTouchableView alloc]initWithFrame:CGRectMake(0, 0, 260, 233)];
         sharedView.backgroundColor = [UIColor whiteColor];
+        sharedView.delegate = self;
         sharedView.layer.cornerRadius = 10;
         sharedView.layer.masksToBounds = YES;
         sharedView.center = self.center;
@@ -76,7 +77,8 @@
 {
     
 }
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+#pragma MKTouchableViewDelegate
+-(void)clickedView
 {
     [self removeFromSuperview];
 }

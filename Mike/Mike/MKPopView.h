@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MKTouchableView.h"
 
-@interface MKPopView : UIView
+@interface MKPopView : UIView<MKTouchableViewDelegate>
 {
-    UIView *sharedView;
+    MKTouchableView *sharedView;
 }
 @property(nonatomic,strong) UILabel *bottleNumLabel;
 @property(nonatomic,strong) UITextView *shareTextView;
