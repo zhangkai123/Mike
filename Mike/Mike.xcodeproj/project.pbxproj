@@ -17,6 +17,9 @@
 		4B5782E11A539DB80085BEAE /* NavigationBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */; };
 		4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5782E31A53A0C20085BEAE /* MKTopView.m */; };
 		4B91A68D1A61336600AAA9A9 /* zero@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B91A68C1A61336600AAA9A9 /* zero@2x.png */; };
+		4BA38C991A63704E009D25A0 /* MKPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA38C981A63704E009D25A0 /* MKPopView.m */; };
+		4BA38C9D1A637095009D25A0 /* moments.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA38C9B1A637095009D25A0 /* moments.png */; };
+		4BA38C9E1A637095009D25A0 /* sinaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA38C9C1A637095009D25A0 /* sinaIcon.png */; };
 		4BC06A211A5252D700D62B3C /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1C1A5252D700D62B3C /* share@2x.png */; };
 		4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1D1A5252D700D62B3C /* bottle@2x.png */; };
 		4BC06A231A5252D700D62B3C /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1E1A5252D700D62B3C /* more@2x.png */; };
@@ -74,6 +77,10 @@
 		4B5782E21A53A0C20085BEAE /* MKTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTopView.h; sourceTree = "<group>"; };
 		4B5782E31A53A0C20085BEAE /* MKTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTopView.m; sourceTree = "<group>"; };
 		4B91A68C1A61336600AAA9A9 /* zero@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zero@2x.png"; sourceTree = "<group>"; };
+		4BA38C971A63704E009D25A0 /* MKPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPopView.h; sourceTree = "<group>"; };
+		4BA38C981A63704E009D25A0 /* MKPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPopView.m; sourceTree = "<group>"; };
+		4BA38C9B1A637095009D25A0 /* moments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moments.png; sourceTree = "<group>"; };
+		4BA38C9C1A637095009D25A0 /* sinaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinaIcon.png; sourceTree = "<group>"; };
 		4BC06A1C1A5252D700D62B3C /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		4BC06A1D1A5252D700D62B3C /* bottle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottle@2x.png"; sourceTree = "<group>"; };
 		4BC06A1E1A5252D700D62B3C /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
@@ -172,9 +179,19 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		4BA38C9A1A637089009D25A0 /* share */ = {
+			isa = PBXGroup;
+			children = (
+				4BA38C9B1A637095009D25A0 /* moments.png */,
+				4BA38C9C1A637095009D25A0 /* sinaIcon.png */,
+			);
+			name = share;
+			sourceTree = "<group>";
+		};
 		4BC06A1B1A5252B300D62B3C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				4BA38C9A1A637089009D25A0 /* share */,
 				4B91A68C1A61336600AAA9A9 /* zero@2x.png */,
 				E2109BF81A5A43220031119C /* back.png */,
 				E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */,
@@ -241,6 +258,8 @@
 				E29FFCA91A5E7EBC004273BE /* MKAboutUs.m */,
 				E29FFCAB1A5E7ECE004273BE /* MKBusinessCooperation.h */,
 				E29FFCAC1A5E7ECE004273BE /* MKBusinessCooperation.m */,
+				4BA38C971A63704E009D25A0 /* MKPopView.h */,
+				4BA38C981A63704E009D25A0 /* MKPopView.m */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -366,11 +385,13 @@
 				4BE59E181A53D3F2004CF8D9 /* chart@2x.png in Resources */,
 				4BC06A251A5252D700D62B3C /* setting@2x.png in Resources */,
 				E2815C4F1A5938A000916F43 /* 商务合作.png in Resources */,
+				4BA38C9E1A637095009D25A0 /* sinaIcon.png in Resources */,
 				E2109BF91A5A43220031119C /* back.png in Resources */,
 				4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */,
 				E2815C501A5938A000916F43 /* 提醒设置.png in Resources */,
 				4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */,
 				4BC06A231A5252D700D62B3C /* more@2x.png in Resources */,
+				4BA38C9D1A637095009D25A0 /* moments.png in Resources */,
 				E2815C4D1A5938A000916F43 /* 导出数据.png in Resources */,
 				E2815C511A5938A000916F43 /* 推荐给朋友.png in Resources */,
 			);
@@ -401,6 +422,7 @@
 				4BCF0CAE1A50F95900A2FF5D /* main.m in Sources */,
 				E29FFCAD1A5E7ECE004273BE /* MKBusinessCooperation.m in Sources */,
 				4B040BD31A5939A200DF859F /* MKDataController.m in Sources */,
+				4BA38C991A63704E009D25A0 /* MKPopView.m in Sources */,
 				4B040BDD1A59482100DF859F /* MKRecord.m in Sources */,
 				4BD2F4541A5A7FA00094AE5B /* MKMilkViewController.m in Sources */,
 				4B374D8E1A5A629B0026CFF4 /* MKRecordsViewController.m in Sources */,

@@ -13,10 +13,14 @@
 #import "MKMilkViewController.h"
 #import "MKRecordsViewController.h"
 #import "MKDataController.h"
+#import "MKPopView.h"
 
 @interface MKRootViewController ()
 {
     UILabel *bottleLabel;
+    
+    UIView *blackView;
+    MKPopView *popView;
 }
 @end
 
@@ -83,6 +87,23 @@
 {
     int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
     bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
+    [self showPopView];
+}
+-(void)showPopView
+{
+    blackView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    blackView.userInteractionEnabled = YES;
+    blackView.backgroundColor = [UIColor blackColor];
+    [blackView setAlpha:0.2];
+    [self.navigationController.view addSubview:blackView];
+
+    popView = [[MKPopView alloc]initWithFrame:CGRectMake(0, 0, 260, 233)];
+    popView.center = self.navigationController.view.center;
+    [self.navigationController.view addSubview:popView];
+}
+-(void)removePopView
+{
+    [blackView removeFromSuperview];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
