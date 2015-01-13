@@ -232,6 +232,34 @@
     sqlite3_close(database);
     return recordsArray;
 }
+-(NSArray *)getRecordsWithDateStr:(NSString *)dateStr
+{
+    sqlite3 *database;
+    sqlite3_stmt *compiledStatement;
+    
+    NSMutableArray *recordsArray = [[NSMutableArray alloc]init];
+    if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+        NSString *getCommand = [NSString stringWithFormat:@"select * from MKRecord where date = '%@' order by fullDate DESC",dateStr];
+        const char *getSqlCommand = [getCommand UTF8String];
+        sqlite3_prepare_v2(database, getSqlCommand, -1, &compiledStatement, NULL);
+        
+        while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            NSString *recordDate = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 1)];
+            NSString *recordTime = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 2)];
+            float milkNum = sqlite3_column_double(compiledStatement, 3);
+            NSString *noteStr = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 4)];
+            
+            MKRecord *record = [[MKRecord alloc]init];
+            record.date = recordDate;
+            record.time = recordTime;
+            record.milkNum = milkNum;
+            record.noteStr = noteStr;
+            [recordsArray addObject:record];
+        }
+    }
+    sqlite3_close(database);
+    return recordsArray;
+}
 -(int)getTotalRecordsNum
 {
     sqlite3 *database;

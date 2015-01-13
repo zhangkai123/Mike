@@ -148,8 +148,11 @@ NSInteger biggestMilkNum;
 }
 -(void)loadTableToBottom
 {
-    NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:([datesArray count] - 1) inSection:0];
-    [chartTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    if ([datesArray count] > 0) {
+        
+        NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:([datesArray count] - 1) inSection:0];
+        [chartTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -19,6 +19,7 @@
 -(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder;
 -(void)insertRecord:(MKRecord *)record;
 -(NSArray *)getRecords;
+-(NSArray *)getRecordsWithDateStr:(NSString *)dateStr;
 -(int)getTotalRecordsNum;
 
 -(float)getTodayNumber:(NSString *)dateStr;

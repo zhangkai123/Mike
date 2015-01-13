@@ -12,7 +12,10 @@
 @interface MKPopView : UIView<MKTouchableViewDelegate>
 {
     MKTouchableView *sharedView;
+    UILabel *shareTextLabel;
+    
+    NSString *shareText;
 }
 @property(nonatomic,strong) UILabel *bottleNumLabel;
-@property(nonatomic,strong) UITextView *shareTextView;
+@property(nonatomic,strong) NSString *shareText;
 @end

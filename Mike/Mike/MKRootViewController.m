@@ -14,6 +14,7 @@
 #import "MKRecordsViewController.h"
 #import "MKDataController.h"
 #import "MKPopView.h"
+#import "MKRecord.h"
 
 @interface MKRootViewController ()
 {
@@ -81,18 +82,53 @@
     [self.view addSubview:recordsViewController.view];
     [recordsViewController didMoveToParentViewController:self];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
 }
--(void)reloadData
+-(void)reloadData:(NSNotification *)noti
 {
     int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
     bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
-    [self showPopView];
+
+    NSDictionary *dic = [noti userInfo];
+    NSString *dateStr = [dic objectForKey:@"DateStr"];
+    NSArray *dayRecordsArray = [[MKDataController sharedDataController]getRecordsWithDateStr:dateStr];
+    NSString *shareText = [self getShareText:dayRecordsArray dateString:dateStr];
+    [self showPopViewWithText:shareText];
 }
--(void)showPopView
+-(NSString *)getShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr
+{
+    NSString *shareStr = [NSString stringWithFormat:@"        #背奶记录# %@",dateStr];
+    
+    int todayTotalNum = 0;
+    NSString *numStr = nil;
+    NSString *fullNumStr = nil;
+    for (int i = 0; i < [recordsArray count]; i++) {
+        MKRecord *record = [recordsArray objectAtIndex:i];
+        todayTotalNum = todayTotalNum + (int)record.milkNum;
+        if (i == ([recordsArray count] - 1)) {
+            fullNumStr = [NSString stringWithFormat:@"%@%d",numStr ?: @"",(int)record.milkNum];
+        }else{
+            numStr = [NSString stringWithFormat:@"%@%d+",numStr ?: @"",(int)record.milkNum];
+        }
+    }
+    NSString *noteStr = nil;
+    if ([recordsArray count] > 0) {
+        MKRecord *record = [recordsArray objectAtIndex:0];
+        if ([record.noteStr isEqualToString:@""]) {
+            noteStr = @"";
+        }else{
+            noteStr = [NSString stringWithFormat:@",%@",record.noteStr];
+        }
+    }
+    int totalNum = (int)[[MKDataController sharedDataController]getTotalNumber];
+    shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml%@",shareStr,fullNumStr,todayTotalNum,totalNum,noteStr];
+    return shareStr;
+}
+-(void)showPopViewWithText:(NSString *)shareText
 {
     popView = [[MKPopView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     popView.center = self.navigationController.view.center;
+    [popView setShareText:shareText];
     [self.navigationController.view addSubview:popView];
 }
 -(void)viewWillAppear:(BOOL)animated

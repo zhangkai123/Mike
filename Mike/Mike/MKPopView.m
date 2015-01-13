@@ -10,7 +10,7 @@
 #import "MKCommon.h"
 
 @implementation MKPopView
-@synthesize bottleNumLabel ,shareTextView;
+@synthesize bottleNumLabel ,shareText;
 -(void)dealloc
 {
     
@@ -40,16 +40,14 @@
 //        self.bottleNumLabel.backgroundColor = [UIColor blueColor];
         [sharedView addSubview:self.bottleNumLabel];
         
-        self.shareTextView = [[UITextView alloc]initWithFrame:CGRectMake(20, 25 + bottleImageView.frame.size.height + 5, sharedView.frame.size.width - 40, 120)];
-        [self.shareTextView setFont:[UIFont systemFontOfSize:16]];
-        self.shareTextView.textColor = UIColorFromRGB(0xd57d9c);
-        self.shareTextView.textAlignment = NSTextAlignmentLeft;
-        self.shareTextView.scrollEnabled = YES;
-        self.shareTextView.editable = NO;
-        self.shareTextView.userInteractionEnabled = NO;
-//        self.shareTextView.backgroundColor = [UIColor yellowColor];
-        self.shareTextView.text = @"就来到解放军阿里放假啊放了飞机啊分解放军阿里房间里发加夫里什监督法打击了飞机啊飞机拉风咖啡机阿里";
-        [sharedView addSubview:self.shareTextView];
+        shareTextLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+        [shareTextLabel setFont:[UIFont systemFontOfSize:16]];
+        shareTextLabel.textColor = UIColorFromRGB(0xd57d9c);
+        shareTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        shareTextLabel.numberOfLines = 0;
+        [shareTextLabel sizeToFit];
+        [sharedView addSubview:shareTextLabel];
+//        shareTextLabel.backgroundColor = [UIColor blueColor];
         
         UILabel *staticShareTextLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, sharedView.frame.size.height - 50, 120, 30)];
         staticShareTextLabel.text = @"分享给朋友:";
@@ -68,6 +66,16 @@
         [sharedView addSubview:weixinButton];
     }
     return self;
+}
+-(void)setShareText:(NSString *)shareT
+{
+    shareText = shareT;
+    shareTextLabel.text = shareT;
+    CGSize maximumSize = CGSizeMake(220, 9999);
+    CGSize stringSize = [shareT sizeWithFont:[UIFont systemFontOfSize:16]
+                                   constrainedToSize:maximumSize
+                                       lineBreakMode:shareTextLabel.lineBreakMode];
+    shareTextLabel.frame = CGRectMake(20, 60, 220, stringSize.height);
 }
 -(void)shareToWeibo
 {

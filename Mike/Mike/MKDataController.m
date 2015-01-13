@@ -41,6 +41,10 @@
 {
     return [[MKDBManager sharedDBManager]getRecords];
 }
+-(NSArray *)getRecordsWithDateStr:(NSString *)dateStr
+{
+    return [[MKDBManager sharedDBManager]getRecordsWithDateStr:dateStr];
+}
 -(int)getTotalRecordsNum
 {
     return [[MKDBManager sharedDBManager]getTotalRecordsNum];
