@@ -70,6 +70,8 @@ NSInteger biggestMilkNum;
     NSArray *datesA = [[MKDataController sharedDataController]getDatesWithASCOrder:YES];
     datesArray = [NSMutableArray arrayWithArray:datesA];
     
+    [self loadTableToBottom];
+    
     [self setMaxMilkNumber];
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
@@ -94,6 +96,7 @@ NSInteger biggestMilkNum;
         datesArray = [NSMutableArray arrayWithArray:datesA];
     }
     [chartTableView reloadData];
+    [self loadTableToBottom];
 }
 -(void)setMaxMilkNumber
 {
@@ -125,6 +128,7 @@ NSInteger biggestMilkNum;
     cell.dayLabel.text = [self getWeekDayFromDate:originDate];
     cell.dateLabel.text = [self getMonthDayFromDate:originDate];
     cell.milkNum = (int)theDate.milkNum;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(NSString *)getWeekDayFromDate:(NSDate *)theDate
@@ -142,7 +146,11 @@ NSInteger biggestMilkNum;
     }
     return monthDay;
 }
-
+-(void)loadTableToBottom
+{
+    NSIndexPath *scrollIndexPath = [NSIndexPath indexPathForRow:([datesArray count] - 1) inSection:0];
+    [chartTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
