@@ -36,7 +36,7 @@
     [UITableView1 setDataSource:self];//指定数据委托
     [self.view addSubview:UITableView1];//加载tableview
     
-    dataArray1 = [[NSMutableArray alloc] initWithObjects:@"提醒设置", @"导出数据", nil];//初始化数据数组1
+//    dataArray1 = [[NSMutableArray alloc] initWithObjects:@"提醒设置", @"导出数据", nil];//初始化数据数组1
     dataArray2 = [[NSMutableArray alloc] initWithObjects:@"推荐给朋友", @"打分鼓励，给个评价！", @"意见反馈", @"商务合作", @"应用推荐", @"关于我们", nil];//初始化数据数组2
     
     UITableView1.backgroundColor=bgColor;
@@ -89,7 +89,7 @@
 
 //指定有多少个分区(Section)，默认为1
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 //指定每个分区中有多少行，默认为1
@@ -97,10 +97,7 @@
     
     switch (section) {
         case 0:
-            return  [dataArray1 count];//每个分区通常对应不同的数组，返回其元素个数来确定分区的行数
-            break;
-        case 1:
-            return  [dataArray2 count];
+            return  [dataArray2 count];//每个分区通常对应不同的数组，返回其元素个数来确定分区的行数
             break;
         default:
             return 0;
@@ -108,9 +105,7 @@
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    
     return 20;
-    
 }
 //绘制Cell
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -119,17 +114,17 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     
     switch (indexPath.section) {
-            　　case 0://对应各自的分区
-            //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        {
-            UIImageView *IndicatorImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"more@2x.png"]];
-            IndicatorImageView.center = CGPointMake(cell.center.x*1.85, cell.center.y);
-            [cell.contentView addSubview:IndicatorImageView];
-            
-            cell.textLabel.text=[dataArray1 objectAtIndex:indexPath.row];//给cell添加数据
-        }
-            　　　　break;
-            　　case 1:
+//            　　case 0://对应各自的分区
+//            //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//                {
+//                    UIImageView *IndicatorImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"more@2x.png"]];
+//                    IndicatorImageView.center = CGPointMake(cell.center.x*1.85, cell.center.y);
+//                    [cell.contentView addSubview:IndicatorImageView];
+//                    
+//                    cell.textLabel.text=[dataArray1 objectAtIndex:indexPath.row];//给cell添加数据
+//                }
+//            　　　　break;
+            　　case 0:
             cell.textLabel.text=[dataArray2 objectAtIndex:indexPath.row];//给cell添加数据
             　　　　break;
             　　default:
@@ -159,55 +154,39 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    dataArray1 = [[NSMutableArray alloc] initWithObjects:@"提醒设置", @"导出数据", nil];//初始化数据数组1
-    dataArray2 = [[NSMutableArray alloc] initWithObjects:@"推荐给朋友", @"打分鼓励，给个评价！", @"意见反馈", @"商务合作", @"应用推荐", @"关于我们", nil];//初始化数据数组2
-    if(indexPath.section==0)
+    if(indexPath.row==0)
     {
-        if(indexPath.row==0)
-        {
-            //提醒设置
-        }
-        else if(indexPath.row==1)
-        {
-            //导出数据
-        }
+        //推荐给朋友
     }
-    else
+    else if(indexPath.row==1)
     {
-        if(indexPath.row==0)
-        {
-            //推荐给朋友
-        }
-        else if(indexPath.row==1)
-        {
-            //打分鼓励，给个评价！
-            static NSString *const iOS7AppStoreURLFormat = @"itms-apps://itunes.apple.com/app/id%d";
-            static NSString *const iOSAppStoreURLFormat = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d";
-            
-            NSURL *appStore = [NSURL URLWithString:[NSString stringWithFormat:([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)? iOS7AppStoreURLFormat: iOSAppStoreURLFormat, 888547050]];
-            [[UIApplication sharedApplication]openURL:appStore];
-            
-        }
-        else if(indexPath.row==2)
-        {
-            //意见反馈
-        }
-        else if(indexPath.row==3)
-        {
-            //商务合作
-            MKBusinessCooperation *mKAboutUs = [[MKBusinessCooperation alloc]init];
-            [self.navigationController pushViewController:mKAboutUs animated:YES];
-        }
-        else if(indexPath.row==4)
-        {
-            //应用推荐
-        }
-        else if(indexPath.row==5)
-        {
-            //关于我们
-            MKAboutUs *mKAboutUs = [[MKAboutUs alloc]init];
-            [self.navigationController pushViewController:mKAboutUs animated:YES];
-        }
+        //打分鼓励，给个评价！
+        static NSString *const iOS7AppStoreURLFormat = @"itms-apps://itunes.apple.com/app/id%d";
+        static NSString *const iOSAppStoreURLFormat = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d";
+        
+        NSURL *appStore = [NSURL URLWithString:[NSString stringWithFormat:([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)? iOS7AppStoreURLFormat: iOSAppStoreURLFormat, 888547050]];
+        [[UIApplication sharedApplication]openURL:appStore];
+        
+    }
+    else if(indexPath.row==2)
+    {
+        //意见反馈
+    }
+    else if(indexPath.row==3)
+    {
+        //商务合作
+        MKBusinessCooperation *mKAboutUs = [[MKBusinessCooperation alloc]init];
+        [self.navigationController pushViewController:mKAboutUs animated:YES];
+    }
+    else if(indexPath.row==4)
+    {
+        //应用推荐
+    }
+    else if(indexPath.row==5)
+    {
+        //关于我们
+        MKAboutUs *mKAboutUs = [[MKAboutUs alloc]init];
+        [self.navigationController pushViewController:mKAboutUs animated:YES];
     }
     //    NSString *msg = [[NSString alloc] initWithFormat:@"你选择的是:%@",[self.dataList objectAtIndex:[indexPath row]]];
     //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
