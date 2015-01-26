@@ -14,19 +14,12 @@
 {
     UITableView *theTableView;
     UIDatePicker *datePicker;
-    UILabel *timeLabel;
-    UITextField* numberField;
-    UITextField* noteField;
-    
     NSDate *theDate;
-    NSDateFormatter *labelDateFormatter;
-    
     BOOL datePickerShowed;
 }
 @end
 
 @implementation MKAddViewController
-//@synthesize delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,14 +31,6 @@
                            barMetrics:UIBarMetricsDefault];
     [navigationBar setShadowImage:[UIImage new]];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-//    UIBarButtonItem *cancelButton =[[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStyleDone target:self action:@selector(cancel)];
-//    [cancelButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-//                                     [UIFont systemFontOfSize:16], NSFontAttributeName,
-//                                     UIColorFromRGB(0xd57d9c), NSForegroundColorAttributeName,
-//                                     nil]
-//                           forState:UIControlStateNormal];
-//    self.navigationItem.leftBarButtonItem=cancelButton;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
@@ -59,8 +44,6 @@
     theTableView.showsVerticalScrollIndicator = NO;
     theTableView.dataSource = self;
     theTableView.delegate = self;
-//    theTableView.rowHeight = 45;
-//    theTableView.scrollEnabled = NO;
     [self.view addSubview:theTableView];
     [theTableView setBackgroundColor:UIColorFromRGB(0xfff1f6)];
     
@@ -72,7 +55,35 @@
     [labelDateFormatter setLocale:[NSLocale currentLocale]];
     labelDateFormatter.doesRelativeDateFormatting = YES;
     
-//    [[UITextField appearance] setTintColor:UIColorFromRGB(0xd57d9c)];
+    //time input label
+    timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 220, 34)];
+    timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:[NSDate date]]];
+    timeLabel.textAlignment = NSTextAlignmentRight;
+    [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+    
+    //milk num input label
+    numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 195, 34)];
+    numberField.borderStyle = UITextBorderStyleNone;
+    numberField.font = [UIFont systemFontOfSize:16];
+    numberField.autocorrectionType = UITextAutocorrectionTypeNo;
+    numberField.keyboardType = UIKeyboardTypeNumberPad;
+    numberField.placeholder = @"0";
+    numberField.delegate = self;
+    numberField.textColor = UIColorFromRGB(0xd57d9c);
+    numberField.textAlignment = NSTextAlignmentRight;
+    numberField.tintColor = UIColorFromRGB(0xd57d9c);
+    
+    //note text input label
+    noteField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 220, 34)];
+    noteField.borderStyle = UITextBorderStyleNone;
+    noteField.font = [UIFont systemFontOfSize:16];
+    noteField.autocorrectionType = UITextAutocorrectionTypeNo;
+    noteField.keyboardType = UIKeyboardTypeDefault;
+    noteField.delegate = self;
+    noteField.textAlignment = NSTextAlignmentRight;
+    noteField.textColor = UIColorFromRGB(0xd57d9c);
+    noteField.tintColor = UIColorFromRGB(0xd57d9c);
+    
     datePickerShowed = NO;
 }
 -(void)cancel
@@ -100,7 +111,6 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:dateStr,@"DateStr", nil];
     [[NSNotificationCenter defaultCenter]postNotificationName:Mike_ADD_RECORD_NOTIFICATION object:nil userInfo:dic];
     [self.navigationController dismissViewControllerAnimated:YES completion:^(void){
-//        [[NSNotificationCenter defaultCenter]postNotificationName:Mike_ADD_RECORD_NOTIFICATION object:nil];
     }];
 }
 
@@ -163,14 +173,8 @@
             UILabel *timeStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 50, 34)];
             timeStaticLabel.text = @"时间";
             [timeStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-//            timeStaticLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:timeStaticLabel];
             
-            timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 220, 34)];
-            timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:[NSDate date]]];
-            timeLabel.textAlignment = NSTextAlignmentRight;
-            [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-//            timeLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:timeLabel];
         }else{
             if (datePicker == nil) {
@@ -187,22 +191,9 @@
             UILabel *numberStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 50, 34)];
             numberStaticLabel.text = @"总共";
             [numberStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-//            numberStaticLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:numberStaticLabel];
             
-            numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 195, 34)];
-            numberField.borderStyle = UITextBorderStyleNone;
-            numberField.font = [UIFont systemFontOfSize:16];
-            numberField.autocorrectionType = UITextAutocorrectionTypeNo;
-            numberField.keyboardType = UIKeyboardTypeNumberPad;
-//            numberField.clearButtonMode = UITextFieldViewModeWhileEditing;
-            numberField.placeholder = @"0";
-            numberField.delegate = self;
-            numberField.textColor = UIColorFromRGB(0xd57d9c);
-            numberField.textAlignment = NSTextAlignmentRight;
-            numberField.tintColor = UIColorFromRGB(0xd57d9c);
             [cell.contentView addSubview:numberField];
-//            numberField.backgroundColor = [UIColor yellowColor];
             
             UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(280, 5, 20, 34)];
             mlLabel.text = @"ml";
@@ -213,35 +204,10 @@
             UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 50, 34)];
             noteStaticLabel.text = @"备注";
             [noteStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-//            noteStaticLabel.backgroundColor = [UIColor blueColor];
             [cell.contentView addSubview:noteStaticLabel];
             
-            noteField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 220, 34)];
-            noteField.borderStyle = UITextBorderStyleNone;
-            noteField.font = [UIFont systemFontOfSize:16];
-            noteField.autocorrectionType = UITextAutocorrectionTypeNo;
-            noteField.keyboardType = UIKeyboardTypeDefault;
-            //noteField.clearButtonMode = UITextFieldViewModeWhileEditing;
-            noteField.delegate = self;
-            noteField.textAlignment = NSTextAlignmentRight;
-            noteField.textColor = UIColorFromRGB(0xd57d9c);
-            noteField.tintColor = UIColorFromRGB(0xd57d9c);
             [cell.contentView addSubview:noteField];
-//            noteField.backgroundColor = [UIColor yellowColor];
         }
-    }else{
-//        UILabel *nextStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
-//        nextStaticLabel.text = @"下次";
-//        [nextStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-//        //        timeStaticLabel.backgroundColor = [UIColor blueColor];
-//        [cell.contentView addSubview:nextStaticLabel];
-//        
-//        UILabel *nextLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 230, 34)];
-//        nextLabel.text = @"2小时30分钟后提醒";
-//        nextLabel.textAlignment = NSTextAlignmentRight;
-//        [nextLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-//        //        timeLabel.backgroundColor = [UIColor blueColor];
-//        [cell.contentView addSubview:nextLabel];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;

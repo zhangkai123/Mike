@@ -11,6 +11,7 @@
 		4B040BD81A59468000DF859F /* MKDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B040BD71A59468000DF859F /* MKDBManager.m */; };
 		4B040BDA1A59474400DF859F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B040BD91A59474400DF859F /* libsqlite3.dylib */; };
 		4B040BDD1A59482100DF859F /* MKRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B040BDC1A59482100DF859F /* MKRecord.m */; };
+		4B097F421A762333008EA48A /* MKModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B097F411A762333008EA48A /* MKModifyViewController.m */; };
 		4B374D8B1A5A60AE0026CFF4 /* MKDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8A1A5A60AE0026CFF4 /* MKDate.m */; };
 		4B374D8E1A5A629B0026CFF4 /* MKRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8D1A5A629B0026CFF4 /* MKRecordsViewController.m */; };
 		4B3D3B1F1A5BEAD80069707C /* MKDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B3D3B1E1A5BEAD80069707C /* MKDataBase.sqlite */; };
@@ -69,6 +70,8 @@
 		4B040BD91A59474400DF859F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		4B040BDB1A59482100DF859F /* MKRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecord.h; sourceTree = "<group>"; };
 		4B040BDC1A59482100DF859F /* MKRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecord.m; sourceTree = "<group>"; };
+		4B097F401A762333008EA48A /* MKModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKModifyViewController.h; sourceTree = "<group>"; };
+		4B097F411A762333008EA48A /* MKModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKModifyViewController.m; sourceTree = "<group>"; };
 		4B374D891A5A60AE0026CFF4 /* MKDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDate.h; sourceTree = "<group>"; };
 		4B374D8A1A5A60AE0026CFF4 /* MKDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDate.m; sourceTree = "<group>"; };
 		4B374D8C1A5A629B0026CFF4 /* MKRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordsViewController.h; sourceTree = "<group>"; };
@@ -265,6 +268,8 @@
 				E29FFCAC1A5E7ECE004273BE /* MKBusinessCooperation.m */,
 				4BA38C971A63704E009D25A0 /* MKPopView.h */,
 				4BA38C981A63704E009D25A0 /* MKPopView.m */,
+				4B097F401A762333008EA48A /* MKModifyViewController.h */,
+				4B097F411A762333008EA48A /* MKModifyViewController.m */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				4BC06A2C1A527FF600D62B3C /* MKAddViewController.m in Sources */,
 				4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */,
 				E29FFCAA1A5E7EBC004273BE /* MKAboutUs.m in Sources */,
+				4B097F421A762333008EA48A /* MKModifyViewController.m in Sources */,
 				4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */,
 				4B040BD81A59468000DF859F /* MKDBManager.m in Sources */,
 				4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */,

@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MKRecord.h"
+
+@protocol MKRecordsViewControllerDelegate <NSObject>
+
+-(void)showRecordDetailPage:(MKRecord *)theRecord;
+
+@end
 
 @interface MKRecordsViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *recordsTableView;
 }
+
+@property(nonatomic,unsafe_unretained) id<MKRecordsViewControllerDelegate> delegate;
 @end

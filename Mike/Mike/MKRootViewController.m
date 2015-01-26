@@ -12,15 +12,14 @@
 #import "MKCommon.h"
 #import "MKMilkViewController.h"
 #import "MKRecordsViewController.h"
+#import "MKModifyViewController.h"
 #import "MKDataController.h"
 #import "MKPopView.h"
 #import "MKRecord.h"
 
-@interface MKRootViewController ()
+@interface MKRootViewController ()<MKRecordsViewControllerDelegate>
 {
     UILabel *bottleLabel;
-    
-//    UIView *blackView;
     MKPopView *popView;
 }
 @end
@@ -77,6 +76,7 @@
     [milkViewController didMoveToParentViewController:self];
     
     MKRecordsViewController *recordsViewController = [[MKRecordsViewController alloc]init];
+    recordsViewController.delegate = self;
     [self addChildViewController:recordsViewController];
     recordsViewController.view.frame = CGRectMake(0, 265, ScreenWidth, ScreenHeight- 265 - 64);
     [self.view addSubview:recordsViewController.view];
@@ -148,6 +148,14 @@
 {
     MKAddViewController *addViewController = [[MKAddViewController alloc]init];
     UINavigationController *navigaitonController = [[UINavigationController alloc]initWithRootViewController:addViewController];
+    [self presentViewController:navigaitonController animated:YES completion:nil];
+}
+#pragma MKRecordsViewControllerDelegate
+-(void)showRecordDetailPage:(MKRecord *)theRecord
+{
+    MKModifyViewController *modifyViewController = [[MKModifyViewController alloc]init];
+    modifyViewController.theRecord = theRecord;
+    UINavigationController *navigaitonController = [[UINavigationController alloc]initWithRootViewController:modifyViewController];
     [self presentViewController:navigaitonController animated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning {

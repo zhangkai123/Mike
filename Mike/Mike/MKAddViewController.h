@@ -9,4 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MKAddViewController : UIViewController
+{
+    NSDateFormatter *labelDateFormatter;
+    UILabel *timeLabel;
+    UITextField* numberField;
+    UITextField* noteField;
+}
 @end

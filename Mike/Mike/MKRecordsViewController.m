@@ -9,7 +9,6 @@
 #import "MKRecordsViewController.h"
 #import "MKRecordTableViewCell.h"
 #import "MKCommon.h"
-#import "MKRecord.h"
 #import "MKDate.h"
 #import "MKDataController.h"
 
@@ -24,9 +23,20 @@
 @end
 
 @implementation MKRecordsViewController
+@synthesize delegate;
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+//-(void)viewDidAppear:(BOOL)animated
+//{
+//    [recordsTableView deselectRowAtIndexPath:[recordsTableView indexPathForSelectedRow] animated:NO];
+//    [super viewDidAppear:animated];
+//}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [recordsTableView deselectRowAtIndexPath:[recordsTableView indexPathForSelectedRow] animated:NO];
+    [super viewWillDisappear:animated];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -104,6 +114,12 @@
     cell.numberLabel.text = [NSString stringWithFormat:@"%dml",(int)record.milkNum ];
     cell.noteLabel.text = record.noteStr;
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int recordIndex = [self getRecordsIndex:indexPath.section];
+    MKRecord *record = [recordsArray objectAtIndex:recordIndex + indexPath.row];
+    [self.delegate showRecordDetailPage:record];
 }
 -(int)getRecordsIndex:(int)sectionNum
 {
