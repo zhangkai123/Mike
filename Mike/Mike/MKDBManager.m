@@ -158,6 +158,24 @@
     }
     sqlite3_close(database);
 }
+-(void)delDate:(NSString *)theDate
+{
+    sqlite3 *database;
+    sqlite3_stmt *compiledStatement;
+    
+    if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+        //delete from meslist
+        NSString *deleteDateCommand = [NSString stringWithFormat:@"delete from MKDate where date = '%@'" , theDate];
+        const char *deleteDateSqlCommand = [deleteDateCommand UTF8String];
+        sqlite3_prepare_v2(database, deleteDateSqlCommand, -1, &compiledStatement, NULL);
+        while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            compiledStatement = nil;
+        }
+    }
+    sqlite3_close(database);
+}
+
+
 -(MKDate *)getDateFromRecordsWithTime:(NSString *)dateStr
 {
     sqlite3 *database;
@@ -173,6 +191,7 @@
                 theDate = [[MKDate alloc]init];
                 theDate.recordsNum = sqlite3_column_int(compiledStatement, 0);
                 theDate.milkNum = sqlite3_column_double(compiledStatement, 1);
+                theDate.dateStr = dateStr;
             }
         }
         
@@ -280,5 +299,33 @@
     }
     sqlite3_close(database);
     return totalRecordsNum;
+}
+-(void)delRecord:(NSString *)fullDateStr
+{
+    sqlite3 *database;
+    sqlite3_stmt *compiledStatement;
+    
+    if(sqlite3_open([databasePath UTF8String], &database) == SQLITE_OK){
+        //delete from meslist
+        NSString *deleteRecordCommand = [NSString stringWithFormat:@"delete from MKRecord where fullDate = '%@'" , fullDateStr];
+        const char *deleteRecordSqlCommand = [deleteRecordCommand UTF8String];
+        sqlite3_prepare_v2(database, deleteRecordSqlCommand, -1, &compiledStatement, NULL);
+        while(sqlite3_step(compiledStatement) == SQLITE_ROW) {
+            compiledStatement = nil;
+        }
+    }
+    sqlite3_close(database);
+    NSString *date = [self getDateFromFullDateStr:fullDateStr];
+    MKDate *theDate = [self getDateFromRecordsWithTime:date];
+    if (theDate == nil) {
+        [self delDate:date];
+    }else{
+        [self updateDate:date date:theDate];
+    }
+}
+-(NSString *)getDateFromFullDateStr:(NSString *)fDateStr;
+{
+    NSArray *dateArray = [fDateStr componentsSeparatedByString:@" "];
+    return [dateArray objectAtIndex:0];
 }
 @end

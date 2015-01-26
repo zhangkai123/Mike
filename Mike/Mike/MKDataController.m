@@ -49,6 +49,10 @@
 {
     return [[MKDBManager sharedDBManager]getTotalRecordsNum];
 }
+-(void)delRecord:(NSString *)fullDateStr
+{
+    [[MKDBManager sharedDBManager]delRecord:fullDateStr];
+}
 
 -(float)getTodayNumber:(NSString *)dateStr
 {

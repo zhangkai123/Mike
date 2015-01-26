@@ -15,6 +15,7 @@
 #define ScreenHeight [[UIScreen mainScreen] bounds].size.height
 
 #define Mike_ADD_RECORD_NOTIFICATION @"add_record_notification"
+#define Mike_REMOVE_RECORD_NOTIFICATION @"remove_record_notification"
 
 //int biggestMilkNum = 400;
 extern NSInteger biggestMilkNum;

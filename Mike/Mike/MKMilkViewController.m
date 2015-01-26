@@ -74,7 +74,8 @@ NSInteger biggestMilkNum;
     
     [self setMaxMilkNumber];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenAdd) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
 }
 -(void)loadTopviewData
 {
@@ -85,7 +86,20 @@ NSInteger biggestMilkNum;
     topView.todayNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)todayNum];
     topView.totalNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)totalNum];
 }
--(void)reloadData
+-(void)reloadDataWhenAdd
+{
+    [self loadTopviewData];
+    
+    [self setMaxMilkNumber];
+    NSArray *datesA = [[MKDataController sharedDataController]getDatesWithASCOrder:YES];
+    if (datesArray != nil) {
+        datesArray = nil;
+        datesArray = [NSMutableArray arrayWithArray:datesA];
+    }
+    [chartTableView reloadData];
+    [self loadTableToBottom];
+}
+-(void)reloadDataWhenRemove
 {
     [self loadTopviewData];
     

@@ -82,9 +82,10 @@
     [self.view addSubview:recordsViewController.view];
     [recordsViewController didMoveToParentViewController:self];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenAddRecord:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
 }
--(void)reloadData:(NSNotification *)noti
+-(void)reloadDataWhenAddRecord:(NSNotification *)noti
 {
     int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
     bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
@@ -94,6 +95,11 @@
     NSArray *dayRecordsArray = [[MKDataController sharedDataController]getRecordsWithDateStr:dateStr];
     NSString *shareText = [self getShareText:dayRecordsArray dateString:dateStr];
     [self showPopViewWithText:shareText];
+}
+-(void)reloadDataWhenRemove
+{
+    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
+    bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
 }
 -(NSString *)getShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr
 {

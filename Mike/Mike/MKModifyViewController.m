@@ -7,6 +7,8 @@
 //
 
 #import "MKModifyViewController.h"
+#import "MKCommon.h"
+#import "MKDataController.h"
 
 @interface MKModifyViewController ()
 
@@ -25,8 +27,32 @@
     timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:fullDate]];
     numberField.text = [NSString stringWithFormat:@"%d",(int)theRecord.milkNum];
     noteField.text = theRecord.noteStr;
+    
+    UIButton *deleteButton = [[UIButton alloc]initWithFrame:CGRectMake(0, ScreenHeight - 64 - 45, ScreenWidth, 45)];
+    [deleteButton addTarget:self action:@selector(deleteThisRecord) forControlEvents:UIControlEventTouchUpInside];
+    deleteButton.backgroundColor = UIColorFromRGB(0xE43B43);
+    [deleteButton setTitle:@"删除记录" forState:UIControlStateNormal];
+    [self.view addSubview:deleteButton];
 }
-
+-(void)deleteThisRecord
+{
+    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:nil
+                                                     message:@"确定删除?"
+                                                    delegate:self
+                                           cancelButtonTitle:@"取消"
+                                           otherButtonTitles: @"确定",nil];
+    [alert show];
+}
+-(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 1)
+    {
+        [[MKDataController sharedDataController]delRecord:self.theRecord.fullDate];
+        [[NSNotificationCenter defaultCenter]postNotificationName:Mike_REMOVE_RECORD_NOTIFICATION object:nil userInfo:nil];
+        [self.navigationController dismissViewControllerAnimated:YES completion:^(void){
+        }];
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

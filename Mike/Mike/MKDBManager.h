@@ -21,6 +21,7 @@
 -(NSArray *)getRecords;
 -(NSArray *)getRecordsWithDateStr:(NSString *)dateStr;
 -(int)getTotalRecordsNum;
+-(void)delRecord:(NSString *)fullDateStr;
 
 -(float)getTodayNumber:(NSString *)dateStr;
 -(float)getTotalNumber;

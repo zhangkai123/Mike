@@ -67,8 +67,22 @@
     datesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
     recordsArray = [[MKDataController sharedDataController]getRecords];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewWhenAdd) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
 }
+-(void)reloadTableViewWhenAdd
+{
+    datesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
+    recordsArray = [[MKDataController sharedDataController]getRecords];
+    [recordsTableView reloadData];
+}
+-(void)reloadTableViewWhenRemove
+{
+    datesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
+    recordsArray = [[MKDataController sharedDataController]getRecords];
+    [recordsTableView reloadData];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [datesArray count];
@@ -130,13 +144,6 @@
     }
     return preTotalRecordsNum;
 }
--(void)reloadTableView
-{
-    datesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
-    recordsArray = [[MKDataController sharedDataController]getRecords];
-    [recordsTableView reloadData];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
