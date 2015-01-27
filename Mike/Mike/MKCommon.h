@@ -17,6 +17,8 @@
 #define Mike_ADD_RECORD_NOTIFICATION @"add_record_notification"
 #define Mike_REMOVE_RECORD_NOTIFICATION @"remove_record_notification"
 
+#define NUM_ANIMATE_DURATION 1.5
+
 //int biggestMilkNum = 400;
 extern NSInteger biggestMilkNum;
 #endif
