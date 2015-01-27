@@ -18,4 +18,6 @@
 }
 @property(nonatomic,strong) UILabel *bottleNumLabel;
 @property(nonatomic,strong) NSString *shareText;
+
+-(void)animateShareViewOut;
 @end

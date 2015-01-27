@@ -136,6 +136,7 @@
     popView.center = self.navigationController.view.center;
     [popView setShareText:shareText];
     [self.navigationController.view addSubview:popView];
+    [popView animateShareViewOut];
 }
 -(void)viewWillAppear:(BOOL)animated
 {

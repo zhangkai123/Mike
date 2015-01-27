@@ -53,18 +53,18 @@
 }
 -(void)setMilkNum:(int)milkN
 {
-    int oldMilkNum = milkNum;
+//    int oldMilkNum = milkNum;
     milkNum = milkN;
     
     //94 is the full height of chart view,400 is the biggest milk num,deault is 400. note:need to set a mini chart view height value
     int chartHeight = (milkNum * 90)/biggestMilkNum;
-    if (oldMilkNum < milkNum) {
-        [UIView animateWithDuration:1.5f animations:^{
-            chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 7 - chartHeight, 13, chartHeight);
-        }];
-    }else{
+//    if (oldMilkNum < milkNum) {
+//        [UIView animateWithDuration:1.5f animations:^{
+//            chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 7 - chartHeight, 13, chartHeight);
+//        }];
+//    }else{
         chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 7 - chartHeight, 13, chartHeight);
-    }
+//    }
 }
 - (void)awakeFromNib {
     // Initialization code

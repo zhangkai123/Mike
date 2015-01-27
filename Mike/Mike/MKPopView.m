@@ -26,7 +26,7 @@
         sharedView.delegate = self;
         sharedView.layer.cornerRadius = 10;
         sharedView.layer.masksToBounds = YES;
-        sharedView.center = self.center;
+        sharedView.center = CGPointMake(self.center.x, -150);
         [self addSubview:sharedView];
         
         UIImageView *bottleImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bottle"]];
@@ -77,6 +77,18 @@
                                        lineBreakMode:shareTextLabel.lineBreakMode];
     shareTextLabel.frame = CGRectMake(20, 60, 220, stringSize.height);
 }
+-(void)animateShareViewOut
+{
+    sharedView.transform = CGAffineTransformMakeRotation(DegreesToRadians(-45));
+    [UIView animateWithDuration:0.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         sharedView.center = self.center;
+                         sharedView.transform = CGAffineTransformMakeRotation(DegreesToRadians(0));
+                     }
+                     completion:nil];
+}
 -(void)shareToWeibo
 {
     
@@ -88,6 +100,15 @@
 #pragma MKTouchableViewDelegate
 -(void)clickedView
 {
-    [self removeFromSuperview];
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         sharedView.center = CGPointMake(self.center.x, -150);
+                         sharedView.transform = CGAffineTransformMakeRotation(DegreesToRadians(-45));
+                     }
+                     completion:^(BOOL finished){
+                         [self removeFromSuperview];
+                     }];
 }
 @end
