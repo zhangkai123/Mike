@@ -23,7 +23,6 @@
 		4BA38C9D1A637095009D25A0 /* moments.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA38C9B1A637095009D25A0 /* moments.png */; };
 		4BA38C9E1A637095009D25A0 /* sinaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA38C9C1A637095009D25A0 /* sinaIcon.png */; };
 		4BA38CA11A63E920009D25A0 /* MKTouchableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA38CA01A63E920009D25A0 /* MKTouchableView.m */; };
-		4BC06A211A5252D700D62B3C /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1C1A5252D700D62B3C /* share@2x.png */; };
 		4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1D1A5252D700D62B3C /* bottle@2x.png */; };
 		4BC06A231A5252D700D62B3C /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1E1A5252D700D62B3C /* more@2x.png */; };
 		4BC06A241A5252D700D62B3C /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC06A1F1A5252D700D62B3C /* add@2x.png */; };
@@ -51,6 +50,8 @@
 		E2815C531A5938A000916F43 /* 应用推荐.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4B1A5938A000916F43 /* 应用推荐.png */; };
 		E29FFCAA1A5E7EBC004273BE /* MKAboutUs.m in Sources */ = {isa = PBXBuildFile; fileRef = E29FFCA91A5E7EBC004273BE /* MKAboutUs.m */; };
 		E29FFCAD1A5E7ECE004273BE /* MKBusinessCooperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E29FFCAC1A5E7ECE004273BE /* MKBusinessCooperation.m */; };
+		E2B644031A77336B00909745 /* share1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B644011A77336B00909745 /* share1@2x.png */; };
+		E2B644041A77336B00909745 /* share2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B644021A77336B00909745 /* share2@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +91,6 @@
 		4BA38C9C1A637095009D25A0 /* sinaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sinaIcon.png; sourceTree = "<group>"; };
 		4BA38C9F1A63E920009D25A0 /* MKTouchableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTouchableView.h; sourceTree = "<group>"; };
 		4BA38CA01A63E920009D25A0 /* MKTouchableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTouchableView.m; sourceTree = "<group>"; };
-		4BC06A1C1A5252D700D62B3C /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		4BC06A1D1A5252D700D62B3C /* bottle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottle@2x.png"; sourceTree = "<group>"; };
 		4BC06A1E1A5252D700D62B3C /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
 		4BC06A1F1A5252D700D62B3C /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
@@ -132,6 +132,8 @@
 		E29FFCA91A5E7EBC004273BE /* MKAboutUs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAboutUs.m; sourceTree = "<group>"; };
 		E29FFCAB1A5E7ECE004273BE /* MKBusinessCooperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBusinessCooperation.h; sourceTree = "<group>"; };
 		E29FFCAC1A5E7ECE004273BE /* MKBusinessCooperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBusinessCooperation.m; sourceTree = "<group>"; };
+		E2B644011A77336B00909745 /* share1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share1@2x.png"; sourceTree = "<group>"; };
+		E2B644021A77336B00909745 /* share2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share2@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,7 +235,8 @@
 				4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */,
 				4BE59E161A53D3F2004CF8D9 /* chart@2x.png */,
 				4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */,
-				4BC06A1C1A5252D700D62B3C /* share@2x.png */,
+				E2B644011A77336B00909745 /* share1@2x.png */,
+				E2B644021A77336B00909745 /* share2@2x.png */,
 				4BC06A1D1A5252D700D62B3C /* bottle@2x.png */,
 				4BC06A1E1A5252D700D62B3C /* more@2x.png */,
 				4BC06A1F1A5252D700D62B3C /* add@2x.png */,
@@ -406,9 +409,10 @@
 				4B91A68D1A61336600AAA9A9 /* zero@2x.png in Resources */,
 				4B5782E11A539DB80085BEAE /* NavigationBarBackground.png in Resources */,
 				4BC06A241A5252D700D62B3C /* add@2x.png in Resources */,
+				E2B644031A77336B00909745 /* share1@2x.png in Resources */,
 				E2815C531A5938A000916F43 /* 应用推荐.png in Resources */,
 				E2815C521A5938A000916F43 /* 意见反馈.png in Resources */,
-				4BC06A211A5252D700D62B3C /* share@2x.png in Resources */,
+				E2B644041A77336B00909745 /* share2@2x.png in Resources */,
 				4B3D3B1F1A5BEAD80069707C /* MKDataBase.sqlite in Resources */,
 				E2815C4C1A5938A000916F43 /* 打分鼓励，给个评价！.png in Resources */,
 				4BCF0CB91A50F95900A2FF5D /* Images.xcassets in Resources */,

@@ -41,17 +41,17 @@
     
     UITableView1.backgroundColor=bgColor;
     UITableView1.sectionFooterHeight=0;
-    //    UITableView1.separatorStyle = UITableViewCellSeparatorStyleNone;//隐藏分割线
-    //    UITableView1.showsHorizontalScrollIndicator = NO;
-    //    UITableView1.showsVerticalScrollIndicator = NO;
+    UITableView1.separatorStyle = UITableViewCellSeparatorStyleNone;//隐藏分割线
+    UITableView1.showsHorizontalScrollIndicator = NO;
+    UITableView1.showsVerticalScrollIndicator = NO;
     
-    if ([UITableView1 respondsToSelector:@selector(setSeparatorInset:)]) {
-        [UITableView1 setSeparatorInset:UIEdgeInsetsZero];
-    }
-    
-    if ([UITableView1 respondsToSelector:@selector(setLayoutMargins:)]) {
-        [UITableView1 setLayoutMargins:UIEdgeInsetsZero];//
-    }
+//    if ([UITableView1 respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [UITableView1 setSeparatorInset:UIEdgeInsetsZero];
+//    }
+//    
+//    if ([UITableView1 respondsToSelector:@selector(setLayoutMargins:)]) {
+//        [UITableView1 setLayoutMargins:UIEdgeInsetsZero];//
+//    }
     
     UIImage *backButtonImage = [UIImage imageNamed:@"back.png"];
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -113,6 +113,16 @@
     if (!cell)
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     
+    if (indexPath.row == 0) {
+        UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 0.5)];
+        topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
+        [cell.contentView addSubview:topLineView];
+    }
+    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.frame.size.height - 0.5, 320, 0.5)];
+    lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
+    [cell.contentView addSubview:lineView];
+    
+    
     switch (indexPath.section) {
 //            　　case 0://对应各自的分区
 //            //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -141,14 +151,7 @@
     cell.imageView.contentMode = UIViewContentModeScaleToFill;
     cell.imageView.transform=CGAffineTransformMakeScale(0.5,0.5);
     
-    //    if (indexPath.row == 0) {
-    //        UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, cell.frame.size.width, 1)];
-    //        topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
-    //        [cell.contentView addSubview:topLineView];
-    //    }
-    //    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.frame.size.height, cell.frame.size.width, 1)];
-    //    lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
-    //    [cell.contentView addSubview:lineView];
+
     
     return cell;
 }

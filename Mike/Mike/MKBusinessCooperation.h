@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MKBusinessCooperation : UIViewController
-
+@interface MKBusinessCooperation : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView *UITableView1;
+}
 @end
