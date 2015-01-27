@@ -26,10 +26,12 @@
         todayLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:todayLabel];
         
-        self.todayNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(52, 0, 80, self.frame.size.height)];
+        self.todayNumberLabel = [[UICountingLabel alloc]initWithFrame:CGRectMake(52, 0, 80, self.frame.size.height)];
         self.todayNumberLabel.text = @"0 ml";
         [self.todayNumberLabel setFont:[UIFont boldSystemFontOfSize:17]];
         [self.todayNumberLabel setTextColor:[UIColor whiteColor]];
+        self.todayNumberLabel.method = UILabelCountingMethodLinear;
+        self.todayNumberLabel.format = @"%d ml";
         [self addSubview:self.todayNumberLabel];
         
         UILabel *totalLabel = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth/2 + 33 , 0, 42, self.frame.size.height)];
@@ -40,10 +42,12 @@
         totalLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:totalLabel];
         
-        self.totalNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth/2 + 75, 0, 80, self.frame.size.height)];
+        self.totalNumberLabel = [[UICountingLabel alloc]initWithFrame:CGRectMake(ScreenWidth/2 + 75, 0, 80, self.frame.size.height)];
         self.totalNumberLabel.text = @"0 ml";
         [self.totalNumberLabel setFont:[UIFont boldSystemFontOfSize:17]];
         [self.totalNumberLabel setTextColor:[UIColor whiteColor]];
+        self.totalNumberLabel.method = UILabelCountingMethodLinear;
+        self.totalNumberLabel.format = @"%d ml";
         [self addSubview:self.totalNumberLabel];
     }
     return self;

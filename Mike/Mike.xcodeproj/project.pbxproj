@@ -12,6 +12,7 @@
 		4B040BDA1A59474400DF859F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B040BD91A59474400DF859F /* libsqlite3.dylib */; };
 		4B040BDD1A59482100DF859F /* MKRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B040BDC1A59482100DF859F /* MKRecord.m */; };
 		4B097F421A762333008EA48A /* MKModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B097F411A762333008EA48A /* MKModifyViewController.m */; };
+		4B0E54571A773A010014B8BF /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E54561A773A010014B8BF /* UICountingLabel.m */; };
 		4B374D8B1A5A60AE0026CFF4 /* MKDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8A1A5A60AE0026CFF4 /* MKDate.m */; };
 		4B374D8E1A5A629B0026CFF4 /* MKRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8D1A5A629B0026CFF4 /* MKRecordsViewController.m */; };
 		4B3D3B1F1A5BEAD80069707C /* MKDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B3D3B1E1A5BEAD80069707C /* MKDataBase.sqlite */; };
@@ -73,6 +74,8 @@
 		4B040BDC1A59482100DF859F /* MKRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecord.m; sourceTree = "<group>"; };
 		4B097F401A762333008EA48A /* MKModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKModifyViewController.h; sourceTree = "<group>"; };
 		4B097F411A762333008EA48A /* MKModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKModifyViewController.m; sourceTree = "<group>"; };
+		4B0E54551A773A010014B8BF /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
+		4B0E54561A773A010014B8BF /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
 		4B374D891A5A60AE0026CFF4 /* MKDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDate.h; sourceTree = "<group>"; };
 		4B374D8A1A5A60AE0026CFF4 /* MKDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDate.m; sourceTree = "<group>"; };
 		4B374D8C1A5A629B0026CFF4 /* MKRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordsViewController.h; sourceTree = "<group>"; };
@@ -152,6 +155,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B0E54531A7739D10014B8BF /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				4B0E54541A7739EA0014B8BF /* CountLabel */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		4B0E54541A7739EA0014B8BF /* CountLabel */ = {
+			isa = PBXGroup;
+			children = (
+				4B0E54551A773A010014B8BF /* UICountingLabel.h */,
+				4B0E54561A773A010014B8BF /* UICountingLabel.m */,
+			);
+			name = CountLabel;
+			sourceTree = "<group>";
+		};
 		4B374D9B1A5A75B90026CFF4 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +267,7 @@
 		4BCF0CAA1A50F95900A2FF5D /* Mike */ = {
 			isa = PBXGroup;
 			children = (
+				4B0E54531A7739D10014B8BF /* Library */,
 				4B374D9D1A5A75F20026CFF4 /* Views */,
 				4B374D9C1A5A75D40026CFF4 /* DataController */,
 				4B374D9B1A5A75B90026CFF4 /* DataModel */,
@@ -442,6 +463,7 @@
 				4B040BDD1A59482100DF859F /* MKRecord.m in Sources */,
 				4BD2F4541A5A7FA00094AE5B /* MKMilkViewController.m in Sources */,
 				4B374D8E1A5A629B0026CFF4 /* MKRecordsViewController.m in Sources */,
+				4B0E54571A773A010014B8BF /* UICountingLabel.m in Sources */,
 				4B374D8B1A5A60AE0026CFF4 /* MKDate.m in Sources */,
 				4BE59E141A53CD35004CF8D9 /* MKChartTableViewCell.m in Sources */,
 			);

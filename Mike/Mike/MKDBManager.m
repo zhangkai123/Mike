@@ -317,7 +317,7 @@
     sqlite3_close(database);
     NSString *date = [self getDateFromFullDateStr:fullDateStr];
     MKDate *theDate = [self getDateFromRecordsWithTime:date];
-    if (theDate == nil) {
+    if ((theDate == nil) || (theDate.recordsNum == 0)) {
         [self delDate:date];
     }else{
         [self updateDate:date date:theDate];

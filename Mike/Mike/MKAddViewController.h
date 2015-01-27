@@ -14,5 +14,8 @@
     UILabel *timeLabel;
     UITextField* numberField;
     UITextField* noteField;
+    
+    NSDate *theDate;
 }
+-(void)save;
 @end

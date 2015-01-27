@@ -94,7 +94,7 @@
     NSString *dateStr = [dic objectForKey:@"DateStr"];
     NSArray *dayRecordsArray = [[MKDataController sharedDataController]getRecordsWithDateStr:dateStr];
     NSString *shareText = [self getShareText:dayRecordsArray dateString:dateStr];
-    [self showPopViewWithText:shareText];
+//    [self showPopViewWithText:shareText];
 }
 -(void)reloadDataWhenRemove
 {

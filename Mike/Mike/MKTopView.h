@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UICountingLabel.h"
 
 @interface MKTopView : UIView
 
 
-@property(nonatomic,strong) UILabel *todayNumberLabel;
-@property(nonatomic,strong) UILabel *totalNumberLabel;
+@property(nonatomic,strong) UICountingLabel *todayNumberLabel;
+@property(nonatomic,strong) UICountingLabel *totalNumberLabel;
 @end
