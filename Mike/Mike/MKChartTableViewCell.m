@@ -10,7 +10,8 @@
 #import "MKCommon.h"
 
 @implementation MKChartTableViewCell
-@synthesize numberLabel ,dayLabel ,dateLabel ,milkNum;
+@synthesize numberLabel ,dayLabel ,dateLabel ,milkNum ,chartAnimate;
+@synthesize delegate;
 
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -48,6 +49,8 @@
         [self.dateLabel setTextColor:UIColorFromRGB(0x74d6ff)];
         [self.dateLabel setFont:[UIFont systemFontOfSize:12]];
         [self addSubview:self.dateLabel];
+        
+        self.chartAnimate = NO;
     }
     return self;
 }
@@ -58,12 +61,21 @@
     
     //94 is the full height of chart view,400 is the biggest milk num,deault is 400. note:need to set a mini chart view height value
     int chartHeight = (milkNum * 90)/biggestMilkNum;
+    if (self.chartAnimate) {
+        [UIView animateWithDuration:1.5f animations:^{
+            chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 7 - chartHeight, 13, chartHeight);
+        } completion:^(BOOL finished){
+            [self.delegate cellChartAnimateFinished];
+        }];
+    }else{
+        chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 7 - chartHeight, 13, chartHeight);
+    }
 //    if (oldMilkNum < milkNum) {
 //        [UIView animateWithDuration:1.5f animations:^{
 //            chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 7 - chartHeight, 13, chartHeight);
 //        }];
 //    }else{
-        chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 7 - chartHeight, 13, chartHeight);
+//        chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 7 - chartHeight, 13, chartHeight);
 //    }
 }
 - (void)awakeFromNib {
