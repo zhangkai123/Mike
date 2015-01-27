@@ -53,6 +53,31 @@
         }];
     }
 }
+-(void)save
+{
+    [[MKDataController sharedDataController]delRecord:theRecord.fullDate];
+    
+    if (theDate == nil) {
+        theDate = [NSDate date];
+    }
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr = [dateFormatter stringFromDate:theDate];
+    
+    NSDateFormatter *fullDateFormatter = [[NSDateFormatter alloc] init];
+    [fullDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *fullDateStr = [fullDateFormatter stringFromDate:theDate];
+    
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"HH:mm"];
+    NSString *timeStr = [timeFormatter stringFromDate:theDate];
+    
+    [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteField.text fullDate:fullDateStr];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:dateStr,@"DateStr", nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:Mike_REMOVE_RECORD_NOTIFICATION object:nil userInfo:dic];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^(void){
+    }];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

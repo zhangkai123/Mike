@@ -14,7 +14,6 @@
 {
     UITableView *theTableView;
     UIDatePicker *datePicker;
-    NSDate *theDate;
     BOOL datePickerShowed;
 }
 @end
