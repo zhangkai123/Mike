@@ -25,6 +25,7 @@ NSInteger biggestMilkNum;
     NSDateFormatter *monthDayFormatter;
     
     NSString *addedDateStr;
+    int animateCellOldValue;
 }
 @end
 
@@ -80,6 +81,7 @@ NSInteger biggestMilkNum;
     [self setMaxMilkNumber];
     
     addedDateStr = nil;
+    animateCellOldValue = 0;
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenAdd:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
@@ -112,7 +114,8 @@ NSInteger biggestMilkNum;
     NSDictionary *dic = [noti userInfo];
     NSString *dateStr = [dic objectForKey:@"DateStr"];
     addedDateStr = [NSString stringWithString:dateStr];
-
+    [self getTheAnimateCellOldValue:dateStr oldDataArray:datesArray];
+    
     [self loadTopviewDataWithAnimation:YES];
     
     [self setMaxMilkNumber];
@@ -123,6 +126,17 @@ NSInteger biggestMilkNum;
     }
     [chartTableView reloadData];
     [self loadTableToBottom];
+}
+-(void)getTheAnimateCellOldValue:(NSString *)dStr oldDataArray:(NSArray *)oldDataA
+{
+    animateCellOldValue = 0;
+    for (int i = 0; i < [oldDataA count]; i++) {
+        MKDate *theDate = [oldDataA objectAtIndex:i];
+        if ([dStr isEqualToString:theDate.dateStr]) {
+            animateCellOldValue = theDate.milkNum;
+            break;
+        }
+    }
 }
 -(void)reloadDataWhenRemove
 {
@@ -161,14 +175,15 @@ NSInteger biggestMilkNum;
     }
     MKDate *theDate = [datesArray objectAtIndex:indexPath.row];
     cell.transform = CGAffineTransformMakeRotation(M_PI_2);
+
     cell.numberLabel.text = [NSString stringWithFormat:@"%d",(int)theDate.milkNum];
-    
     NSDate *originDate = [dateFormatter dateFromString:theDate.dateStr];
     cell.dayLabel.text = [self getWeekDayFromDate:originDate];
     cell.dateLabel.text = [self getMonthDayFromDate:originDate];
     cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if ([theDate.dateStr isEqualToString:addedDateStr]) {
+        cell.milkNum = animateCellOldValue;
         cell.chartAnimate = YES;
     }else{
         cell.chartAnimate = NO;
@@ -180,6 +195,7 @@ NSInteger biggestMilkNum;
 -(void)cellChartAnimateFinished
 {
     addedDateStr = nil;
+    animateCellOldValue = 0;
 }
 -(NSString *)getWeekDayFromDate:(NSDate *)theDate
 {
