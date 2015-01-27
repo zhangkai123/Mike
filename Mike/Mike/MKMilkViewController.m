@@ -156,7 +156,7 @@ NSInteger biggestMilkNum;
     biggestMilkNum = 400;
     int actualBiggestMilkNum = (int)[[MKDataController sharedDataController]getBiggestMilkNumber];
     if (actualBiggestMilkNum > biggestMilkNum) {
-        biggestMilkNum = actualBiggestMilkNum;
+        biggestMilkNum = actualBiggestMilkNum + 50;
     }
 }
 -(void)shareNumber
