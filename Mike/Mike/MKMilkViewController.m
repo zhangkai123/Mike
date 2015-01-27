@@ -87,14 +87,12 @@ NSInteger biggestMilkNum;
     int oldTotalNum = [self getNumberFromString:topView.totalNumberLabel.text];
     
     if (animate) {
-        [topView.todayNumberLabel countFrom:oldTodayNum to:todayNum withDuration:1.0];
-        [topView.totalNumberLabel countFrom:oldTotalNum to:totalNum withDuration:1.0];
+        [topView.todayNumberLabel countFrom:oldTodayNum to:todayNum withDuration:1.5];
+        [topView.totalNumberLabel countFrom:oldTotalNum to:totalNum withDuration:1.5];
     }else{
         topView.todayNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)todayNum];
         topView.totalNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)totalNum];
     }
-//    topView.todayNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)todayNum];
-//    topView.totalNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)totalNum];
 }
 -(int)getNumberFromString:(NSString *)milkStr
 {
