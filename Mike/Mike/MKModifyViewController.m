@@ -57,15 +57,15 @@
 {
     [[MKDataController sharedDataController]delRecord:theRecord.fullDate];
     
+    NSDateFormatter *fullDateFormatter = [[NSDateFormatter alloc] init];
+    [fullDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     if (theDate == nil) {
-        theDate = [NSDate date];
+        theDate = [fullDateFormatter dateFromString:theRecord.fullDate];
     }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *dateStr = [dateFormatter stringFromDate:theDate];
     
-    NSDateFormatter *fullDateFormatter = [[NSDateFormatter alloc] init];
-    [fullDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *fullDateStr = [fullDateFormatter stringFromDate:theDate];
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
