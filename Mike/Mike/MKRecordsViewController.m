@@ -17,8 +17,8 @@
     NSDateFormatter *oldDateFormat;
     NSDateFormatter *dateFormatter;
     
-    NSArray *datesArray;
-    NSArray *recordsArray;
+    NSMutableArray *datesArray;
+    NSMutableArray *recordsArray;
 }
 @end
 
@@ -28,11 +28,6 @@
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
-//-(void)viewDidAppear:(BOOL)animated
-//{
-//    [recordsTableView deselectRowAtIndexPath:[recordsTableView indexPathForSelectedRow] animated:NO];
-//    [super viewDidAppear:animated];
-//}
 -(void)viewWillDisappear:(BOOL)animated
 {
     [recordsTableView deselectRowAtIndexPath:[recordsTableView indexPathForSelectedRow] animated:NO];
@@ -62,27 +57,34 @@
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setLocale:[NSLocale currentLocale]];
     
-    datesArray = [[NSArray alloc]init];
-    recordsArray = [[NSArray alloc]init];
-    datesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
-    recordsArray = [[MKDataController sharedDataController]getRecords];
+    [self getAllData];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewWhenAdd) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewWhenAdd:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
 }
--(void)reloadTableViewWhenAdd
+-(void)reloadTableViewWhenAdd:(NSNotification *)noti
 {
-    datesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
-    recordsArray = [[MKDataController sharedDataController]getRecords];
-    [recordsTableView reloadData];
+    [self getAllData];
+    NSDictionary *dic = [noti userInfo];
+    NSString *dateStr = [dic objectForKey:@"DateStr"];
+    NSString *fullDateStr = [dic objectForKey:@"FullDateStr"];
+    NSIndexPath *addIndexPath = [self getAddedRowIndexPath:dateStr fullDateStr:fullDateStr];
+    [recordsTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:addIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 -(void)reloadTableViewWhenRemove
 {
-    datesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
-    recordsArray = [[MKDataController sharedDataController]getRecords];
+    [self getAllData];
     [recordsTableView reloadData];
 }
-
+-(void)getAllData
+{
+    [datesArray removeAllObjects];
+    [recordsArray removeAllObjects];
+    NSArray *tempDatesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
+    datesArray = [NSMutableArray arrayWithArray:tempDatesArray];
+    NSArray *tempRecordsArray = [[MKDataController sharedDataController]getRecords];
+    recordsArray = [NSMutableArray arrayWithArray:tempRecordsArray];
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [datesArray count];
@@ -143,6 +145,33 @@
         preTotalRecordsNum = preTotalRecordsNum + theDate.recordsNum;
     }
     return preTotalRecordsNum;
+}
+-(NSIndexPath *)getAddedRowIndexPath:(NSString *)dateStr fullDateStr:(NSString *)fullDateStr
+{
+    int sectionIndex = 0;
+    int rowIndex = 0;
+    for (int i = 0; i < [datesArray count]; i++) {
+        MKDate *theDate = [datesArray objectAtIndex:i];
+        if ([theDate.dateStr isEqualToString:dateStr]) {
+            sectionIndex = i;
+        }
+    }
+    NSMutableArray *sectionRecordsArray = [[NSMutableArray alloc]init];
+    for (int i = 0; i < [recordsArray count]; i++) {
+        MKRecord *theRecord = [recordsArray objectAtIndex:i];
+        if ([theRecord.date isEqualToString:dateStr]) {
+            [sectionRecordsArray addObject:theRecord];
+        }
+    }
+    for (int i = 0; i < [sectionRecordsArray count]; i++) {
+        MKRecord *theRecord = [sectionRecordsArray objectAtIndex:i];
+        if ([theRecord.fullDate isEqualToString:fullDateStr]) {
+            rowIndex = i;
+            break;
+        }
+    }
+    NSIndexPath *addedRecordIndexPath = [NSIndexPath indexPathForRow:rowIndex inSection:sectionIndex];
+    return addedRecordIndexPath;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
