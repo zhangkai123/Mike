@@ -45,6 +45,7 @@
     theTableView.delegate = self;
     [self.view addSubview:theTableView];
     [theTableView setBackgroundColor:UIColorFromRGB(0xfff1f6)];
+//    theTableView.backgroundColor = [UIColor whiteColor];
     
     [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
@@ -55,13 +56,13 @@
     labelDateFormatter.doesRelativeDateFormatting = YES;
     
     //time input label
-    timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 5, 220, 34)];
+    timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 220, 34)];
     timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:[NSDate date]]];
-    timeLabel.textAlignment = NSTextAlignmentRight;
+    timeLabel.textAlignment = NSTextAlignmentLeft;
     [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
     
     //milk num input label
-    numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 195, 34)];
+    numberField = [[UITextField alloc] initWithFrame:CGRectMake(20, 5, 40, 34)];
     numberField.borderStyle = UITextBorderStyleNone;
     numberField.font = [UIFont systemFontOfSize:16];
     numberField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -69,7 +70,7 @@
     numberField.placeholder = @"0";
     numberField.delegate = self;
     numberField.textColor = UIColorFromRGB(0xd57d9c);
-    numberField.textAlignment = NSTextAlignmentRight;
+    numberField.textAlignment = NSTextAlignmentLeft;
     numberField.tintColor = UIColorFromRGB(0xd57d9c);
     UIToolbar* fieldToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     fieldToolbar.barStyle = UIBarStyleDefault;
@@ -82,18 +83,17 @@
     numberField.inputAccessoryView = fieldToolbar;
     
     //note text input label
-    noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(80, 5, 220, 34)];
+    noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 5, 300, 90)];
     noteTextView.delegate = self;
     noteTextView.font = [UIFont systemFontOfSize:16];
     noteTextView.autocorrectionType = UITextAutocorrectionTypeNo;
     noteTextView.keyboardType = UIKeyboardTypeDefault;
-    noteTextView.textAlignment = NSTextAlignmentRight;
+    noteTextView.textAlignment = NSTextAlignmentLeft;
     noteTextView.scrollEnabled = NO;
     noteTextView.textColor = UIColorFromRGB(0xd57d9c);
     noteTextView.tintColor = UIColorFromRGB(0xd57d9c);
     noteTextView.inputAccessoryView = fieldToolbar;
-    noteTextView.text = @"写点什么";
-//    noteTextView.backgroundColor = [UIColor blueColor];
+    noteTextView.backgroundColor = [UIColor clearColor];
     
     datePickerShowed = NO;
 }
@@ -135,7 +135,7 @@
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -147,16 +147,22 @@
             sectionRow = 2;
         }
     }else if(section == 1){
-        sectionRow = 2;
+        sectionRow = 1;
     }else{
         sectionRow = 1;
     }
     return sectionRow;
 }
 
-- (CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20.0;
+    int headerHeight = 0;
+    if (section == 0) {
+        headerHeight = 50;
+    }else{
+        headerHeight = 29;
+    }
+    return headerHeight;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -165,12 +171,43 @@
         rowHeight = 44;
     }else if ((indexPath.section == 0) && (indexPath.row == 1)) {
         rowHeight = 200;
-    }else if ((indexPath.section == 1)&&(indexPath.row == 0)) {
-        rowHeight = 45;
-    }else{
+    }else if (indexPath.section == 1) {
         rowHeight = 44;
+    }else{
+        rowHeight = 100;
     }
     return rowHeight;
+}
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionTitle = nil;
+    switch (section) {
+        case 0:
+            sectionTitle = @"时间";
+            break;
+        case 1:
+            sectionTitle = @"总共";
+            break;
+        case 2:
+            sectionTitle = @"备注";
+            break;
+        default:
+            break;
+    }
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 29)];
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 100, 29)];
+    titleLabel.text = sectionTitle;
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    [titleLabel setFont:[UIFont boldSystemFontOfSize:12]];
+    [titleLabel setTextColor:[UIColor lightGrayColor]];
+    [headerView addSubview:titleLabel];
+    if (section == 0) {
+        titleLabel.frame = CGRectMake(20, 21, 100, 29);
+    }else{
+        CGRectMake(20, 0, 100, 29);
+    }
+    return headerView;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -184,17 +221,18 @@
         topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
         [cell.contentView addSubview:topLineView];
     }
-    if (!((indexPath.section == 0)&&(indexPath.row == 1))) {
+    if (!((indexPath.section == 0)&&(indexPath.row == 1)) && (indexPath.section != 2)) {
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.frame.size.height - 0.5, 320, 0.5)];
+        lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
+        [cell.contentView addSubview:lineView];
+    }
+    if (indexPath.section == 2) {
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 100 - 0.5, 320, 0.5)];
         lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
         [cell.contentView addSubview:lineView];
     }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            UILabel *timeStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 50, 34)];
-            timeStaticLabel.text = @"时间";
-            [timeStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-            [cell.contentView addSubview:timeStaticLabel];
             
             [cell.contentView addSubview:timeLabel];
         }else{
@@ -208,28 +246,18 @@
             }
         }
     }else if (indexPath.section == 1){
-        if (indexPath.row == 0) {
-            UILabel *numberStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 50, 34)];
-            numberStaticLabel.text = @"总共";
-            [numberStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-            [cell.contentView addSubview:numberStaticLabel];
-            
+        
             [cell.contentView addSubview:numberField];
             
-            UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(280, 5, 20, 34)];
+            UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 5, 20, 34)];
             mlLabel.text = @"ml";
             mlLabel.font = [UIFont systemFontOfSize:16];
             [mlLabel setTextColor:[UIColor lightGrayColor]];
             [cell.contentView addSubview:mlLabel];
-        }else{
-            UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 50, 34)];
-            noteStaticLabel.text = @"备注 :";
-            [noteStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-            [cell.contentView addSubview:noteStaticLabel];
-            
-            [cell.contentView addSubview:noteTextView];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
+    }else{
+        
+        [cell.contentView addSubview:noteTextView];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -256,12 +284,9 @@
             [tableView endUpdates];
         }
     }else if (indexPath.section == 1){
-        
-        if (indexPath.row == 0) {
-            [numberField becomeFirstResponder];
-        }else{
-            [noteTextView becomeFirstResponder];
-        }
+         [numberField becomeFirstResponder];
+    }else{
+        [noteTextView becomeFirstResponder];
     }
 }
 -(void)updateDateLable
