@@ -10,7 +10,7 @@
 #import "MKCommon.h"
 #import "MKDataController.h"
 
-@interface MKAddViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
+@interface MKAddViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UITextViewDelegate>
 {
     UITableView *theTableView;
     UIDatePicker *datePicker;
@@ -82,22 +82,24 @@
     numberField.inputAccessoryView = fieldToolbar;
     
     //note text input label
-    noteField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 220, 34)];
-    noteField.borderStyle = UITextBorderStyleNone;
-    noteField.font = [UIFont systemFontOfSize:16];
-    noteField.autocorrectionType = UITextAutocorrectionTypeNo;
-    noteField.keyboardType = UIKeyboardTypeDefault;
-    noteField.delegate = self;
-    noteField.textAlignment = NSTextAlignmentRight;
-    noteField.textColor = UIColorFromRGB(0xd57d9c);
-    noteField.tintColor = UIColorFromRGB(0xd57d9c);
-    noteField.inputAccessoryView = fieldToolbar;
+    noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(80, 5, 220, 34)];
+    noteTextView.delegate = self;
+    noteTextView.font = [UIFont systemFontOfSize:16];
+    noteTextView.autocorrectionType = UITextAutocorrectionTypeNo;
+    noteTextView.keyboardType = UIKeyboardTypeDefault;
+    noteTextView.textAlignment = NSTextAlignmentRight;
+    noteTextView.scrollEnabled = NO;
+    noteTextView.textColor = UIColorFromRGB(0xd57d9c);
+    noteTextView.tintColor = UIColorFromRGB(0xd57d9c);
+    noteTextView.inputAccessoryView = fieldToolbar;
+    noteTextView.text = @"写点什么";
+//    noteTextView.backgroundColor = [UIColor blueColor];
     
     datePickerShowed = NO;
 }
 -(void)doneWithNumberPad
 {
-    [noteField resignFirstResponder];
+    [noteTextView resignFirstResponder];
     [numberField resignFirstResponder];
 }
 -(void)cancel
@@ -123,7 +125,7 @@
     [timeFormatter setDateFormat:@"HH:mm"];
     NSString *timeStr = [timeFormatter stringFromDate:theDate];
 
-    [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteField.text fullDate:fullDateStr];
+    [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteTextView.text fullDate:fullDateStr];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:dateStr,@"DateStr",fullDateStr,@"FullDateStr", nil];
     [[NSNotificationCenter defaultCenter]postNotificationName:Mike_ADD_RECORD_NOTIFICATION object:nil userInfo:dic];
     [self.navigationController dismissViewControllerAnimated:YES completion:^(void){
@@ -159,7 +161,9 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float rowHeight = 0;
-    if ((indexPath.section == 0) && (indexPath.row == 1)) {
+    if ((indexPath.section == 0) && (indexPath.row == 0)) {
+        rowHeight = 44;
+    }else if ((indexPath.section == 0) && (indexPath.row == 1)) {
         rowHeight = 200;
     }else if ((indexPath.section == 1)&&(indexPath.row == 0)) {
         rowHeight = 45;
@@ -174,6 +178,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    cell.accessoryType = UITableViewCellAccessoryNone;
     if (indexPath.row == 0) {
         UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 0.5)];
         topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
@@ -218,11 +223,12 @@
             [cell.contentView addSubview:mlLabel];
         }else{
             UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 50, 34)];
-            noteStaticLabel.text = @"备注";
+            noteStaticLabel.text = @"备注 :";
             [noteStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
             [cell.contentView addSubview:noteStaticLabel];
             
-            [cell.contentView addSubview:noteField];
+            [cell.contentView addSubview:noteTextView];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -248,6 +254,13 @@
             [tableView beginUpdates];
             [tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationFade];
             [tableView endUpdates];
+        }
+    }else if (indexPath.section == 1){
+        
+        if (indexPath.row == 0) {
+            [numberField becomeFirstResponder];
+        }else{
+            [noteTextView becomeFirstResponder];
         }
     }
 }

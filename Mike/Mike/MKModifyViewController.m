@@ -26,7 +26,7 @@
 
     timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:fullDate]];
     numberField.text = [NSString stringWithFormat:@"%d",(int)theRecord.milkNum];
-    noteField.text = theRecord.noteStr;
+    noteTextView.text = theRecord.noteStr;
     
     UIButton *deleteButton = [[UIButton alloc]initWithFrame:CGRectMake(0, ScreenHeight - 64 - 45, ScreenWidth, 45)];
     [deleteButton addTarget:self action:@selector(deleteThisRecord) forControlEvents:UIControlEventTouchUpInside];
@@ -72,7 +72,7 @@
     [timeFormatter setDateFormat:@"HH:mm"];
     NSString *timeStr = [timeFormatter stringFromDate:theDate];
     
-    [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteField.text fullDate:fullDateStr];
+    [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteTextView.text fullDate:fullDateStr];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:dateStr,@"DateStr", nil];
     [[NSNotificationCenter defaultCenter]postNotificationName:Mike_REMOVE_RECORD_NOTIFICATION object:nil userInfo:dic];
     [self.navigationController dismissViewControllerAnimated:YES completion:^(void){

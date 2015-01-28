@@ -12,8 +12,8 @@
 {
     NSDateFormatter *labelDateFormatter;
     UILabel *timeLabel;
-    UITextField* numberField;
-    UITextField* noteField;
+    UITextField *numberField;
+    UITextView *noteTextView;
     
     NSDate *theDate;
 }
