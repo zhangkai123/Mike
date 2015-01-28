@@ -64,6 +64,7 @@
         [UIView animateWithDuration:1.5f animations:^{
             chartForegroundView.frame = CGRectMake(2, chartBackgroundView.frame.size.height - 7 - chartHeight, 13, chartHeight);
         } completion:^(BOOL finished){
+            self.chartAnimate = NO;
             [self.delegate cellChartAnimateFinished];
         }];
     }else{
