@@ -64,12 +64,21 @@
 }
 -(void)reloadTableViewWhenAdd:(NSNotification *)noti
 {
-    [self getAllData];
     NSDictionary *dic = [noti userInfo];
     NSString *dateStr = [dic objectForKey:@"DateStr"];
     NSString *fullDateStr = [dic objectForKey:@"FullDateStr"];
+    
+    BOOL newSection = [self checkIfNewSection:dateStr];
+    [self getAllData];
     NSIndexPath *addIndexPath = [self getAddedRowIndexPath:dateStr fullDateStr:fullDateStr];
-    [recordsTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:addIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [recordsTableView beginUpdates];
+    if (newSection) {
+        [recordsTableView insertSections:[NSIndexSet indexSetWithIndex:addIndexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+    }else{
+         [recordsTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:addIndexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }
+    [recordsTableView endUpdates];
 }
 -(void)reloadTableViewWhenRemove
 {
@@ -78,10 +87,24 @@
 }
 -(void)getAllData
 {
-    [datesArray removeAllObjects];
-    [recordsArray removeAllObjects];
+    [self getSectionData];
+    [self getRowsData];
+}
+-(void)getSectionData
+{
+    if (datesArray != nil) {
+        [datesArray removeAllObjects];
+        datesArray = nil;
+    }
     NSArray *tempDatesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
     datesArray = [NSMutableArray arrayWithArray:tempDatesArray];
+}
+-(void)getRowsData
+{
+    if (recordsArray != nil) {
+        [recordsArray removeAllObjects];
+        recordsArray = nil;
+    }
     NSArray *tempRecordsArray = [[MKDataController sharedDataController]getRecords];
     recordsArray = [NSMutableArray arrayWithArray:tempRecordsArray];
 }
@@ -146,6 +169,18 @@
     }
     return preTotalRecordsNum;
 }
+-(BOOL)checkIfNewSection:(NSString *)dateStr
+{
+    BOOL newSection = YES;
+    for (int i = 0; i < [datesArray count]; i++) {
+        MKDate *theDate = [datesArray objectAtIndex:i];
+        if ([theDate.dateStr isEqualToString:dateStr]) {
+            newSection = NO;
+            break;
+        }
+    }
+    return newSection;
+}
 -(NSIndexPath *)getAddedRowIndexPath:(NSString *)dateStr fullDateStr:(NSString *)fullDateStr
 {
     int sectionIndex = 0;
@@ -154,6 +189,7 @@
         MKDate *theDate = [datesArray objectAtIndex:i];
         if ([theDate.dateStr isEqualToString:dateStr]) {
             sectionIndex = i;
+            break;
         }
     }
     NSMutableArray *sectionRecordsArray = [[NSMutableArray alloc]init];

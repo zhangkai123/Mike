@@ -87,10 +87,12 @@
 }
 -(void)cancel
 {
+    [self.view endEditing:YES];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)save
 {
+    [self.view endEditing:YES];
     if (theDate == nil) {
         theDate = [NSDate date];
     }
@@ -214,6 +216,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
+        [self.view endEditing:YES];
         if (!datePickerShowed) {
             datePickerShowed = YES;
             NSArray *insertIndexPaths = [NSArray arrayWithObjects:
