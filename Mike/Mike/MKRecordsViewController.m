@@ -46,7 +46,7 @@
     recordsTableView.showsHorizontalScrollIndicator = NO;
     recordsTableView.showsVerticalScrollIndicator = NO;
     recordsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-//    recordsTableView.backgroundColor = [UIColor lightGrayColor];
+    [recordsTableView setContentInset:UIEdgeInsetsMake(0,0,50,0)];
     [self.view addSubview:recordsTableView];
     
     oldDateFormat = [[NSDateFormatter alloc] init];
