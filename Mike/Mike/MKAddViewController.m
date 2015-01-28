@@ -71,6 +71,15 @@
     numberField.textColor = UIColorFromRGB(0xd57d9c);
     numberField.textAlignment = NSTextAlignmentRight;
     numberField.tintColor = UIColorFromRGB(0xd57d9c);
+    UIToolbar* fieldToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    fieldToolbar.barStyle = UIBarStyleDefault;
+    fieldToolbar.items = [NSArray arrayWithObjects:
+                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                           [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
+                           nil];
+    [fieldToolbar sizeToFit];
+    numberField.inputAccessoryView = fieldToolbar;
     
     //note text input label
     noteField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 220, 34)];
@@ -82,8 +91,14 @@
     noteField.textAlignment = NSTextAlignmentRight;
     noteField.textColor = UIColorFromRGB(0xd57d9c);
     noteField.tintColor = UIColorFromRGB(0xd57d9c);
+    noteField.inputAccessoryView = fieldToolbar;
     
     datePickerShowed = NO;
+}
+-(void)doneWithNumberPad
+{
+    [noteField resignFirstResponder];
+    [numberField resignFirstResponder];
 }
 -(void)cancel
 {
