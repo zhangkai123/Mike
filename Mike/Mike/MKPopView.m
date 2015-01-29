@@ -8,6 +8,7 @@
 
 #import "MKPopView.h"
 #import "MKCommon.h"
+#import "UMSocial.h"
 
 @implementation MKPopView
 @synthesize bottleNumLabel ,shareText;
@@ -91,11 +92,21 @@
 }
 -(void)shareToWeibo
 {
-    
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:shareTextLabel.text image:nil location:nil urlResource:nil presentedController:[[UIApplication sharedApplication] keyWindow].rootViewController completion:^(UMSocialResponseEntity *response){
+        if (response.responseCode == UMSResponseCodeSuccess) {
+
+        }
+    }];
 }
+
 -(void)shareToWeixin
 {
-    
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:shareTextLabel.text image:nil location:nil urlResource:nil presentedController:[[UIApplication sharedApplication] keyWindow].rootViewController  completion:^(UMSocialResponseEntity *response){
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            NSLog(@"分享成功！");
+        }
+    }];
 }
 #pragma MKTouchableViewDelegate
 -(void)clickedView
