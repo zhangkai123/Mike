@@ -155,9 +155,10 @@
 {
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
     [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:shareText image:nil location:nil urlResource:nil presentedController:self  completion:^(UMSocialResponseEntity *response){
-        if (response.responseCode == UMSResponseCodeSuccess) {
-            
-        }
+//        if (response.responseCode == UMSResponseCodeSuccess) {
+//            
+//        }
+        [popView hideShareView];
     }];
 }
 -(void)showShareHud
