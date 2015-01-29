@@ -16,8 +16,10 @@
 #import "MKDataController.h"
 #import "MKPopView.h"
 #import "MKRecord.h"
+#import "UMSocial.h"
+#import "ProgressHUD.h"
 
-@interface MKRootViewController ()<MKRecordsViewControllerDelegate>
+@interface MKRootViewController ()<MKRecordsViewControllerDelegate,MKPopViewDelegate>
 {
     UILabel *bottleLabel;
     MKPopView *popView;
@@ -135,8 +137,40 @@
     popView = [[MKPopView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     popView.center = self.navigationController.view.center;
     [popView setShareText:shareText];
+    popView.delegate =self;
     [self.navigationController.view addSubview:popView];
     [popView animateShareViewOut];
+}
+#pragma MKPopViewDelegate
+-(void)sharedToSinaWeibo:(NSString *)shareText
+{
+    [self showShareHud];
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:shareText image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+        }
+    }];
+}
+-(void)sharedToWeichat:(NSString *)shareText
+{
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:shareText image:nil location:nil urlResource:nil presentedController:self  completion:^(UMSocialResponseEntity *response){
+        if (response.responseCode == UMSResponseCodeSuccess) {
+            
+        }
+    }];
+}
+-(void)showShareHud
+{
+    [ProgressHUD showSuccess:@"已发送"];
+    [self performSelector:@selector(hideHud) withObject:self afterDelay:0.5];
+}
+-(void)hideHud
+{
+    [ProgressHUD dismiss];
+    if (popView != nil) {
+        [popView hideShareView];
+    }
 }
 -(void)viewWillAppear:(BOOL)animated
 {

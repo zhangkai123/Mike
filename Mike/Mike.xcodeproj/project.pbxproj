@@ -48,6 +48,8 @@
 		4BCF0CB91A50F95900A2FF5D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BCF0CB81A50F95900A2FF5D /* Images.xcassets */; };
 		4BCF0CC81A50F95A00A2FF5D /* MikeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCF0CC71A50F95A00A2FF5D /* MikeTests.m */; };
 		4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD18F9A1A51046200CC0F4D /* MKRootViewController.m */; };
+		4BD200011A7A5B4A00C16C7D /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BD2FFFE1A7A5B4A00C16C7D /* ProgressHUD.bundle */; };
+		4BD200021A7A5B4A00C16C7D /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD200001A7A5B4A00C16C7D /* ProgressHUD.m */; };
 		4BD2F4541A5A7FA00094AE5B /* MKMilkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2F4531A5A7FA00094AE5B /* MKMilkViewController.m */; };
 		4BE59E141A53CD35004CF8D9 /* MKChartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */; };
 		4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */; };
@@ -155,8 +157,11 @@
 		4BCF0CC71A50F95A00A2FF5D /* MikeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MikeTests.m; sourceTree = "<group>"; };
 		4BD18F991A51046200CC0F4D /* MKRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRootViewController.h; sourceTree = "<group>"; };
 		4BD18F9A1A51046200CC0F4D /* MKRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRootViewController.m; sourceTree = "<group>"; };
+		4BD200001A7A5B4A00C16C7D /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
 		4BD2F4521A5A7FA00094AE5B /* MKMilkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMilkViewController.h; sourceTree = "<group>"; };
 		4BD2F4531A5A7FA00094AE5B /* MKMilkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMilkViewController.m; sourceTree = "<group>"; };
+		4BD2FFFE1A7A5B4A00C16C7D /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
+		4BD2FFFF1A7A5B4A00C16C7D /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		4BE59E121A53CD35004CF8D9 /* MKChartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKChartTableViewCell.h; sourceTree = "<group>"; };
 		4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKChartTableViewCell.m; sourceTree = "<group>"; };
 		4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "奶量条前景.png"; sourceTree = "<group>"; };
@@ -206,6 +211,7 @@
 		4B0E54531A7739D10014B8BF /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				4BD2FFFD1A7A5B4A00C16C7D /* ProgressHUD */,
 				4B0ED2521A7A0F3400D3F2D1 /* UMSocial_Sdk_4.2.1 */,
 				4B0ED26D1A7A0F3500D3F2D1 /* UMSocial_Sdk_Extra_Frameworks */,
 				4B0E54541A7739EA0014B8BF /* CountLabel */,
@@ -451,6 +457,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		4BD2FFFD1A7A5B4A00C16C7D /* ProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				4BD2FFFE1A7A5B4A00C16C7D /* ProgressHUD.bundle */,
+				4BD2FFFF1A7A5B4A00C16C7D /* ProgressHUD.h */,
+				4BD200001A7A5B4A00C16C7D /* ProgressHUD.m */,
+			);
+			path = ProgressHUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -562,6 +578,7 @@
 				4BC06A231A5252D700D62B3C /* more@2x.png in Resources */,
 				4B0ED27D1A7A0F3500D3F2D1 /* UMShareEditViewControlleriPad.xib in Resources */,
 				4BA38C9D1A637095009D25A0 /* moments.png in Resources */,
+				4BD200011A7A5B4A00C16C7D /* ProgressHUD.bundle in Resources */,
 				4B0ED27B1A7A0F3500D3F2D1 /* UMSCommentInputControlleriPad.xib in Resources */,
 				E2815C4D1A5938A000916F43 /* 导出数据.png in Resources */,
 				E2815C511A5938A000916F43 /* 推荐给朋友.png in Resources */,
@@ -585,6 +602,7 @@
 				4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */,
 				4BC06A2C1A527FF600D62B3C /* MKAddViewController.m in Sources */,
 				4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */,
+				4BD200021A7A5B4A00C16C7D /* ProgressHUD.m in Sources */,
 				E29FFCAA1A5E7EBC004273BE /* MKAboutUs.m in Sources */,
 				4B097F421A762333008EA48A /* MKModifyViewController.m in Sources */,
 				4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */,

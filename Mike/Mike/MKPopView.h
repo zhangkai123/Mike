@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "MKTouchableView.h"
 
+@protocol MKPopViewDelegate <NSObject>
+
+-(void)sharedToSinaWeibo:(NSString *)shareText;
+-(void)sharedToWeichat:(NSString *)shareText;
+
+@end
+
 @interface MKPopView : UIView<MKTouchableViewDelegate>
 {
     MKTouchableView *sharedView;
@@ -18,6 +25,8 @@
 }
 @property(nonatomic,strong) UILabel *bottleNumLabel;
 @property(nonatomic,strong) NSString *shareText;
+@property(nonatomic,unsafe_unretained) id<MKPopViewDelegate> delegate;
 
 -(void)animateShareViewOut;
+-(void)hideShareView;
 @end

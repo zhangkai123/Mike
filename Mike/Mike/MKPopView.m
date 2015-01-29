@@ -8,10 +8,10 @@
 
 #import "MKPopView.h"
 #import "MKCommon.h"
-#import "UMSocial.h"
 
 @implementation MKPopView
 @synthesize bottleNumLabel ,shareText;
+@synthesize delegate;
 -(void)dealloc
 {
     
@@ -92,24 +92,14 @@
 }
 -(void)shareToWeibo
 {
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:shareTextLabel.text image:nil location:nil urlResource:nil presentedController:[[UIApplication sharedApplication] keyWindow].rootViewController completion:^(UMSocialResponseEntity *response){
-        if (response.responseCode == UMSResponseCodeSuccess) {
-
-        }
-    }];
+    [self.delegate sharedToSinaWeibo:shareTextLabel.text];
 }
 
 -(void)shareToWeixin
 {
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:shareTextLabel.text image:nil location:nil urlResource:nil presentedController:[[UIApplication sharedApplication] keyWindow].rootViewController  completion:^(UMSocialResponseEntity *response){
-        if (response.responseCode == UMSResponseCodeSuccess) {
-            NSLog(@"分享成功！");
-        }
-    }];
+    [self.delegate sharedToWeichat:shareTextLabel.text];
 }
-#pragma MKTouchableViewDelegate
--(void)clickedView
+-(void)hideShareView
 {
     [UIView animateWithDuration:0.2
                           delay:0
@@ -121,5 +111,10 @@
                      completion:^(BOOL finished){
                          [self removeFromSuperview];
                      }];
+}
+#pragma MKTouchableViewDelegate
+-(void)clickedView
+{
+    [self hideShareView];
 }
 @end
