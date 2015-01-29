@@ -269,12 +269,14 @@
             NSString *recordTime = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 2)];
             float milkNum = sqlite3_column_double(compiledStatement, 3);
             NSString *noteStr = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 4)];
+            NSString *fullDateStr = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 5)];
             
             MKRecord *record = [[MKRecord alloc]init];
             record.date = recordDate;
             record.time = recordTime;
             record.milkNum = milkNum;
             record.noteStr = noteStr;
+            record.fullDate = fullDateStr;
             [recordsArray addObject:record];
         }
     }

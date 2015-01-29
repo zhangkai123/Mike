@@ -92,8 +92,9 @@
 
     NSDictionary *dic = [noti userInfo];
     NSString *dateStr = [dic objectForKey:@"DateStr"];
+    NSString *fullDateStr = [dic objectForKey:@"FullDateStr"];
     NSArray *dayRecordsArray = [[MKDataController sharedDataController]getRecordsWithDateStr:dateStr];
-    NSString *shareText = [self getShareText:dayRecordsArray dateString:dateStr];
+    NSString *shareText = [self getShareText:dayRecordsArray dateString:dateStr fullDateString:fullDateStr];
     [self performSelector:@selector(showPopViewWithText:) withObject:shareText afterDelay:NUM_ANIMATE_DURATION];
 }
 -(void)reloadDataWhenRemove
@@ -101,10 +102,11 @@
     int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
     bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
 }
--(NSString *)getShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr
+-(NSString *)getShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr fullDateString:(NSString *)fullDateStr
 {
     NSString *shareStr = [NSString stringWithFormat:@"        #背奶记录# %@",dateStr];
     
+    NSString *noteStr = nil;
     int todayTotalNum = 0;
     NSString *numStr = nil;
     NSString *fullNumStr = nil;
@@ -116,18 +118,12 @@
         }else{
             numStr = [NSString stringWithFormat:@"%@%d+",numStr ?: @"",(int)record.milkNum];
         }
-    }
-    NSString *noteStr = nil;
-    if ([recordsArray count] > 0) {
-        MKRecord *record = [recordsArray objectAtIndex:0];
-        if ([record.noteStr isEqualToString:@""]) {
-            noteStr = @"";
-        }else{
-            noteStr = [NSString stringWithFormat:@",%@",record.noteStr];
+        if ([record.fullDate isEqualToString:fullDateStr]) {
+            noteStr = record.noteStr;
         }
     }
     int totalNum = (int)[[MKDataController sharedDataController]getTotalNumber];
-    shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml%@",shareStr,fullNumStr,todayTotalNum,totalNum,noteStr];
+    shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml,%@",shareStr,fullNumStr,todayTotalNum,totalNum,noteStr];
     return shareStr;
 }
 -(void)showPopViewWithText:(NSString *)shareText
