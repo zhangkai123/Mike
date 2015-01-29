@@ -55,6 +55,7 @@
 }
 -(void)save
 {
+    [self.view endEditing:YES];
     [[MKDataController sharedDataController]delRecord:theRecord.fullDate];
     
     NSDateFormatter *fullDateFormatter = [[NSDateFormatter alloc] init];
