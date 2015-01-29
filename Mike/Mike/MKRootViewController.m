@@ -26,6 +26,10 @@
 
 @implementation MKRootViewController
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     UINavigationBar *navigationBar = self.navigationController.navigationBar;

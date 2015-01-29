@@ -31,6 +31,10 @@ NSInteger biggestMilkNum;
 
 @implementation MKMilkViewController
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

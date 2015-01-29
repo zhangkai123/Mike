@@ -20,6 +20,10 @@
 
 @implementation MKAddViewController
 
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -40,7 +44,7 @@
     
     theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStyleGrouped];
     theTableView.showsHorizontalScrollIndicator = NO;
-    theTableView.showsVerticalScrollIndicator = NO;
+    theTableView.showsVerticalScrollIndicator = YES;
     theTableView.dataSource = self;
     theTableView.delegate = self;
     [self.view addSubview:theTableView];
@@ -96,6 +100,42 @@
     noteTextView.backgroundColor = [UIColor clearColor];
     
     datePickerShowed = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+- (void)keyBoardWillShow:(NSNotification*)notification
+{
+    NSDictionary* keyboardInfo = [notification userInfo];
+    NSValue* keyboardFrameBegin = [keyboardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
+    CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
+    if (datePickerShowed) {
+        datePickerShowed = NO;
+        NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
+                                     [NSIndexPath indexPathForRow:1 inSection:0],
+                                     nil];
+        [CATransaction begin];
+        [CATransaction setCompletionBlock:^{
+            [theTableView setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + keyboardFrameBeginRect.size.height)];
+             [theTableView setContentOffset:CGPointMake(0, 100) animated:YES];
+        }];
+        [theTableView beginUpdates];
+        [theTableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+        [theTableView endUpdates];
+        [CATransaction commit];
+    }else{
+        [theTableView setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + keyboardFrameBeginRect.size.height)];
+         [theTableView setContentOffset:CGPointMake(0, 100) animated:YES];
+    }
+}
+- (void)keyBoardWillHide:(NSNotification*)notification
+{
+    NSDictionary *keyboardAnimationDetail = [notification userInfo];
+    UIViewAnimationCurve animationCurve = [keyboardAnimationDetail[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    CGFloat duration = [keyboardAnimationDetail[UIKeyboardAnimationDurationUserInfoKey] floatValue];
+    [UIView animateWithDuration:duration delay:0.0 options:(animationCurve << 16) animations:^{
+        [theTableView setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
+    } completion:^(BOOL finished){
+    }];
 }
 -(void)doneWithNumberPad
 {
@@ -256,7 +296,6 @@
             [cell.contentView addSubview:mlLabel];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }else{
-        
         [cell.contentView addSubview:noteTextView];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -268,20 +307,10 @@
         [self.view endEditing:YES];
         if (!datePickerShowed) {
             datePickerShowed = YES;
-            NSArray *insertIndexPaths = [NSArray arrayWithObjects:
-                                         [NSIndexPath indexPathForRow:1 inSection:0],
-                                         nil];
-            [tableView beginUpdates];
-            [tableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationTop];
-            [tableView endUpdates];
+            [self showDatePicker];
         }else{
             datePickerShowed = NO;
-            NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
-                                         [NSIndexPath indexPathForRow:1 inSection:0],
-                                         nil];
-            [tableView beginUpdates];
-            [tableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationFade];
-            [tableView endUpdates];
+            [self hideDatePicker];
         }
     }else if (indexPath.section == 1){
          [numberField becomeFirstResponder];
@@ -289,8 +318,26 @@
         [noteTextView becomeFirstResponder];
     }
 }
+-(void)showDatePicker
+{
+    NSArray *insertIndexPaths = [NSArray arrayWithObjects:
+                                 [NSIndexPath indexPathForRow:1 inSection:0],
+                                 nil];
+    [theTableView beginUpdates];
+    [theTableView insertRowsAtIndexPaths:insertIndexPaths withRowAnimation:UITableViewRowAnimationTop];
+    [theTableView endUpdates];
+}
+-(void)hideDatePicker
+{
+    NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
+                                 [NSIndexPath indexPathForRow:1 inSection:0],
+                                 nil];
+    [theTableView beginUpdates];
+    [theTableView deleteRowsAtIndexPaths:deleteIndexPaths withRowAnimation:UITableViewRowAnimationFade];
+    [theTableView endUpdates];
+}
 -(void)updateDateLable
-{    
+{
     theDate = [datePicker date];
     timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:theDate]];
 }
