@@ -19,6 +19,7 @@
 @interface MKPopView : UIView<MKTouchableViewDelegate>
 {
     MKTouchableView *sharedView;
+    UIView *topView;
     UILabel *shareTextLabel;
     
     NSString *shareText;
@@ -29,4 +30,5 @@
 
 -(void)animateShareViewOut;
 -(void)hideShareView;
+-(void)hideTopView:(BOOL)hide;
 @end

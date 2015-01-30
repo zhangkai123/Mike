@@ -165,7 +165,7 @@ NSInteger biggestMilkNum;
 }
 -(void)shareNumber
 {
-    
+    [self.delegate shareNumber];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
