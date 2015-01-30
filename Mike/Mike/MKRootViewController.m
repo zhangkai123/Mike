@@ -19,10 +19,12 @@
 #import "UMSocial.h"
 #import "ProgressHUD.h"
 
-@interface MKRootViewController ()<MKRecordsViewControllerDelegate,MKPopViewDelegate>
+@interface MKRootViewController ()<MKRecordsViewControllerDelegate,MKPopViewDelegate,MKMilkViewControllerDelegate>
 {
     UILabel *bottleLabel;
     MKPopView *popView;
+    
+    MKRecordsViewController *recordsViewController;
 }
 @end
 
@@ -76,12 +78,13 @@
     self.navigationItem.titleView = bottleView;
         
     MKMilkViewController *milkViewController = [[MKMilkViewController alloc]init];
+    milkViewController.delegate = self;
     [self addChildViewController:milkViewController];
     milkViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, 265);
     [self.view addSubview:milkViewController.view];
     [milkViewController didMoveToParentViewController:self];
     
-    MKRecordsViewController *recordsViewController = [[MKRecordsViewController alloc]init];
+    recordsViewController = [[MKRecordsViewController alloc]init];
     recordsViewController.delegate = self;
     [self addChildViewController:recordsViewController];
     recordsViewController.view.frame = CGRectMake(0, 265, ScreenWidth, ScreenHeight- 265 - 64);
@@ -199,6 +202,11 @@
     modifyViewController.theRecord = theRecord;
     UINavigationController *navigaitonController = [[UINavigationController alloc]initWithRootViewController:modifyViewController];
     [self presentViewController:navigaitonController animated:YES completion:nil];
+}
+#pragma MKMilkViewControllerDelegate
+-(void)goToOneDateRecords:(NSString *)dateStr
+{
+    [recordsViewController goToOneDateRecords:dateStr];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
