@@ -132,7 +132,11 @@
         }
     }
     int totalNum = (int)[[MKDataController sharedDataController]getTotalNumber];
-    shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml,%@",shareStr,fullNumStr,todayTotalNum,totalNum,noteStr];
+    if ([noteStr isEqualToString:@""]) {
+        shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml",shareStr,fullNumStr,todayTotalNum,totalNum];
+    }else{
+        shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml,%@",shareStr,fullNumStr,todayTotalNum,totalNum,noteStr];
+    }
     return shareStr;
 }
 -(void)showPopViewWithText:(NSString *)shareText
