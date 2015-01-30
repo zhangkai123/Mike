@@ -62,6 +62,12 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewWhenAdd:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
 }
+-(void)goToOneDateRecords:(NSString *)dateStr
+{
+    int sectionIndex = [self getSectionIndext:dateStr];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:sectionIndex];
+    [recordsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
 -(void)reloadTableViewWhenAdd:(NSNotification *)noti
 {
     NSDictionary *dic = [noti userInfo];
@@ -180,6 +186,18 @@
         }
     }
     return newSection;
+}
+-(int)getSectionIndext:(NSString *)dateStr
+{
+    int sectionIndex = 0;
+    for (int i = 0; i < [datesArray count]; i++) {
+        MKDate *theDate = [datesArray objectAtIndex:i];
+        if ([theDate.dateStr isEqualToString:dateStr]) {
+            sectionIndex = i;
+            break;
+        }
+    }
+    return sectionIndex;
 }
 -(NSIndexPath *)getAddedRowIndexPath:(NSString *)dateStr fullDateStr:(NSString *)fullDateStr
 {

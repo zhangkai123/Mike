@@ -21,4 +21,5 @@
 }
 
 @property(nonatomic,unsafe_unretained) id<MKRecordsViewControllerDelegate> delegate;
+-(void)goToOneDateRecords:(NSString *)dateStr;
 @end

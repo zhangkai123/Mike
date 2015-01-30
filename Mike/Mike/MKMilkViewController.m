@@ -30,7 +30,7 @@ NSInteger biggestMilkNum;
 @end
 
 @implementation MKMilkViewController
-
+@synthesize delegate;
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
@@ -194,6 +194,11 @@ NSInteger biggestMilkNum;
     }
     cell.milkNum = (int)theDate.milkNum;
     return cell;
+}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MKDate *theDate = [datesArray objectAtIndex:indexPath.row];
+    [self.delegate goToOneDateRecords:theDate.dateStr];
 }
 #pragma MKChartTableViewCellDelegate
 -(void)cellChartAnimateFinished
