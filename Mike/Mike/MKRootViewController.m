@@ -104,12 +104,16 @@
     NSString *fullDateStr = [dic objectForKey:@"FullDateStr"];
     NSArray *dayRecordsArray = [[MKDataController sharedDataController]getRecordsWithDateStr:dateStr];
     NSString *shareText = [self getShareText:dayRecordsArray dateString:dateStr fullDateString:fullDateStr];
-    [self performSelector:@selector(showPopViewWithText:) withObject:shareText afterDelay:NUM_ANIMATE_DURATION];
+    [self performSelector:@selector(showPopViewWhenAdd:) withObject:shareText afterDelay:NUM_ANIMATE_DURATION];
 }
 -(void)reloadDataWhenRemove
 {
     int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
     bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
+}
+-(NSString *)getHomePageShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr
+{
+    return [self getShareText:recordsArray dateString:dateStr fullDateString:nil];
 }
 -(NSString *)getShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr fullDateString:(NSString *)fullDateStr
 {
@@ -132,19 +136,28 @@
         }
     }
     int totalNum = (int)[[MKDataController sharedDataController]getTotalNumber];
-    if ([noteStr isEqualToString:@""]) {
+    if ([noteStr isEqualToString:@""] || noteStr == nil) {
         shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml",shareStr,fullNumStr,todayTotalNum,totalNum];
     }else{
         shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml,%@",shareStr,fullNumStr,todayTotalNum,totalNum,noteStr];
     }
     return shareStr;
 }
--(void)showPopViewWithText:(NSString *)shareText
+-(void)showPopViewWhenAdd:(NSString *)shareText
+{
+    [self showPopViewWithText:shareText hideTopView:NO];
+}
+-(void)showPopViewHomePage:(NSString *)shareText
+{
+    [self showPopViewWithText:shareText hideTopView:YES];
+}
+-(void)showPopViewWithText:(NSString *)shareText hideTopView:(BOOL)hideTopView
 {
     popView = [[MKPopView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     popView.center = self.navigationController.view.center;
     [popView setShareText:shareText];
     popView.delegate =self;
+    [popView hideTopView:hideTopView];
     [self.navigationController.view addSubview:popView];
     [popView animateShareViewOut];
 }
@@ -211,6 +224,17 @@
 -(void)goToOneDateRecords:(NSString *)dateStr
 {
     [recordsViewController goToOneDateRecords:dateStr];
+}
+-(void)shareNumber
+{
+    NSDate *theDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *dateStr = [dateFormatter stringFromDate:theDate];
+    
+    NSArray *dayRecordsArray = [[MKDataController sharedDataController]getRecordsWithDateStr:dateStr];
+    NSString *shareText = [self getHomePageShareText:dayRecordsArray dateString:dateStr];
+    [self showPopViewHomePage:shareText];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

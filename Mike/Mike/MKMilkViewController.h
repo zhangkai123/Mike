@@ -11,6 +11,7 @@
 @protocol MKMilkViewControllerDelegate <NSObject>
 
 -(void)goToOneDateRecords:(NSString *)dateStr;
+-(void)shareNumber;
 
 @end
 

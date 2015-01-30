@@ -30,16 +30,21 @@
         sharedView.center = CGPointMake(self.center.x, -150);
         [self addSubview:sharedView];
         
+        topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, sharedView.frame.size.width, 50)];
+//        topView.backgroundColor = [UIColor yellowColor];
+        [sharedView addSubview:topView];
+        
         UIImageView *bottleImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bottle"]];
         bottleImageView.frame = CGRectMake(90, 25, bottleImageView.frame.size.width * 1.2, bottleImageView.frame.size.height * 1.2);
-        [sharedView addSubview:bottleImageView];
+        [topView addSubview:bottleImageView];
+//        bottleImageView.backgroundColor = [UIColor blueColor];
         
         self.bottleNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(90 + bottleImageView.frame.size.width + 20, 25, 80, bottleImageView.frame.size.height)];
-        self.bottleNumLabel.text = @"+ 2";
+        self.bottleNumLabel.text = @"+ 1";
         [self.bottleNumLabel setFont:[UIFont boldSystemFontOfSize:24]];
         self.bottleNumLabel.textColor = UIColorFromRGB(0xd57d9c);
 //        self.bottleNumLabel.backgroundColor = [UIColor blueColor];
-        [sharedView addSubview:self.bottleNumLabel];
+        [topView addSubview:self.bottleNumLabel];
         
         shareTextLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         [shareTextLabel setFont:[UIFont systemFontOfSize:16]];
@@ -67,6 +72,10 @@
         [sharedView addSubview:weixinButton];
     }
     return self;
+}
+-(void)hideTopView:(BOOL)hide
+{
+    topView.hidden = hide;
 }
 -(void)setShareText:(NSString *)shareT
 {
