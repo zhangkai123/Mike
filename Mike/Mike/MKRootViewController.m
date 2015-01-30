@@ -135,6 +135,9 @@
             noteStr = record.noteStr;
         }
     }
+    if (fullNumStr == nil) {
+        fullNumStr = @"0";
+    }
     int totalNum = (int)[[MKDataController sharedDataController]getTotalNumber];
     if ([noteStr isEqualToString:@""] || noteStr == nil) {
         shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml",shareStr,fullNumStr,todayTotalNum,totalNum];
