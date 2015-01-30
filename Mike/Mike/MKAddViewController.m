@@ -84,10 +84,15 @@
                            [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
                            nil];
     [fieldToolbar sizeToFit];
+    [fieldToolbar setBackgroundImage:[UIImage new]
+                  forToolbarPosition:UIToolbarPositionAny
+                          barMetrics:UIBarMetricsDefault];
+    
+    [fieldToolbar setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
     numberField.inputAccessoryView = fieldToolbar;
     
     //note text input label
-    noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 5, 300, 90)];
+    noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 5, 300, 80)];
     noteTextView.delegate = self;
     noteTextView.font = [UIFont systemFontOfSize:16];
     noteTextView.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -97,11 +102,29 @@
     noteTextView.textColor = UIColorFromRGB(0xd57d9c);
     noteTextView.tintColor = UIColorFromRGB(0xd57d9c);
     noteTextView.inputAccessoryView = fieldToolbar;
-    noteTextView.backgroundColor = [UIColor clearColor];
+//    noteTextView.backgroundColor = [UIColor blueColor];
     
     datePickerShowed = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if([text length] == 0)
+    {
+        if([textView.text length] != 0)
+        {
+            return YES;
+        }
+        else {
+            return NO;
+        }
+    }
+    else if([[textView text] length] > 54)
+    {
+        return NO;
+    }
+    return YES;
 }
 - (void)keyBoardWillShow:(NSNotification*)notification
 {
@@ -214,7 +237,7 @@
     }else if (indexPath.section == 1) {
         rowHeight = 44;
     }else{
-        rowHeight = 100;
+        rowHeight = 90;
     }
     return rowHeight;
 }
@@ -267,7 +290,7 @@
         [cell.contentView addSubview:lineView];
     }
     if (indexPath.section == 2) {
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 100 - 0.5, 320, 0.5)];
+        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 90 - 0.5, 320, 0.5)];
         lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
         [cell.contentView addSubview:lineView];
     }

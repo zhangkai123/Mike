@@ -44,7 +44,7 @@
         shareTextLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         [shareTextLabel setFont:[UIFont systemFontOfSize:16]];
         shareTextLabel.textColor = UIColorFromRGB(0xd57d9c);
-        shareTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        shareTextLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         shareTextLabel.numberOfLines = 0;
         [shareTextLabel sizeToFit];
         [sharedView addSubview:shareTextLabel];
@@ -76,7 +76,13 @@
     CGSize stringSize = [shareT sizeWithFont:[UIFont systemFontOfSize:16]
                                    constrainedToSize:maximumSize
                                        lineBreakMode:shareTextLabel.lineBreakMode];
-    shareTextLabel.frame = CGRectMake(20, 60, 220, stringSize.height);
+    float labelHeight = 0;
+    if (stringSize.height > 120) {
+        labelHeight = 120;
+    }else{
+        labelHeight = stringSize.height;
+    }
+    shareTextLabel.frame = CGRectMake(20, 60, 220, labelHeight);
 }
 -(void)animateShareViewOut
 {
