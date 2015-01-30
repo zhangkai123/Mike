@@ -20,6 +20,11 @@
 #define NUM_ANIMATE_DURATION 1.5
 #define DegreesToRadians(x) ((x) * M_PI / 180.0)
 
+#define APPKEY @"54c72f5efd98c57f7b000a01"
+
+#define IOS_7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define IOS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+
 //int biggestMilkNum = 400;
 extern NSInteger biggestMilkNum;
 #endif

@@ -10,10 +10,11 @@
 #import "MKBusinessCooperation.h"
 #import "MKAboutUs.h"
 #import "MKCommon.h"
+
 @interface MKSettingViewController()
 {
-    UIColor* bgColor;
-    UIColor* textColor;
+    UIColor* myBgColor;
+    UIColor* myTextColor;
 }
 @end
 
@@ -28,8 +29,8 @@
                                                      barMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
-    bgColor=[UIColor colorWithRed:(float)(255/255.0f)green:(float)(241 / 255.0f) blue:(float)(246 / 255.0f)alpha:1.0f];
-    textColor=[UIColor colorWithRed:(float)(219/255.0f)green:(float)(142 / 255.0f) blue:(float)(169 / 255.0f)alpha:1.0f];
+    myBgColor=[UIColor colorWithRed:(float)(255/255.0f)green:(float)(241 / 255.0f) blue:(float)(246 / 255.0f)alpha:1.0f];
+    myTextColor=[UIColor colorWithRed:(float)(219/255.0f)green:(float)(142 / 255.0f) blue:(float)(169 / 255.0f)alpha:1.0f];
     
     UITableView1 = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];//指定位置大小
     [UITableView1 setDelegate:self];//指定委托
@@ -39,7 +40,7 @@
 //    dataArray1 = [[NSMutableArray alloc] initWithObjects:@"提醒设置", @"导出数据", nil];//初始化数据数组1
     dataArray2 = [[NSMutableArray alloc] initWithObjects:@"推荐给朋友", @"打分鼓励，给个评价！", @"意见反馈", @"商务合作", @"应用推荐", @"关于我们", nil];//初始化数据数组2
     
-    UITableView1.backgroundColor=bgColor;
+    UITableView1.backgroundColor=myBgColor;
     UITableView1.sectionFooterHeight=0;
     UITableView1.separatorStyle = UITableViewCellSeparatorStyleNone;//隐藏分割线
     UITableView1.showsHorizontalScrollIndicator = NO;
@@ -73,7 +74,7 @@
     titleLabel.text = @"设置";
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.textColor = textColor;
+    titleLabel.textColor = myTextColor;
     self.navigationItem.titleView = titleLabel;
     [titleLabel sizeToFit];
 }
@@ -144,7 +145,7 @@
     
     cell.textLabel.backgroundColor= [UIColor whiteColor];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-    [cell.textLabel setTextColor:textColor];
+    [cell.textLabel setTextColor:myTextColor];
     
     NSString *str=[NSString stringWithFormat:@"%@.png",cell.textLabel.text];
     cell.imageView.image=[UIImage imageNamed:str ];
@@ -174,6 +175,31 @@
     else if(indexPath.row==2)
     {
         //意见反馈
+//        NSDictionary* dicUserInfo=@{@"contact":@{
+//                            @"email": @"ios@umeng.com",
+//                            @"phone": @"",
+//                            @"qq": @"576147360",
+//                            @"plain": @""
+//                            }};
+//        
+//        [UMFeedback.sharedInstance updateUserInfo:dicUserInfo];
+//        
+//        [self.navigationController pushViewController:[UMFeedback feedbackViewController]
+//                                             animated:YES];
+//        [UMFeedback setAppkey:APPKEY];
+//        [UMFeedback.sharedInstance  setTitleColor:[UIColor colorWithRed:(float)(219/255.0f)green:(float)(142 / 255.0f) blue:(float)(169 / 255.0f)alpha:1.0f]];
+        
+        UIImage *backButtonImage = [UIImage imageNamed:@"back.png"];
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [backButton setImage:backButtonImage forState:UIControlStateNormal];
+        backButton.frame = CGRectMake(0, 0, backButtonImage.size.width/2, backButtonImage.size.height/2);
+//        [UMFeedback.sharedInstance setBackButton:backButton];
+        
+//        UIViewController* fbUIViewController=[UMFeedback feedbackViewController];
+//        [self.navigationController pushViewController:fbUIViewController animated:YES];
+//        [fbUIViewController.view setBackgroundColor:[UIColor colorWithRed:(float)(255/255.0f)green:(float)(241 / 255.0f) blue:(float)(246 / 255.0f)alpha:1.0f]];
+
+//        [self presentModalViewController:[UMFeedback feedbackModalViewController] animated:YES];
     }
     else if(indexPath.row==3)
     {

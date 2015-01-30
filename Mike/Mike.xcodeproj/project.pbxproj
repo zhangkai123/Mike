@@ -56,6 +56,7 @@
 		4BE59E181A53D3F2004CF8D9 /* chart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E161A53D3F2004CF8D9 /* chart@2x.png */; };
 		4BE59E1E1A53F342004CF8D9 /* MKRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */; };
 		E2109BF91A5A43220031119C /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = E2109BF81A5A43220031119C /* back.png */; };
+		E21FCEA81A7B36C1004497AB /* BusinessCooperation.png in Resources */ = {isa = PBXBuildFile; fileRef = E21FCEA71A7B36C1004497AB /* BusinessCooperation.png */; };
 		E2815C4C1A5938A000916F43 /* 打分鼓励，给个评价！.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */; };
 		E2815C4D1A5938A000916F43 /* 导出数据.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C451A5938A000916F43 /* 导出数据.png */; };
 		E2815C4E1A5938A000916F43 /* 关于我们.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C461A5938A000916F43 /* 关于我们.png */; };
@@ -169,6 +170,7 @@
 		4BE59E1C1A53F342004CF8D9 /* MKRecordTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordTableViewCell.h; sourceTree = "<group>"; };
 		4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecordTableViewCell.m; sourceTree = "<group>"; };
 		E2109BF81A5A43220031119C /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		E21FCEA71A7B36C1004497AB /* BusinessCooperation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BusinessCooperation.png; sourceTree = "<group>"; };
 		E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "打分鼓励，给个评价！.png"; sourceTree = "<group>"; };
 		E2815C451A5938A000916F43 /* 导出数据.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "导出数据.png"; sourceTree = "<group>"; };
 		E2815C461A5938A000916F43 /* 关于我们.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关于我们.png"; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				4BA38C9A1A637089009D25A0 /* share */,
 				4B91A68C1A61336600AAA9A9 /* zero@2x.png */,
 				E2109BF81A5A43220031119C /* back.png */,
+				E21FCEA71A7B36C1004497AB /* BusinessCooperation.png */,
 				E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */,
 				E2815C451A5938A000916F43 /* 导出数据.png */,
 				E2815C461A5938A000916F43 /* 关于我们.png */,
@@ -550,6 +553,7 @@
 			files = (
 				4B0ED27C1A7A0F3500D3F2D1 /* UMShareEditViewController.xib in Resources */,
 				4B91A68D1A61336600AAA9A9 /* zero@2x.png in Resources */,
+				E21FCEA81A7B36C1004497AB /* BusinessCooperation.png in Resources */,
 				4B0ED2791A7A0F3500D3F2D1 /* UMSCommentDetailController.xib in Resources */,
 				4B5782E11A539DB80085BEAE /* NavigationBarBackground.png in Resources */,
 				4B0ED2771A7A0F3500D3F2D1 /* UMSocialLocalizable.strings in Resources */,
@@ -690,8 +694,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -727,6 +732,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -743,8 +749,12 @@
 					"$(PROJECT_DIR)/Mike/UMSocial_Sdk_4.2.1",
 					"$(PROJECT_DIR)/Mike/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/Mike/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/Mike/UMengFeedback_SDK_2.1",
+					"$(PROJECT_DIR)/Mike/UMengFeedback_SDK_2.1/UMOpus",
+					"$(PROJECT_DIR)/Mike/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -761,8 +771,12 @@
 					"$(PROJECT_DIR)/Mike/UMSocial_Sdk_4.2.1",
 					"$(PROJECT_DIR)/Mike/UMSocial_Sdk_Extra_Frameworks/Sina",
 					"$(PROJECT_DIR)/Mike/UMSocial_Sdk_Extra_Frameworks/Wechat",
+					"$(PROJECT_DIR)/Mike/UMengFeedback_SDK_2.1",
+					"$(PROJECT_DIR)/Mike/UMengFeedback_SDK_2.1/UMOpus",
+					"$(PROJECT_DIR)/Mike/UMessage_Sdk_1.1.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALID_ARCHS = "armv7 armv7s";
 			};
 			name = Release;
 		};
