@@ -11,6 +11,9 @@
 #import "MKAboutUs.h"
 #import "MKCommon.h"
 
+#import "UMFeedback.h"
+#import "UMOpus.h"
+
 @interface MKSettingViewController()
 {
     UIColor* myBgColor;
@@ -186,20 +189,20 @@
 //        
 //        [self.navigationController pushViewController:[UMFeedback feedbackViewController]
 //                                             animated:YES];
-//        [UMFeedback setAppkey:APPKEY];
-//        [UMFeedback.sharedInstance  setTitleColor:[UIColor colorWithRed:(float)(219/255.0f)green:(float)(142 / 255.0f) blue:(float)(169 / 255.0f)alpha:1.0f]];
+        [UMFeedback setAppkey:APPKEY];
+        [UMFeedback.sharedInstance  setTitleColor:[UIColor colorWithRed:(float)(219/255.0f)green:(float)(142 / 255.0f) blue:(float)(169 / 255.0f)alpha:1.0f]];
         
         UIImage *backButtonImage = [UIImage imageNamed:@"back.png"];
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [backButton setImage:backButtonImage forState:UIControlStateNormal];
         backButton.frame = CGRectMake(0, 0, backButtonImage.size.width/2, backButtonImage.size.height/2);
-//        [UMFeedback.sharedInstance setBackButton:backButton];
+        [UMFeedback.sharedInstance setBackButton:backButton];
         
 //        UIViewController* fbUIViewController=[UMFeedback feedbackViewController];
 //        [self.navigationController pushViewController:fbUIViewController animated:YES];
 //        [fbUIViewController.view setBackgroundColor:[UIColor colorWithRed:(float)(255/255.0f)green:(float)(241 / 255.0f) blue:(float)(246 / 255.0f)alpha:1.0f]];
 
-//        [self presentModalViewController:[UMFeedback feedbackModalViewController] animated:YES];
+        [self presentModalViewController:[UMFeedback feedbackModalViewController] animated:YES];
     }
     else if(indexPath.row==3)
     {
