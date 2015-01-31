@@ -10,7 +10,8 @@
 #import "MKBusinessCooperation.h"
 #import "MKAboutUs.h"
 #import "MKCommon.h"
-@interface MKSettingViewController()
+#import "UMSocial.h"
+@interface MKSettingViewController()<UMSocialUIDelegate>
 {
     UIColor* bgColor;
     UIColor* textColor;
@@ -160,6 +161,16 @@
     if(indexPath.row==0)
     {
         //推荐给朋友
+        [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
+        [UMSocialData defaultData].extConfig.wechatSessionData.title = @"米渴--背奶记录";
+        [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://baidu.com";
+        [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://baidu.com";
+        [UMSocialSnsService presentSnsIconSheetView:self
+                                             appKey:@"539fa83a56240b96ae055bea"
+                                          shareText:@"你要分享的文字"
+                                         shareImage:[UIImage imageNamed:@"icon.png"]
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,nil]
+                                           delegate:self];
     }
     else if(indexPath.row==1)
     {
