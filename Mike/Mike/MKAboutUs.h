@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MKAboutUs : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MKAboutUs : UIViewController
 {
-    UITableView *UITableView1;
+//    UITableView *UITableView1;
 }
 @end
