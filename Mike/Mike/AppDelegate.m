@@ -10,7 +10,8 @@
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSinaHandler.h"
-
+#import "ChanceAd.h"
+#import "MKCommon.h"
 @interface AppDelegate ()
 
 @end
@@ -30,6 +31,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = self.navigationController;
     // Override point for customization after application launch.
+    
+    [ChanceAd startSession: PublisherID];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

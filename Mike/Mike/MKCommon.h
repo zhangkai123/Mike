@@ -21,6 +21,7 @@
 #define DegreesToRadians(x) ((x) * M_PI / 180.0)
 
 #define APPKEY @"54c72f5efd98c57f7b000a01"
+#define PublisherID @"100032-4CE817-ABA2-5B48-14D009296720"
 
 #define IOS_7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 #define IOS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)

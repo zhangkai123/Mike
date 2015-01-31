@@ -84,6 +84,16 @@
 		E2815C511A5938A000916F43 /* 推荐给朋友.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C491A5938A000916F43 /* 推荐给朋友.png */; };
 		E2815C521A5938A000916F43 /* 意见反馈.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4A1A5938A000916F43 /* 意见反馈.png */; };
 		E2815C531A5938A000916F43 /* 应用推荐.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4B1A5938A000916F43 /* 应用推荐.png */; };
+		E2992CBF1A7C776600B8590B /* ChanceAdRes.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E2992CB71A7C776600B8590B /* ChanceAdRes.bundle */; };
+		E2992CC01A7C776600B8590B /* libChanceAd_NoAppZone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2992CBE1A7C776600B8590B /* libChanceAd_NoAppZone.a */; };
+		E2992CC21A7C77F000B8590B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2992CC11A7C77F000B8590B /* AdSupport.framework */; };
+		E2992CC41A7C77FF00B8590B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2992CC31A7C77FF00B8590B /* CoreTelephony.framework */; };
+		E2992CC81A7C781C00B8590B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2992CC51A7C781C00B8590B /* Security.framework */; };
+		E2992CC91A7C781C00B8590B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2992CC61A7C781C00B8590B /* StoreKit.framework */; };
+		E2992CCA1A7C781C00B8590B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2992CC71A7C781C00B8590B /* SystemConfiguration.framework */; };
+		E2992CCC1A7C782E00B8590B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E2992CCB1A7C782E00B8590B /* libz.dylib */; };
+		E2992CCF1A7C7C6800B8590B /* MKChanceAd.m in Sources */ = {isa = PBXBuildFile; fileRef = E2992CCE1A7C7C6800B8590B /* MKChanceAd.m */; };
+		E2992CD21A7C7F0700B8590B /* MKFeedBack.m in Sources */ = {isa = PBXBuildFile; fileRef = E2992CD11A7C7F0700B8590B /* MKFeedBack.m */; };
 		E29FFCAA1A5E7EBC004273BE /* MKAboutUs.m in Sources */ = {isa = PBXBuildFile; fileRef = E29FFCA91A5E7EBC004273BE /* MKAboutUs.m */; };
 		E29FFCAD1A5E7ECE004273BE /* MKBusinessCooperation.m in Sources */ = {isa = PBXBuildFile; fileRef = E29FFCAC1A5E7ECE004273BE /* MKBusinessCooperation.m */; };
 		E2B644031A77336B00909745 /* share1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2B644011A77336B00909745 /* share1@2x.png */; };
@@ -222,6 +232,25 @@
 		E2815C491A5938A000916F43 /* 推荐给朋友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "推荐给朋友.png"; sourceTree = "<group>"; };
 		E2815C4A1A5938A000916F43 /* 意见反馈.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "意见反馈.png"; sourceTree = "<group>"; };
 		E2815C4B1A5938A000916F43 /* 应用推荐.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "应用推荐.png"; sourceTree = "<group>"; };
+		E2992CB61A7C776600B8590B /* ChanceAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChanceAd.h; sourceTree = "<group>"; };
+		E2992CB71A7C776600B8590B /* ChanceAdRes.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChanceAdRes.bundle; sourceTree = "<group>"; };
+		E2992CB81A7C776600B8590B /* CSADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSADRequest.h; sourceTree = "<group>"; };
+		E2992CB91A7C776600B8590B /* CSBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSBannerView.h; sourceTree = "<group>"; };
+		E2992CBA1A7C776600B8590B /* CSInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSInterstitial.h; sourceTree = "<group>"; };
+		E2992CBB1A7C776600B8590B /* CSMoreGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMoreGame.h; sourceTree = "<group>"; };
+		E2992CBC1A7C776600B8590B /* CSNativeMoreGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNativeMoreGame.h; sourceTree = "<group>"; };
+		E2992CBD1A7C776600B8590B /* CSRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSRequestError.h; sourceTree = "<group>"; };
+		E2992CBE1A7C776600B8590B /* libChanceAd_NoAppZone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libChanceAd_NoAppZone.a; sourceTree = "<group>"; };
+		E2992CC11A7C77F000B8590B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		E2992CC31A7C77FF00B8590B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		E2992CC51A7C781C00B8590B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E2992CC61A7C781C00B8590B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		E2992CC71A7C781C00B8590B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E2992CCB1A7C782E00B8590B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		E2992CCD1A7C7C6800B8590B /* MKChanceAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKChanceAd.h; sourceTree = "<group>"; };
+		E2992CCE1A7C7C6800B8590B /* MKChanceAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKChanceAd.m; sourceTree = "<group>"; };
+		E2992CD01A7C7F0700B8590B /* MKFeedBack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKFeedBack.h; sourceTree = "<group>"; };
+		E2992CD11A7C7F0700B8590B /* MKFeedBack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKFeedBack.m; sourceTree = "<group>"; };
 		E29FFCA81A5E7EBC004273BE /* MKAboutUs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAboutUs.h; sourceTree = "<group>"; };
 		E29FFCA91A5E7EBC004273BE /* MKAboutUs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAboutUs.m; sourceTree = "<group>"; };
 		E29FFCAB1A5E7ECE004273BE /* MKBusinessCooperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBusinessCooperation.h; sourceTree = "<group>"; };
@@ -235,6 +264,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2992CCC1A7C782E00B8590B /* libz.dylib in Frameworks */,
+				E2992CC81A7C781C00B8590B /* Security.framework in Frameworks */,
+				E2992CC91A7C781C00B8590B /* StoreKit.framework in Frameworks */,
+				E2992CCA1A7C781C00B8590B /* SystemConfiguration.framework in Frameworks */,
+				E2992CC41A7C77FF00B8590B /* CoreTelephony.framework in Frameworks */,
+				E2992CC21A7C77F000B8590B /* AdSupport.framework in Frameworks */,
 				E21FCF081A7B41B0004497AB /* AVFoundation.framework in Frameworks */,
 				E21FCF001A7B3CFB004497AB /* libUMOpus.a in Frameworks */,
 				E21FCEF11A7B3CFB004497AB /* libUMFeedback.a in Frameworks */,
@@ -242,6 +277,7 @@
 				4B0ED2781A7A0F3500D3F2D1 /* libUMSocial_Sdk_4.2.1.a in Frameworks */,
 				4B0ED2831A7A0F3500D3F2D1 /* libSocialWechat.a in Frameworks */,
 				E21FCF041A7B3EFB004497AB /* libUMessage_Sdk_1.1.0.a in Frameworks */,
+				E2992CC01A7C776600B8590B /* libChanceAd_NoAppZone.a in Frameworks */,
 				4B0ED2821A7A0F3500D3F2D1 /* libSocialSina.a in Frameworks */,
 				4B0ED2841A7A0F3600D3F2D1 /* libWeChatSDK.a in Frameworks */,
 			);
@@ -260,6 +296,7 @@
 		4B0E54531A7739D10014B8BF /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				E2992CB51A7C776600B8590B /* libChanceAd_NoAppZone */,
 				E21FCF011A7B3EFB004497AB /* UMessage_Sdk_1.1.0 */,
 				E21FCED71A7B3CFB004497AB /* UMengFeedback_SDK_2.1 */,
 				4BD2FFFD1A7A5B4A00C16C7D /* ProgressHUD */,
@@ -433,6 +470,12 @@
 		4BCF0C9F1A50F95900A2FF5D = {
 			isa = PBXGroup;
 			children = (
+				E2992CCB1A7C782E00B8590B /* libz.dylib */,
+				E2992CC51A7C781C00B8590B /* Security.framework */,
+				E2992CC61A7C781C00B8590B /* StoreKit.framework */,
+				E2992CC71A7C781C00B8590B /* SystemConfiguration.framework */,
+				E2992CC31A7C77FF00B8590B /* CoreTelephony.framework */,
+				E2992CC11A7C77F000B8590B /* AdSupport.framework */,
 				E21FCF071A7B41B0004497AB /* AVFoundation.framework */,
 				4B040BD91A59474400DF859F /* libsqlite3.dylib */,
 				4BCF0CAA1A50F95900A2FF5D /* Mike */,
@@ -478,6 +521,10 @@
 				E29FFCAC1A5E7ECE004273BE /* MKBusinessCooperation.m */,
 				4B097F401A762333008EA48A /* MKModifyViewController.h */,
 				4B097F411A762333008EA48A /* MKModifyViewController.m */,
+				E2992CCD1A7C7C6800B8590B /* MKChanceAd.h */,
+				E2992CCE1A7C7C6800B8590B /* MKChanceAd.m */,
+				E2992CD01A7C7F0700B8590B /* MKFeedBack.h */,
+				E2992CD11A7C7F0700B8590B /* MKFeedBack.m */,
 			);
 			path = Mike;
 			sourceTree = "<group>";
@@ -572,6 +619,22 @@
 			path = UMessage_Sdk_1.1.0;
 			sourceTree = "<group>";
 		};
+		E2992CB51A7C776600B8590B /* libChanceAd_NoAppZone */ = {
+			isa = PBXGroup;
+			children = (
+				E2992CB61A7C776600B8590B /* ChanceAd.h */,
+				E2992CB71A7C776600B8590B /* ChanceAdRes.bundle */,
+				E2992CB81A7C776600B8590B /* CSADRequest.h */,
+				E2992CB91A7C776600B8590B /* CSBannerView.h */,
+				E2992CBA1A7C776600B8590B /* CSInterstitial.h */,
+				E2992CBB1A7C776600B8590B /* CSMoreGame.h */,
+				E2992CBC1A7C776600B8590B /* CSNativeMoreGame.h */,
+				E2992CBD1A7C776600B8590B /* CSRequestError.h */,
+				E2992CBE1A7C776600B8590B /* libChanceAd_NoAppZone.a */,
+			);
+			path = libChanceAd_NoAppZone;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -653,6 +716,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2992CBF1A7C776600B8590B /* ChanceAdRes.bundle in Resources */,
 				4B0ED27C1A7A0F3500D3F2D1 /* UMShareEditViewController.xib in Resources */,
 				E21FCEF71A7B3CFB004497AB /* ToolViewInputTextHL@2x.png in Resources */,
 				4B91A68D1A61336600AAA9A9 /* zero@2x.png in Resources */,
@@ -726,6 +790,7 @@
 				4BD200021A7A5B4A00C16C7D /* ProgressHUD.m in Sources */,
 				E29FFCAA1A5E7EBC004273BE /* MKAboutUs.m in Sources */,
 				4B097F421A762333008EA48A /* MKModifyViewController.m in Sources */,
+				E2992CCF1A7C7C6800B8590B /* MKChanceAd.m in Sources */,
 				4BCF0CB11A50F95900A2FF5D /* AppDelegate.m in Sources */,
 				4B040BD81A59468000DF859F /* MKDBManager.m in Sources */,
 				4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */,
@@ -738,6 +803,7 @@
 				4B040BDD1A59482100DF859F /* MKRecord.m in Sources */,
 				4BD2F4541A5A7FA00094AE5B /* MKMilkViewController.m in Sources */,
 				4B374D8E1A5A629B0026CFF4 /* MKRecordsViewController.m in Sources */,
+				E2992CD21A7C7F0700B8590B /* MKFeedBack.m in Sources */,
 				4B0E54571A773A010014B8BF /* UICountingLabel.m in Sources */,
 				4B374D8B1A5A60AE0026CFF4 /* MKDate.m in Sources */,
 				4BE59E141A53CD35004CF8D9 /* MKChartTableViewCell.m in Sources */,
@@ -821,6 +887,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s";
 			};
@@ -856,6 +923,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = "armv7 armv7s";
@@ -878,6 +946,7 @@
 					"$(PROJECT_DIR)/Mike/UMengFeedback_SDK_2.1",
 					"$(PROJECT_DIR)/Mike/UMengFeedback_SDK_2.1/UMOpus",
 					"$(PROJECT_DIR)/Mike/UMessage_Sdk_1.1.0",
+					"$(PROJECT_DIR)/Mike/libChanceAd_NoAppZone",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "armv7 armv7s";
@@ -900,6 +969,7 @@
 					"$(PROJECT_DIR)/Mike/UMengFeedback_SDK_2.1",
 					"$(PROJECT_DIR)/Mike/UMengFeedback_SDK_2.1/UMOpus",
 					"$(PROJECT_DIR)/Mike/UMessage_Sdk_1.1.0",
+					"$(PROJECT_DIR)/Mike/libChanceAd_NoAppZone",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "armv7 armv7s";
