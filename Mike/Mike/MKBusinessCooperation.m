@@ -63,7 +63,7 @@
     [self.view addSubview:label1];
     
     UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(20, ScreenHeight/3+20, ScreenWidth-40, 20)];
-    label2.text = @"提供产品推广服务，帮助客户推广APP或者展示产品广告。提供产品开发服务，帮助客户定制APP。如果您对我们的团队和产品有兴趣，有投资合作意向，欢迎联系我们。";
+    label2.text = @"提供产品推广服务，帮助客户推广APP或者展示产品广告。提供产品开发服务，帮助客户定制APP。如果您对我们的团队和产品有兴趣，有合作意向，欢迎联系我们。";
     label2.backgroundColor = [UIColor clearColor];
     label2.font = [UIFont boldSystemFontOfSize:12];
     label2.textColor = textColor;

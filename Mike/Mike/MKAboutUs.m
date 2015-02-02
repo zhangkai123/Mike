@@ -63,7 +63,7 @@
     [self.view addSubview:label1];
     
     UILabel *label2 = [[UILabel alloc]initWithFrame:CGRectMake(20, 20+20, ScreenWidth-40, 20)];
-    label2.text = @"米渴是eMo科技推出的一款帮助一直坚持母乳喂养宝宝的上班族妈妈记录背奶量的APP。我们希望成为年轻妈妈的得力帮手，帮助她们更好的照顾好自己的宝宝，让宝宝健康地成长。";
+    label2.text = @"米渴是eMo团队推出的一款帮助一直坚持母乳喂养宝宝的上班族妈妈记录背奶量的APP。我们希望成为年轻妈妈的得力帮手，帮助她们更好的照顾好自己的宝宝，让宝宝健康地成长。";
     label2.backgroundColor = [UIColor clearColor];
     label2.font = [UIFont boldSystemFontOfSize:12];
     label2.textColor = textColor;
