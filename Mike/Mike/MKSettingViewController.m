@@ -170,7 +170,7 @@
         [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://baidu.com";
         [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://baidu.com";
         [UMSocialSnsService presentSnsIconSheetView:self
-                                             appKey:@"539fa83a56240b96ae055bea"
+                                             appKey:APPKEY
                                           shareText:@"你要分享的文字"
                                          shareImage:[UIImage imageNamed:@"icon.png"]
                                     shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,nil]

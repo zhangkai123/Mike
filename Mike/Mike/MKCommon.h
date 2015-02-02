@@ -26,6 +26,5 @@
 #define IOS_7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 #define IOS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
-//int biggestMilkNum = 400;
 extern NSInteger biggestMilkNum;
 #endif
