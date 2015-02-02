@@ -168,9 +168,9 @@
         //推荐给朋友
         [MobClick event:@"SettingPage_RecommendToFriends"];
         [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
-        [UMSocialData defaultData].extConfig.wechatSessionData.title = @"米渴--背奶记录";
-        [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://baidu.com";
-        [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://baidu.com";
+        [UMSocialData defaultData].extConfig.wechatSessionData.title = @"米渴——背奶记录";
+        [UMSocialData defaultData].extConfig.wechatSessionData.url = APP_STORE_URL;
+        [UMSocialData defaultData].extConfig.wechatTimelineData.url = APP_STORE_URL;
         [UMSocialSnsService presentSnsIconSheetView:self
                                              appKey:APPKEY
                                           shareText:@"你要分享的文字"
@@ -185,7 +185,7 @@
         static NSString *const iOS7AppStoreURLFormat = @"itms-apps://itunes.apple.com/app/id%d";
         static NSString *const iOSAppStoreURLFormat = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d";
         
-        NSURL *appStore = [NSURL URLWithString:[NSString stringWithFormat:([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)? iOS7AppStoreURLFormat: iOSAppStoreURLFormat, 888547050]];
+        NSURL *appStore = [NSURL URLWithString:[NSString stringWithFormat:([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)? iOS7AppStoreURLFormat: iOSAppStoreURLFormat, 963645257]];
         [[UIApplication sharedApplication]openURL:appStore];
         
     }
