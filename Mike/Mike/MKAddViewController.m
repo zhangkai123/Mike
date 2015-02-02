@@ -42,8 +42,7 @@
 //    self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0xd57d9c);
     self.title = @"记录";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:UIColorFromRGB(0xd57d9c)};
-    
-    
+        
     UIImage *saveButtonImage = [UIImage imageNamed:@"保存.png"];
     UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [saveButton setImage:saveButtonImage forState:UIControlStateNormal];
@@ -51,7 +50,13 @@
     [saveButton addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *customSaveBarItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
-    self.navigationItem.rightBarButtonItem = customSaveBarItem;
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace
+                                       target:nil action:nil];
+    negativeSpacer.width = -12;// it was -6 in iOS 6
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:negativeSpacer, customSaveBarItem, nil] animated:NO];
+//    UIBarButtonItem *customSaveBarItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
+//    self.navigationItem.rightBarButtonItem = customSaveBarItem;
     
     
     theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStyleGrouped];
