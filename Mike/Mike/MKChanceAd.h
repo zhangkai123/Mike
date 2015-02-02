@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChanceAd.h"
 
-@interface MKChanceAd : UIViewController
+@interface MKChanceAd : UIViewController<CSMoreGameDelegate>
 
 @end
