@@ -36,11 +36,22 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
     self.navigationItem.leftBarButtonItem.tintColor = UIColorFromRGB(0xd57d9c);
-    self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0xd57d9c);
+//    self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0xd57d9c);
     self.title = @"记录";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:UIColorFromRGB(0xd57d9c)};
+    
+    
+    UIImage *saveButtonImage = [UIImage imageNamed:@"保存.png"];
+    UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [saveButton setImage:saveButtonImage forState:UIControlStateNormal];
+    saveButton.frame = CGRectMake(0, 0, saveButtonImage.size.width*2/3, saveButtonImage.size.height*2/3);
+    [saveButton addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *customSaveBarItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
+    self.navigationItem.rightBarButtonItem = customSaveBarItem;
+    
     
     theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStyleGrouped];
     theTableView.showsHorizontalScrollIndicator = NO;
