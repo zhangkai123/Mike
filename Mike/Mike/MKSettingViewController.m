@@ -168,12 +168,12 @@
         //推荐给朋友
         [MobClick event:@"SettingPage_RecommendToFriends"];
         [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
-        [UMSocialData defaultData].extConfig.wechatSessionData.title = @"米渴——背奶记录";
+        [UMSocialData defaultData].extConfig.wechatSessionData.title = @"米渴";
         [UMSocialData defaultData].extConfig.wechatSessionData.url = APP_STORE_URL;
         [UMSocialData defaultData].extConfig.wechatTimelineData.url = APP_STORE_URL;
         [UMSocialSnsService presentSnsIconSheetView:self
                                              appKey:APPKEY
-                                          shareText:@"你要分享的文字"
+                                          shareText:@"背奶记录，统计每天背奶量，让你更有计划的组织背奶生活"
                                          shareImage:[UIImage imageNamed:@"icon.png"]
                                     shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,nil]
                                            delegate:self];
