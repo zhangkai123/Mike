@@ -24,6 +24,7 @@
     
     NSString *shareText;
 }
+@property(nonatomic,assign) BOOL addOrHomeShareView;
 @property(nonatomic,strong) UILabel *bottleNumLabel;
 @property(nonatomic,strong) NSString *shareText;
 @property(nonatomic,unsafe_unretained) id<MKPopViewDelegate> delegate;

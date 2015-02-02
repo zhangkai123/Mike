@@ -11,6 +11,7 @@
 #import "MKCommon.h"
 #import "MKDate.h"
 #import "MKDataController.h"
+#import "MobClick.h"
 
 @interface MKRecordsViewController ()
 {
@@ -162,6 +163,7 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [MobClick event:@"HomePage_CheckOldRecord"];
     int recordIndex = [self getRecordsIndex:indexPath.section];
     MKRecord *record = [recordsArray objectAtIndex:recordIndex + indexPath.row];
     [self.delegate showRecordDetailPage:record];

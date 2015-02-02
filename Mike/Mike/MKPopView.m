@@ -8,8 +8,10 @@
 
 #import "MKPopView.h"
 #import "MKCommon.h"
+#import "MobClick.h"
 
 @implementation MKPopView
+@synthesize addOrHomeShareView;
 @synthesize bottleNumLabel ,shareText;
 @synthesize delegate;
 -(void)dealloc
@@ -107,15 +109,30 @@
 }
 -(void)shareToWeibo
 {
+    if (self.addOrHomeShareView) {
+        [MobClick event:@"HomePage_AddShareToWeibo"];
+    }else{
+        [MobClick event:@"HomePage_ClickShareToWeibo"];
+    }
     [self.delegate sharedToSinaWeibo:shareTextLabel.text];
 }
 
 -(void)shareToWeixin
 {
+    if (self.addOrHomeShareView) {
+        [MobClick event:@"HomePage_AddShareToWeinxin"];
+    }else{
+        [MobClick event:@"HomePage_ClickShareToWeixin"];
+    }
     [self.delegate sharedToWeichat:shareTextLabel.text];
 }
 -(void)hideShareView
 {
+    if (self.addOrHomeShareView) {
+        [MobClick event:@"HomePage_AddButNoShare"];
+    }else{
+        [MobClick event:@"HomePage_ClickButNoShare"];
+    }
     [UIView animateWithDuration:0.2
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut

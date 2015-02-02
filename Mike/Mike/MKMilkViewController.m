@@ -12,6 +12,7 @@
 #import "MKChartTableViewCell.h"
 #import "MKDataController.h"
 #import "MKDate.h"
+#import "MobClick.h"
 
 NSInteger biggestMilkNum;
 @interface MKMilkViewController ()<UITableViewDelegate,UITableViewDataSource,MKChartTableViewCellDelegate>
@@ -165,6 +166,7 @@ NSInteger biggestMilkNum;
 }
 -(void)shareNumber
 {
+    [MobClick event:@"HomePage_ShareButtonEvent"];
     [self.delegate shareNumber];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -197,6 +199,7 @@ NSInteger biggestMilkNum;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [MobClick event:@"HomePage_ClickChart"];
     MKDate *theDate = [datesArray objectAtIndex:indexPath.row];
     [self.delegate goToOneDateRecords:theDate.dateStr];
 }
