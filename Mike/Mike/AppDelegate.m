@@ -24,7 +24,7 @@
     //UM social
     [UMSocialData setAppKey:APPKEY];
     //share set up
-    [UMSocialWechatHandler setWXAppId:@"wx24e9177709dc24df" appSecret:@"680c726544308807dd1fb5b4d798c930" url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:@"wxba8a60bf04ee1be9" appSecret:@"53785e5641e6a27fc701b54a41096099" url:@"http://www.umeng.com/social"];
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     //UM analytics
     [MobClick startWithAppkey:APPKEY reportPolicy:BATCH   channelId:nil];
