@@ -11,6 +11,7 @@
 		4B040BD81A59468000DF859F /* MKDBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B040BD71A59468000DF859F /* MKDBManager.m */; };
 		4B040BDA1A59474400DF859F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B040BD91A59474400DF859F /* libsqlite3.dylib */; };
 		4B040BDD1A59482100DF859F /* MKRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B040BDC1A59482100DF859F /* MKRecord.m */; };
+		4B0842401A7F1F7A00D50B0F /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B08423D1A7F1F7A00D50B0F /* libMobClickLibrary.a */; };
 		4B097F421A762333008EA48A /* MKModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B097F411A762333008EA48A /* MKModifyViewController.m */; };
 		4B0E54571A773A010014B8BF /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E54561A773A010014B8BF /* UICountingLabel.m */; };
 		4B0ED2771A7A0F3500D3F2D1 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B0ED2531A7A0F3500D3F2D1 /* UMSocialLocalizable.strings */; };
@@ -119,6 +120,9 @@
 		4B040BD91A59474400DF859F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		4B040BDB1A59482100DF859F /* MKRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecord.h; sourceTree = "<group>"; };
 		4B040BDC1A59482100DF859F /* MKRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecord.m; sourceTree = "<group>"; };
+		4B08423D1A7F1F7A00D50B0F /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		4B08423E1A7F1F7A00D50B0F /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		4B08423F1A7F1F7A00D50B0F /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
 		4B097F401A762333008EA48A /* MKModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKModifyViewController.h; sourceTree = "<group>"; };
 		4B097F411A762333008EA48A /* MKModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKModifyViewController.m; sourceTree = "<group>"; };
 		4B0E54551A773A010014B8BF /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				E2992CC41A7C77FF00B8590B /* CoreTelephony.framework in Frameworks */,
 				E2992CC21A7C77F000B8590B /* AdSupport.framework in Frameworks */,
 				E21FCF081A7B41B0004497AB /* AVFoundation.framework in Frameworks */,
+				4B0842401A7F1F7A00D50B0F /* libMobClickLibrary.a in Frameworks */,
 				E21FCF001A7B3CFB004497AB /* libUMOpus.a in Frameworks */,
 				E21FCEF11A7B3CFB004497AB /* libUMFeedback.a in Frameworks */,
 				4B040BDA1A59474400DF859F /* libsqlite3.dylib in Frameworks */,
@@ -295,9 +300,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B08423C1A7F1F7A00D50B0F /* UMAnalytics_Sdk_3.4.4 */ = {
+			isa = PBXGroup;
+			children = (
+				4B08423D1A7F1F7A00D50B0F /* libMobClickLibrary.a */,
+				4B08423E1A7F1F7A00D50B0F /* MobClick.h */,
+				4B08423F1A7F1F7A00D50B0F /* MobClickSocialAnalytics.h */,
+			);
+			path = UMAnalytics_Sdk_3.4.4;
+			sourceTree = "<group>";
+		};
 		4B0E54531A7739D10014B8BF /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				4B08423C1A7F1F7A00D50B0F /* UMAnalytics_Sdk_3.4.4 */,
 				E2992CB51A7C776600B8590B /* libChanceAd_NoAppZone */,
 				E21FCF011A7B3EFB004497AB /* UMessage_Sdk_1.1.0 */,
 				E21FCED71A7B3CFB004497AB /* UMengFeedback_SDK_2.1 */,
@@ -951,6 +967,7 @@
 					"$(PROJECT_DIR)/Mike/UMengFeedback_SDK_2.1/UMOpus",
 					"$(PROJECT_DIR)/Mike/UMessage_Sdk_1.1.0",
 					"$(PROJECT_DIR)/Mike/libChanceAd_NoAppZone",
+					"$(PROJECT_DIR)/Mike/UMAnalytics_Sdk_3.4.4",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "armv7 armv7s";
@@ -974,6 +991,7 @@
 					"$(PROJECT_DIR)/Mike/UMengFeedback_SDK_2.1/UMOpus",
 					"$(PROJECT_DIR)/Mike/UMessage_Sdk_1.1.0",
 					"$(PROJECT_DIR)/Mike/libChanceAd_NoAppZone",
+					"$(PROJECT_DIR)/Mike/UMAnalytics_Sdk_3.4.4",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "armv7 armv7s";

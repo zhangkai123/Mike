@@ -18,6 +18,7 @@
 #import "MKRecord.h"
 #import "UMSocial.h"
 #import "ProgressHUD.h"
+#import "MobClick.h"
 
 @interface MKRootViewController ()<MKRecordsViewControllerDelegate,MKPopViewDelegate,MKMilkViewControllerDelegate>
 {
@@ -160,6 +161,7 @@
     popView.center = self.navigationController.view.center;
     [popView setShareText:shareText];
     popView.delegate =self;
+    popView.addOrHomeShareView = !hideTopView;
     [popView hideTopView:hideTopView];
     [self.navigationController.view addSubview:popView];
     [popView animateShareViewOut];
@@ -206,11 +208,13 @@
 }
 -(void)goToSetting
 {
+    [MobClick event:@"HomePage_SettingButtonClicked"];
     MKSettingViewController *settingViewController = [[MKSettingViewController alloc]init];
     [self.navigationController pushViewController:settingViewController animated:YES];
 }
 -(void)addRecord
 {
+    [MobClick event:@"HomePage_AddRecordEvent"];
     MKAddViewController *addViewController = [[MKAddViewController alloc]init];
     UINavigationController *navigaitonController = [[UINavigationController alloc]initWithRootViewController:addViewController];
     [self presentViewController:navigaitonController animated:YES completion:nil];

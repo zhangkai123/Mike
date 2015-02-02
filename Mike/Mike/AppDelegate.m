@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MobClick.h"
 #import "UMSocial.h"
 #import "UMSocialWechatHandler.h"
 #import "UMSocialSinaHandler.h"
@@ -20,11 +21,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    [UMSocialData setAppKey:@"539fa83a56240b96ae055bea"];
+    //UM social
+    [UMSocialData setAppKey:APPKEY];
     //share set up
-    [UMSocialWechatHandler setWXAppId:@"wx24e9177709dc24df" appSecret:@"680c726544308807dd1fb5b4d798c930" url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:@"wxba8a60bf04ee1be9" appSecret:@"53785e5641e6a27fc701b54a41096099" url:@"http://www.umeng.com/social"];
     [UMSocialSinaHandler openSSOWithRedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    //UM analytics
+    [MobClick startWithAppkey:APPKEY reportPolicy:BATCH   channelId:nil];
+    //set version
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
     
     self.rootViewController = [[MKRootViewController alloc]init];
     self.navigationController = [[UINavigationController alloc]initWithRootViewController:self.rootViewController];

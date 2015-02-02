@@ -15,6 +15,7 @@
 #import "UMOpus.h"
 #import "MKChanceAd.h"
 #import "MKFeedback.h"
+#import "MobClick.h"
 @interface MKSettingViewController()<UMSocialUIDelegate>
 {
     UIColor* myBgColor;
@@ -165,12 +166,13 @@
     if(indexPath.row==0)
     {
         //推荐给朋友
+        [MobClick event:@"SettingPage_RecommendToFriends"];
         [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
         [UMSocialData defaultData].extConfig.wechatSessionData.title = @"米渴--背奶记录";
         [UMSocialData defaultData].extConfig.wechatSessionData.url = @"http://baidu.com";
         [UMSocialData defaultData].extConfig.wechatTimelineData.url = @"http://baidu.com";
         [UMSocialSnsService presentSnsIconSheetView:self
-                                             appKey:@"539fa83a56240b96ae055bea"
+                                             appKey:APPKEY
                                           shareText:@"你要分享的文字"
                                          shareImage:[UIImage imageNamed:@"icon.png"]
                                     shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,nil]
@@ -179,6 +181,7 @@
     else if(indexPath.row==1)
     {
         //打分鼓励，给个评价！
+        [MobClick event:@"SettingPage_Rating"];
         static NSString *const iOS7AppStoreURLFormat = @"itms-apps://itunes.apple.com/app/id%d";
         static NSString *const iOSAppStoreURLFormat = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d";
         
@@ -189,7 +192,7 @@
     else if(indexPath.row==2)
     {
         //意见反馈
-        
+        [MobClick event:@"SettingPage_Feedback"];
         MKFeedBack *mKFeedBack = [[MKFeedBack alloc]init];
         [self.navigationController pushViewController:mKFeedBack animated:YES];
         
@@ -211,18 +214,21 @@
     else if(indexPath.row==3)
     {
         //商务合作
+        [MobClick event:@"SettingPage_Business"];
         MKBusinessCooperation *mKAboutUs = [[MKBusinessCooperation alloc]init];
         [self.navigationController pushViewController:mKAboutUs animated:YES];
     }
     else if(indexPath.row==4)
     {
         //应用推荐
+        [MobClick event:@"SettingPage_AppRecommend"];
         MKChanceAd *mKAboutUs = [[MKChanceAd alloc]init];
         [self.navigationController pushViewController:mKAboutUs animated:YES];
     }
     else if(indexPath.row==5)
     {
         //关于我们
+        [MobClick event:@"SettingPage_AboutUs"];
         MKAboutUs *mKAboutUs = [[MKAboutUs alloc]init];
         [self.navigationController pushViewController:mKAboutUs animated:YES];
     }

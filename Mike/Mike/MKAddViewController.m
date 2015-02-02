@@ -9,6 +9,7 @@
 #import "MKAddViewController.h"
 #import "MKCommon.h"
 #import "MKDataController.h"
+#import "MobClick.h"
 
 @interface MKAddViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UITextViewDelegate>
 {
@@ -178,11 +179,13 @@
 }
 -(void)cancel
 {
+    [MobClick event:@"AddPage_CancelEvent"];
     [self.view endEditing:YES];
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 -(void)save
 {
+    [MobClick event:@"AddPage_SaveEvent"];
     [self.view endEditing:YES];
     if (theDate == nil) {
         theDate = [NSDate date];
@@ -338,6 +341,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
+        [MobClick event:@"AddPage_TimeFiledClicked"];
         [self.view endEditing:YES];
         if (!datePickerShowed) {
             datePickerShowed = YES;
@@ -347,8 +351,10 @@
             [self hideDatePicker];
         }
     }else if (indexPath.section == 1){
+        [MobClick event:@"AddPage_NumFieldClicked"];
          [numberField becomeFirstResponder];
     }else{
+        [MobClick event:@"AddPage_NoteFieldClicked"];
         [noteTextView becomeFirstResponder];
     }
 }

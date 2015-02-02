@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.emo.Mike</string>
+	<string>com.zhangkai.mike</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,7 +27,7 @@
 			<string>weibo</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>sina.539fa83a56240b96ae055bea</string>
+				<string>sina.54c72f5efd98c57f7b000a01</string>
 			</array>
 		</dict>
 		<dict>
@@ -37,7 +37,7 @@
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx24e9177709dc24df</string>
+				<string>wxba8a60bf04ee1be9</string>
 			</array>
 		</dict>
 	</array>

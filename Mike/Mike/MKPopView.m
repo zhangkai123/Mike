@@ -8,8 +8,10 @@
 
 #import "MKPopView.h"
 #import "MKCommon.h"
+#import "MobClick.h"
 
 @implementation MKPopView
+@synthesize addOrHomeShareView;
 @synthesize bottleNumLabel ,shareText;
 @synthesize delegate;
 -(void)dealloc
@@ -21,10 +23,14 @@
     if (self = [super initWithFrame:frame]) {
         
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+        self.userInteractionEnabled = YES;
         
-        sharedView = [[MKTouchableView alloc]initWithFrame:CGRectMake(0, 0, 260, 233)];
+        UIButton *backgroundButton = [[UIButton alloc]initWithFrame:frame];
+        [backgroundButton addTarget:self action:@selector(clickedView) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:backgroundButton];
+        
+        sharedView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 260, 233)];
         sharedView.backgroundColor = [UIColor whiteColor];
-        sharedView.delegate = self;
         sharedView.layer.cornerRadius = 10;
         sharedView.layer.masksToBounds = YES;
         sharedView.center = CGPointMake(self.center.x, -150);
@@ -107,15 +113,30 @@
 }
 -(void)shareToWeibo
 {
+    if (self.addOrHomeShareView) {
+        [MobClick event:@"HomePage_AddShareToWeibo"];
+    }else{
+        [MobClick event:@"HomePage_ClickShareToWeibo"];
+    }
     [self.delegate sharedToSinaWeibo:shareTextLabel.text];
 }
 
 -(void)shareToWeixin
 {
+    if (self.addOrHomeShareView) {
+        [MobClick event:@"HomePage_AddShareToWeinxin"];
+    }else{
+        [MobClick event:@"HomePage_ClickShareToWeixin"];
+    }
     [self.delegate sharedToWeichat:shareTextLabel.text];
 }
 -(void)hideShareView
 {
+    if (self.addOrHomeShareView) {
+        [MobClick event:@"HomePage_AddButNoShare"];
+    }else{
+        [MobClick event:@"HomePage_ClickButNoShare"];
+    }
     [UIView animateWithDuration:0.2
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
@@ -127,7 +148,7 @@
                          [self removeFromSuperview];
                      }];
 }
-#pragma MKTouchableViewDelegate
+
 -(void)clickedView
 {
     [self hideShareView];

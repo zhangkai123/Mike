@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MKTouchableView.h"
 
 @protocol MKPopViewDelegate <NSObject>
 
@@ -16,14 +15,15 @@
 
 @end
 
-@interface MKPopView : UIView<MKTouchableViewDelegate>
+@interface MKPopView : UIView
 {
-    MKTouchableView *sharedView;
+    UIView *sharedView;
     UIView *topView;
     UILabel *shareTextLabel;
     
     NSString *shareText;
 }
+@property(nonatomic,assign) BOOL addOrHomeShareView;
 @property(nonatomic,strong) UILabel *bottleNumLabel;
 @property(nonatomic,strong) NSString *shareText;
 @property(nonatomic,unsafe_unretained) id<MKPopViewDelegate> delegate;
