@@ -77,6 +77,7 @@
 		E21FCF001A7B3CFB004497AB /* libUMOpus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E21FCEEC1A7B3CFB004497AB /* libUMOpus.a */; };
 		E21FCF041A7B3EFB004497AB /* libUMessage_Sdk_1.1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E21FCF021A7B3EFB004497AB /* libUMessage_Sdk_1.1.0.a */; };
 		E21FCF081A7B41B0004497AB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E21FCF071A7B41B0004497AB /* AVFoundation.framework */; };
+		E239FBF51A7F27B700A34B9D /* 保存.png in Resources */ = {isa = PBXBuildFile; fileRef = E239FBF41A7F27B700A34B9D /* 保存.png */; };
 		E2815C4C1A5938A000916F43 /* 打分鼓励，给个评价！.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */; };
 		E2815C4D1A5938A000916F43 /* 导出数据.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C451A5938A000916F43 /* 导出数据.png */; };
 		E2815C4E1A5938A000916F43 /* 关于我们.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C461A5938A000916F43 /* 关于我们.png */; };
@@ -228,6 +229,7 @@
 		E21FCF021A7B3EFB004497AB /* libUMessage_Sdk_1.1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMessage_Sdk_1.1.0.a; sourceTree = "<group>"; };
 		E21FCF031A7B3EFB004497AB /* UMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMessage.h; sourceTree = "<group>"; };
 		E21FCF071A7B41B0004497AB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		E239FBF41A7F27B700A34B9D /* 保存.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "保存.png"; sourceTree = "<group>"; };
 		E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "打分鼓励，给个评价！.png"; sourceTree = "<group>"; };
 		E2815C451A5938A000916F43 /* 导出数据.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "导出数据.png"; sourceTree = "<group>"; };
 		E2815C461A5938A000916F43 /* 关于我们.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "关于我们.png"; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 			children = (
 				4BA38C9A1A637089009D25A0 /* share */,
 				4B91A68C1A61336600AAA9A9 /* zero@2x.png */,
+				E239FBF41A7F27B700A34B9D /* 保存.png */,
 				E2109BF81A5A43220031119C /* back.png */,
 				E21FCEA71A7B36C1004497AB /* BusinessCooperation.png */,
 				E2815C441A5938A000916F43 /* 打分鼓励，给个评价！.png */,
@@ -758,6 +761,7 @@
 				E21FCEFD1A7B3CFB004497AB /* umeng_fb_audio_play_02@2x.png in Resources */,
 				4B0ED27E1A7A0F3500D3F2D1 /* UMSLoginViewController.xib in Resources */,
 				E2815C4E1A5938A000916F43 /* 关于我们.png in Resources */,
+				E239FBF51A7F27B700A34B9D /* 保存.png in Resources */,
 				E21FCEF61A7B3CFB004497AB /* ToolViewInputText@2x.png in Resources */,
 				4BE59E181A53D3F2004CF8D9 /* chart@2x.png in Resources */,
 				4B0ED2811A7A0F3500D3F2D1 /* UMSocialSDKResourcesNew.bundle in Resources */,

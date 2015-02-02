@@ -229,6 +229,8 @@
     //    NSString *msg = [[NSString alloc] initWithFormat:@"你选择的是:%@",[self.dataList objectAtIndex:[indexPath row]]];
     //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
     //    [alert show];
+    
+    [UITableView1 deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {
