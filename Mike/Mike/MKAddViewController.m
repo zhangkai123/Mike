@@ -47,7 +47,7 @@
     UIImage *saveButtonImage = [UIImage imageNamed:@"保存.png"];
     UIButton *saveButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [saveButton setImage:saveButtonImage forState:UIControlStateNormal];
-    saveButton.frame = CGRectMake(0, 0, saveButtonImage.size.width*2/3, saveButtonImage.size.height*2/3);
+    saveButton.frame = CGRectMake(0, 0, saveButtonImage.size.width*11/21, saveButtonImage.size.height*11/21);
     [saveButton addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *customSaveBarItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
