@@ -22,6 +22,7 @@
 
 #define APPKEY @"54c72f5efd98c57f7b000a01"
 #define PublisherID @"100032-4CE817-ABA2-5B48-14D009296720"
+#define APP_STORE_URL @"https://itunes.apple.com/us/app/mi-ke/id963645257?ls=1&mt=8"
 
 #define IOS_7_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
 #define IOS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
