@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MKTouchableView.h"
 
 @protocol MKPopViewDelegate <NSObject>
 
@@ -16,9 +15,9 @@
 
 @end
 
-@interface MKPopView : UIView<MKTouchableViewDelegate>
+@interface MKPopView : UIView
 {
-    MKTouchableView *sharedView;
+    UIView *sharedView;
     UIView *topView;
     UILabel *shareTextLabel;
     

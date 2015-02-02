@@ -23,10 +23,14 @@
     if (self = [super initWithFrame:frame]) {
         
         self.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.2];
+        self.userInteractionEnabled = YES;
         
-        sharedView = [[MKTouchableView alloc]initWithFrame:CGRectMake(0, 0, 260, 233)];
+        UIButton *backgroundButton = [[UIButton alloc]initWithFrame:frame];
+        [backgroundButton addTarget:self action:@selector(clickedView) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:backgroundButton];
+        
+        sharedView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 260, 233)];
         sharedView.backgroundColor = [UIColor whiteColor];
-        sharedView.delegate = self;
         sharedView.layer.cornerRadius = 10;
         sharedView.layer.masksToBounds = YES;
         sharedView.center = CGPointMake(self.center.x, -150);
@@ -144,7 +148,7 @@
                          [self removeFromSuperview];
                      }];
 }
-#pragma MKTouchableViewDelegate
+
 -(void)clickedView
 {
     [self hideShareView];
