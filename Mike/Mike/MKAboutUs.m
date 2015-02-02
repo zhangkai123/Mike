@@ -82,7 +82,7 @@
     
     UILabel *label4 = [[UILabel alloc]initWithFrame:CGRectMake(20, 20+120, 100, 20)];
     label4.textAlignment = NSTextAlignmentCenter;
-    label4.text = @"产品设计开发: 张开 黄波";
+    label4.text = @"产品设计开发: 张开 黄波 肖亮";
     label4.backgroundColor = [UIColor clearColor];
     label4.font = [UIFont boldSystemFontOfSize:12];
     label4.textColor = textColor;
