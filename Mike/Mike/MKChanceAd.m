@@ -6,8 +6,9 @@
 //  Copyright (c) 2015年 zhang kai. All rights reserved.
 //
 
+
+
 #import "MKChanceAd.h"
-#import "ChanceAd.h"
 
 @interface MKChanceAd ()
 {
@@ -50,7 +51,7 @@
     self.navigationItem.titleView = titleLabel;
     [titleLabel sizeToFit];
 
-    
+    [CSMoreGame sharedMoreGame].delegate=self;
     [[CSMoreGame sharedMoreGame] loadMoreGame:[CSADRequest request]];
     [[CSMoreGame sharedMoreGame] fillMoreGameInto:self.view];
     //        [[CSMoreGame sharedMoreGame] showMoreGameWithScale:1.0f]; //适用于 rootViewController存在的情况
@@ -64,6 +65,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+// 精品推荐加载错误
+- (void)csMoreGame:(CSMoreGame *)csMoreGame loadAdFailureWithError:(CSRequestError *)requestError
+{
+        [csMoreGame closeMoreGame];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

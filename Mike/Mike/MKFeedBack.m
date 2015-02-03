@@ -52,7 +52,7 @@
     [titleLabel sizeToFit];
     
     
-    textView = [[UITextView  alloc] initWithFrame:CGRectMake(10, 10, ScreenWidth-20, 200)];
+    textView = [[UITextView  alloc] initWithFrame:CGRectMake(10, 10, ScreenWidth-20, 100)];
     textView.textColor = [UIColor blackColor];//设置textview里面的字体颜色
 //    textView.font = [UIFont fontWithName:@"Arial" size:18.0];//设置字体名字和字体大小
     textView.delegate = self;//设置它的委托方法
