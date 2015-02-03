@@ -79,17 +79,68 @@ NSInteger biggestMilkNum;
     [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:shareButton];
     
-    NSArray *datesA = [[MKDataController sharedDataController]getDatesWithASCOrder:YES];
-    datesArray = [NSMutableArray arrayWithArray:datesA];
-    
+    [self getAllData];
     [self loadTableToBottom];
     [self setMaxMilkNumber];
     
     addedDateStr = nil;
     animateCellOldValue = 0;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenAdd:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
+}
+-(void)appWillEnterForeground
+{
+    [self getAllData];
+    [chartTableView reloadData];
+    [self loadTableToBottom];
+}
+-(void)reloadDataWhenAdd:(NSNotification *)noti
+{
+    NSDictionary *dic = [noti userInfo];
+    NSString *dateStr = [dic objectForKey:@"DateStr"];
+    addedDateStr = [NSString stringWithString:dateStr];
+    [self getTheAnimateCellOldValue:dateStr oldDataArray:datesArray];
+    
+    [self loadTopviewDataWithAnimation:YES];
+    
+    [self setMaxMilkNumber];
+    [self getAllData];
+    [chartTableView reloadData];
+    [self loadTableToBottom];
+}
+-(void)reloadDataWhenRemove
+{
+    [self loadTopviewDataWithAnimation:NO];
+    
+    [self setMaxMilkNumber];
+    [self getAllData];
+    [chartTableView reloadData];
+    [self loadTableToBottom];
+}
+-(void)getAllData
+{
+    if (datesArray != nil) {
+        [datesArray removeAllObjects];
+        datesArray = nil;
+    }
+    NSArray *datesA = [[MKDataController sharedDataController]getDatesWithASCOrder:YES];
+    datesArray = [NSMutableArray arrayWithArray:datesA];
+    //check if no data , show the empty data screen design
+    if ([datesArray count] == 0) {
+        MKDate *fackDate = [self fackDatesDataWhenNoRecords];
+        [datesArray addObject:fackDate];
+    }
+}
+-(MKDate *)fackDatesDataWhenNoRecords
+{
+    NSString *dateStr = [dateFormatter stringFromDate:[NSDate date]];
+    MKDate *date = [[MKDate alloc]init];
+    date.dateStr = dateStr;
+    date.milkNum = 0;
+    date.recordsNum = 0;
+    return date;
 }
 -(void)loadTopviewDataWithAnimation:(BOOL)animate
 {
@@ -114,24 +165,6 @@ NSInteger biggestMilkNum;
     NSString *numStr = [array objectAtIndex:0];
     return [numStr intValue];
 }
--(void)reloadDataWhenAdd:(NSNotification *)noti
-{
-    NSDictionary *dic = [noti userInfo];
-    NSString *dateStr = [dic objectForKey:@"DateStr"];
-    addedDateStr = [NSString stringWithString:dateStr];
-    [self getTheAnimateCellOldValue:dateStr oldDataArray:datesArray];
-    
-    [self loadTopviewDataWithAnimation:YES];
-    
-    [self setMaxMilkNumber];
-    NSArray *datesA = [[MKDataController sharedDataController]getDatesWithASCOrder:YES];
-    if (datesArray != nil) {
-        datesArray = nil;
-        datesArray = [NSMutableArray arrayWithArray:datesA];
-    }
-    [chartTableView reloadData];
-    [self loadTableToBottom];
-}
 -(void)getTheAnimateCellOldValue:(NSString *)dStr oldDataArray:(NSArray *)oldDataA
 {
     animateCellOldValue = 0;
@@ -142,19 +175,6 @@ NSInteger biggestMilkNum;
             break;
         }
     }
-}
--(void)reloadDataWhenRemove
-{
-    [self loadTopviewDataWithAnimation:NO];
-    
-    [self setMaxMilkNumber];
-    NSArray *datesA = [[MKDataController sharedDataController]getDatesWithASCOrder:YES];
-    if (datesArray != nil) {
-        datesArray = nil;
-        datesArray = [NSMutableArray arrayWithArray:datesA];
-    }
-    [chartTableView reloadData];
-    [self loadTableToBottom];
 }
 -(void)setMaxMilkNumber
 {

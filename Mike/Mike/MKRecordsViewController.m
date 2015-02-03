@@ -15,6 +15,8 @@
 
 @interface MKRecordsViewController ()
 {
+    UILabel *noRecordsLabel;
+    
     NSDateFormatter *oldDateFormat;
     NSDateFormatter *dateFormatter;
     
@@ -50,6 +52,14 @@
     [recordsTableView setContentInset:UIEdgeInsetsMake(0,0,170,0)];
     [self.view addSubview:recordsTableView];
     
+    noRecordsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 30, ScreenWidth, 30)];
+    noRecordsLabel.text = @"当前还没有记录";
+    [noRecordsLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    noRecordsLabel.textAlignment = NSTextAlignmentCenter;
+    [noRecordsLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+    [recordsTableView addSubview:noRecordsLabel];
+    noRecordsLabel.hidden = YES;
+    
     oldDateFormat = [[NSDateFormatter alloc] init];
     [oldDateFormat setDateFormat:@"yyyy-MM-dd"];
     
@@ -60,8 +70,14 @@
     
     [self getAllData];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewWhenAdd:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
+}
+-(void)appWillEnterForeground
+{
+    [self getAllData];
+    [recordsTableView reloadData];
 }
 -(void)goToOneDateRecords:(NSString *)dateStr
 {
@@ -105,6 +121,21 @@
     }
     NSArray *tempDatesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
     datesArray = [NSMutableArray arrayWithArray:tempDatesArray];
+    //check if no data , show the empty data screen design
+    if ([datesArray count] == 0) {
+        MKDate *fackDate = [self fackDatesDataWhenNoRecords];
+        [datesArray addObject:fackDate];
+        noRecordsLabel.hidden = NO;
+    }else{
+        noRecordsLabel.hidden = YES;
+    }
+}
+-(MKDate *)fackDatesDataWhenNoRecords
+{
+    NSString *dateStr = [oldDateFormat stringFromDate:[NSDate date]];
+    MKDate *date = [[MKDate alloc]init];
+    date.dateStr = dateStr;
+    return date;
 }
 -(void)getRowsData
 {
