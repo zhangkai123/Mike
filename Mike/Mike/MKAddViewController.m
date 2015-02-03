@@ -73,7 +73,7 @@
     labelDateFormatter = [[NSDateFormatter alloc] init];
     [labelDateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [labelDateFormatter setDateStyle:NSDateFormatterShortStyle];
-    [labelDateFormatter setLocale:[NSLocale currentLocale]];
+    [labelDateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh-Hans"]];
     labelDateFormatter.doesRelativeDateFormatting = YES;
     
     //time input label
@@ -321,6 +321,7 @@
             if (datePicker == nil) {
                 datePicker = [[UIDatePicker alloc]init];
                 [datePicker setDate:[NSDate date]];
+                [datePicker setLocale:[NSLocale localeWithLocaleIdentifier:@"zh-Hans"]];
                 datePicker.center = CGPointMake(160, 100);
                 datePicker.datePickerMode = UIDatePickerModeDateAndTime;
                 [datePicker addTarget:self action:@selector(updateDateLable) forControlEvents:UIControlEventValueChanged];
