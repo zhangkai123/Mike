@@ -185,7 +185,7 @@
     if (!cell) {
         cell = [[MKRecordTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    int recordIndex = [self getRecordsIndex:indexPath.section];
+    int recordIndex = [self getRecordsIndex:(int)indexPath.section];
     MKRecord *record = [recordsArray objectAtIndex:recordIndex + indexPath.row];
     cell.timeLabel.text = record.time;
     cell.numberLabel.text = [NSString stringWithFormat:@"%dml",(int)record.milkNum ];
@@ -195,7 +195,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [MobClick event:@"HomePage_CheckOldRecord"];
-    int recordIndex = [self getRecordsIndex:indexPath.section];
+    int recordIndex = [self getRecordsIndex:(int)indexPath.section];
     MKRecord *record = [recordsArray objectAtIndex:recordIndex + indexPath.row];
     [self.delegate showRecordDetailPage:record];
 }
