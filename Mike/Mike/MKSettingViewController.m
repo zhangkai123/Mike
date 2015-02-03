@@ -43,7 +43,7 @@
     [self.view addSubview:UITableView1];//加载tableview
     
 //    dataArray1 = [[NSMutableArray alloc] initWithObjects:@"提醒设置", @"导出数据", nil];//初始化数据数组1
-    dataArray2 = [[NSMutableArray alloc] initWithObjects:@"推荐给朋友", @"打分鼓励，给个评价！", @"意见反馈", @"商务合作", @"应用推荐", @"关于我们", nil];//初始化数据数组2
+    dataArray2 = [[NSMutableArray alloc] initWithObjects:@"推荐给朋友", @"打分鼓励，给个评价！", @"意见反馈", @"商务合作", @"精品推荐", @"关于我们", nil];//初始化数据数组2
     
     UITableView1.backgroundColor=myBgColor;
     UITableView1.sectionFooterHeight=0;

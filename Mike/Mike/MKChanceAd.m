@@ -44,7 +44,7 @@
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"应用推荐";
+    titleLabel.text = @"精品推荐";
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
     titleLabel.textColor = textColor;

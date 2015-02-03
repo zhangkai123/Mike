@@ -85,7 +85,7 @@
 		E2815C501A5938A000916F43 /* 提醒设置.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C481A5938A000916F43 /* 提醒设置.png */; };
 		E2815C511A5938A000916F43 /* 推荐给朋友.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C491A5938A000916F43 /* 推荐给朋友.png */; };
 		E2815C521A5938A000916F43 /* 意见反馈.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4A1A5938A000916F43 /* 意见反馈.png */; };
-		E2815C531A5938A000916F43 /* 应用推荐.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4B1A5938A000916F43 /* 应用推荐.png */; };
+		E2815C531A5938A000916F43 /* 精品推荐.png in Resources */ = {isa = PBXBuildFile; fileRef = E2815C4B1A5938A000916F43 /* 精品推荐.png */; };
 		E2992CBF1A7C776600B8590B /* ChanceAdRes.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E2992CB71A7C776600B8590B /* ChanceAdRes.bundle */; };
 		E2992CC01A7C776600B8590B /* libChanceAd_NoAppZone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2992CBE1A7C776600B8590B /* libChanceAd_NoAppZone.a */; };
 		E2992CC21A7C77F000B8590B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2992CC11A7C77F000B8590B /* AdSupport.framework */; };
@@ -237,7 +237,7 @@
 		E2815C481A5938A000916F43 /* 提醒设置.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提醒设置.png"; sourceTree = "<group>"; };
 		E2815C491A5938A000916F43 /* 推荐给朋友.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "推荐给朋友.png"; sourceTree = "<group>"; };
 		E2815C4A1A5938A000916F43 /* 意见反馈.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "意见反馈.png"; sourceTree = "<group>"; };
-		E2815C4B1A5938A000916F43 /* 应用推荐.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "应用推荐.png"; sourceTree = "<group>"; };
+		E2815C4B1A5938A000916F43 /* 精品推荐.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "精品推荐.png"; sourceTree = "<group>"; };
 		E2992CB61A7C776600B8590B /* ChanceAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChanceAd.h; sourceTree = "<group>"; };
 		E2992CB71A7C776600B8590B /* ChanceAdRes.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ChanceAdRes.bundle; sourceTree = "<group>"; };
 		E2992CB81A7C776600B8590B /* CSADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSADRequest.h; sourceTree = "<group>"; };
@@ -397,7 +397,7 @@
 				E2815C481A5938A000916F43 /* 提醒设置.png */,
 				E2815C491A5938A000916F43 /* 推荐给朋友.png */,
 				E2815C4A1A5938A000916F43 /* 意见反馈.png */,
-				E2815C4B1A5938A000916F43 /* 应用推荐.png */,
+				E2815C4B1A5938A000916F43 /* 精品推荐.png */,
 				4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */,
 				4BE59E161A53D3F2004CF8D9 /* chart@2x.png */,
 				4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */,
@@ -745,7 +745,7 @@
 				4BC06A241A5252D700D62B3C /* add@2x.png in Resources */,
 				4BF1FAEB1A80E982009DA14B /* UMSShareListController.xib in Resources */,
 				E2B644031A77336B00909745 /* share1@2x.png in Resources */,
-				E2815C531A5938A000916F43 /* 应用推荐.png in Resources */,
+				E2815C531A5938A000916F43 /* 精品推荐.png in Resources */,
 				E2815C521A5938A000916F43 /* 意见反馈.png in Resources */,
 				4BF1FAE21A80E982009DA14B /* UMSocialLocalizable.strings in Resources */,
 				E2B644041A77336B00909745 /* share2@2x.png in Resources */,
