@@ -11,7 +11,7 @@
 #import "MKDataController.h"
 #import "MobClick.h"
 
-@interface MKAddViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UITextViewDelegate>
+@interface MKAddViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITableView *theTableView;
     UIDatePicker *datePicker;
@@ -37,9 +37,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
     self.navigationItem.leftBarButtonItem.tintColor = UIColorFromRGB(0xd57d9c);
-//    self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0xd57d9c);
     self.title = @"Record";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:UIColorFromRGB(0xd57d9c)};
         
@@ -55,9 +53,6 @@
                                        target:nil action:nil];
     negativeSpacer.width = -12;// it was -6 in iOS 6
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:negativeSpacer, customSaveBarItem, nil] animated:NO];
-//    UIBarButtonItem *customSaveBarItem = [[UIBarButtonItem alloc] initWithCustomView:saveButton];
-//    self.navigationItem.rightBarButtonItem = customSaveBarItem;
-    
     
     theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStyleGrouped];
     theTableView.showsHorizontalScrollIndicator = NO;
@@ -66,7 +61,6 @@
     theTableView.delegate = self;
     [self.view addSubview:theTableView];
     [theTableView setBackgroundColor:UIColorFromRGB(0xfff1f6)];
-//    theTableView.backgroundColor = [UIColor whiteColor];
     
     [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
@@ -77,13 +71,13 @@
     labelDateFormatter.doesRelativeDateFormatting = YES;
     
     //time input label
-    timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 5, 220, 34)];
+    timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(95, 5, 215, 34)];
     timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:[NSDate date]]];
-    timeLabel.textAlignment = NSTextAlignmentLeft;
+    timeLabel.textAlignment = NSTextAlignmentRight;
     [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
     
     //milk num input label
-    numberField = [[UITextField alloc] initWithFrame:CGRectMake(20, 5, 40, 34)];
+    numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 205, 34)];
     numberField.borderStyle = UITextBorderStyleNone;
     numberField.font = [UIFont systemFontOfSize:16];
     numberField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -91,7 +85,7 @@
     numberField.placeholder = @"0";
     numberField.delegate = self;
     numberField.textColor = UIColorFromRGB(0xd57d9c);
-    numberField.textAlignment = NSTextAlignmentLeft;
+    numberField.textAlignment = NSTextAlignmentRight;
     numberField.tintColor = UIColorFromRGB(0xd57d9c);
     UIToolbar* fieldToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
     fieldToolbar.barStyle = UIBarStyleDefault;
@@ -109,13 +103,12 @@
     numberField.inputAccessoryView = fieldToolbar;
     
     //note text input label
-    noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 5, 300, 80)];
+    noteTextView = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 230, 34)];
     noteTextView.delegate = self;
     noteTextView.font = [UIFont systemFontOfSize:16];
     noteTextView.autocorrectionType = UITextAutocorrectionTypeNo;
     noteTextView.keyboardType = UIKeyboardTypeDefault;
-    noteTextView.textAlignment = NSTextAlignmentLeft;
-    noteTextView.scrollEnabled = NO;
+    noteTextView.textAlignment = NSTextAlignmentRight;
     noteTextView.textColor = UIColorFromRGB(0xd57d9c);
     noteTextView.tintColor = UIColorFromRGB(0xd57d9c);
     noteTextView.inputAccessoryView = fieldToolbar;
@@ -124,24 +117,6 @@
     datePickerShowed = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    if([text length] == 0)
-    {
-        if([textView.text length] != 0)
-        {
-            return YES;
-        }
-        else {
-            return NO;
-        }
-    }
-    else if([[textView text] length] > 54)
-    {
-        return NO;
-    }
-    return YES;
 }
 - (void)keyBoardWillShow:(NSNotification*)notification
 {
@@ -217,7 +192,7 @@
 #pragma uitableview delegate and datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -229,9 +204,7 @@
             sectionRow = 2;
         }
     }else if(section == 1){
-        sectionRow = 1;
-    }else{
-        sectionRow = 1;
+        sectionRow = 2;
     }
     return sectionRow;
 }
@@ -255,41 +228,8 @@
         rowHeight = 200;
     }else if (indexPath.section == 1) {
         rowHeight = 44;
-    }else{
-        rowHeight = 90;
     }
     return rowHeight;
-}
-- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    NSString *sectionTitle = nil;
-    switch (section) {
-        case 0:
-            sectionTitle = @"时间";
-            break;
-        case 1:
-            sectionTitle = @"总共";
-            break;
-        case 2:
-            sectionTitle = @"备注";
-            break;
-        default:
-            break;
-    }
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 29)];
-    
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 0, 100, 29)];
-    titleLabel.text = sectionTitle;
-    titleLabel.textAlignment = NSTextAlignmentLeft;
-    [titleLabel setFont:[UIFont boldSystemFontOfSize:12]];
-    [titleLabel setTextColor:[UIColor lightGrayColor]];
-    [headerView addSubview:titleLabel];
-    if (section == 0) {
-        titleLabel.frame = CGRectMake(20, 21, 100, 29);
-    }else{
-        CGRectMake(20, 0, 100, 29);
-    }
-    return headerView;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -303,20 +243,21 @@
         topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
         [cell.contentView addSubview:topLineView];
     }
-    if (!((indexPath.section == 0)&&(indexPath.row == 1)) && (indexPath.section != 2)) {
+    if (!((indexPath.section == 0)&&(indexPath.row == 1))) {
         UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.frame.size.height - 0.5, 320, 0.5)];
-        lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
-        [cell.contentView addSubview:lineView];
-    }
-    if (indexPath.section == 2) {
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, 90 - 0.5, 320, 0.5)];
         lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
         [cell.contentView addSubview:lineView];
     }
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
+            UILabel *timeStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 80, 34)];
+            timeStaticLabel.text = @"Start time";
+            [timeStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+            [cell.contentView addSubview:timeStaticLabel];
+//            timeStaticLabel.backgroundColor = [UIColor blueColor];
             
             [cell.contentView addSubview:timeLabel];
+//            timeLabel.backgroundColor = [UIColor yellowColor];
         }else{
             if (datePicker == nil) {
                 datePicker = [[UIDatePicker alloc]init];
@@ -330,16 +271,32 @@
         }
     }else if (indexPath.section == 1){
         
-            [cell.contentView addSubview:numberField];
+        if (indexPath.row == 0) {
+            UILabel *numberStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
+            numberStaticLabel.text = @"Total";
+            [numberStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+//            numberStaticLabel.backgroundColor = [UIColor blueColor];
+            [cell.contentView addSubview:numberStaticLabel];
             
-            UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 5, 20, 34)];
+            [cell.contentView addSubview:numberField];
+//            numberField.backgroundColor = [UIColor yellowColor];
+            
+            UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(290, 5, 20, 34)];
             mlLabel.text = @"ml";
             mlLabel.font = [UIFont systemFontOfSize:16];
             [mlLabel setTextColor:[UIColor lightGrayColor]];
             [cell.contentView addSubview:mlLabel];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }else{
-        [cell.contentView addSubview:noteTextView];
+//            mlLabel.backgroundColor = [UIColor greenColor];
+        }else{
+            UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
+            noteStaticLabel.text = @"Note";
+            [noteStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+//            noteStaticLabel.backgroundColor = [UIColor blueColor];
+            [cell.contentView addSubview:noteStaticLabel];
+            
+            [cell.contentView addSubview:noteTextView];
+//            noteTextView.backgroundColor = [UIColor yellowColor];
+        }
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
@@ -357,11 +314,13 @@
             [self hideDatePicker];
         }
     }else if (indexPath.section == 1){
-        [MobClick event:@"AddPage_NumFieldClicked"];
-         [numberField becomeFirstResponder];
-    }else{
-        [MobClick event:@"AddPage_NoteFieldClicked"];
-        [noteTextView becomeFirstResponder];
+        if (indexPath.row == 0) {
+            [MobClick event:@"AddPage_NumFieldClicked"];
+            [numberField becomeFirstResponder];
+        }else{
+            [MobClick event:@"AddPage_NoteFieldClicked"];
+            [noteTextView becomeFirstResponder];
+        }
     }
 }
 -(void)showDatePicker
@@ -391,15 +350,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
