@@ -66,7 +66,7 @@
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh-Hans"]];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
     
     [self getAllData];
     

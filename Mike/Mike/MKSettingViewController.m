@@ -76,7 +76,7 @@
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text = @"设置";
+    titleLabel.text = @"Setting";
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.font = [UIFont boldSystemFontOfSize:18];
     titleLabel.textColor = myTextColor;

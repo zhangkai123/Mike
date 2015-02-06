@@ -45,7 +45,7 @@ NSInteger biggestMilkNum;
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     weekDayFormatter = [[NSDateFormatter alloc]init];
-    [weekDayFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh-Hans"]];
+    [weekDayFormatter setLocale:[NSLocale currentLocale]];
     weekDayFormatter.dateFormat=@"EEE";
     monthDayFormatter = [[NSDateFormatter alloc] init];
     [monthDayFormatter setTimeStyle:NSDateFormatterNoStyle];

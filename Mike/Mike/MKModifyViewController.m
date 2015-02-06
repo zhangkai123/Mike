@@ -31,16 +31,16 @@
     UIButton *deleteButton = [[UIButton alloc]initWithFrame:CGRectMake(0, ScreenHeight - 64 - 45, ScreenWidth, 45)];
     [deleteButton addTarget:self action:@selector(deleteThisRecord) forControlEvents:UIControlEventTouchUpInside];
     deleteButton.backgroundColor = UIColorFromRGB(0xE43B43);
-    [deleteButton setTitle:@"删除记录" forState:UIControlStateNormal];
+    [deleteButton setTitle:@"Delete Record" forState:UIControlStateNormal];
     [self.view addSubview:deleteButton];
 }
 -(void)deleteThisRecord
 {
     UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:nil
-                                                     message:@"确定删除?"
+                                                     message:@"Sure to delete?"
                                                     delegate:self
-                                           cancelButtonTitle:@"取消"
-                                           otherButtonTitles: @"确定",nil];
+                                           cancelButtonTitle:@"Cancel"
+                                           otherButtonTitles: @"Yes",nil];
     [alert show];
 }
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex

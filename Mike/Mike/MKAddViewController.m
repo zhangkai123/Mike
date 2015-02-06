@@ -36,11 +36,11 @@
     [navigationBar setShadowImage:[UIImage new]];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(save)];
     self.navigationItem.leftBarButtonItem.tintColor = UIColorFromRGB(0xd57d9c);
 //    self.navigationItem.rightBarButtonItem.tintColor = UIColorFromRGB(0xd57d9c);
-    self.title = @"记录";
+    self.title = @"Record";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:UIColorFromRGB(0xd57d9c)};
         
     UIImage *saveButtonImage = [UIImage imageNamed:@"保存.png"];
@@ -73,7 +73,7 @@
     labelDateFormatter = [[NSDateFormatter alloc] init];
     [labelDateFormatter setTimeStyle:NSDateFormatterShortStyle];
     [labelDateFormatter setDateStyle:NSDateFormatterShortStyle];
-    [labelDateFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh-Hans"]];
+    [labelDateFormatter setLocale:[NSLocale currentLocale]];
     labelDateFormatter.doesRelativeDateFormatting = YES;
     
     //time input label
@@ -98,7 +98,7 @@
     fieldToolbar.items = [NSArray arrayWithObjects:
                            [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
                            [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                           [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
+                           [[UIBarButtonItem alloc]initWithTitle:@"Finish" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
                            nil];
     [fieldToolbar sizeToFit];
     [fieldToolbar setBackgroundImage:[UIImage new]
@@ -321,7 +321,7 @@
             if (datePicker == nil) {
                 datePicker = [[UIDatePicker alloc]init];
                 [datePicker setDate:[NSDate date]];
-                [datePicker setLocale:[NSLocale localeWithLocaleIdentifier:@"zh-Hans"]];
+                [datePicker setLocale:[NSLocale currentLocale]];
                 datePicker.center = CGPointMake(160, 100);
                 datePicker.datePickerMode = UIDatePickerModeDateAndTime;
                 [datePicker addTarget:self action:@selector(updateDateLable) forControlEvents:UIControlEventValueChanged];
