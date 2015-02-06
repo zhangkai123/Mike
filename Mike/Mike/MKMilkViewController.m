@@ -70,14 +70,14 @@ NSInteger biggestMilkNum;
     chartTableView.frame = CGRectMake(6, 49, self.view.frame.size.width - 12, 216);
     //        chartTableView.backgroundColor = [UIColor clearColor];
     
-    UIImageView *shareImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"share1"]];
-    shareImageView.frame = CGRectMake(ScreenWidth/2 - 23, 49 - 25, 46, 46);
-    [self.view addSubview:shareImageView];
-
-    UIButton *shareButton = [[UIButton alloc]initWithFrame:shareImageView.frame];
-    [shareButton setImage:[UIImage imageNamed:@"share2"] forState:UIControlStateNormal];
-    [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:shareButton];
+//    UIImageView *shareImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"share1"]];
+//    shareImageView.frame = CGRectMake(ScreenWidth/2 - 23, 49 - 25, 46, 46);
+//    [self.view addSubview:shareImageView];
+//
+//    UIButton *shareButton = [[UIButton alloc]initWithFrame:shareImageView.frame];
+//    [shareButton setImage:[UIImage imageNamed:@"share2"] forState:UIControlStateNormal];
+//    [shareButton addTarget:self action:@selector(shareNumber) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:shareButton];
     
     [self getAllData];
     [self loadTableToBottom];
