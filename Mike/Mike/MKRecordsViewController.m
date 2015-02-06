@@ -19,6 +19,7 @@
     
     NSDateFormatter *oldDateFormat;
     NSDateFormatter *dateFormatter;
+    NSDateFormatter *fullDateFormatter;
     
     NSMutableArray *datesArray;
     NSMutableArray *recordsArray;
@@ -68,6 +69,9 @@
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setLocale:[NSLocale currentLocale]];
     
+    fullDateFormatter = [[NSDateFormatter alloc] init];
+    [fullDateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
     [self getAllData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
@@ -112,6 +116,19 @@
 {
     [self getSectionData];
     [self getRowsData];
+    
+    //check if no data , show the empty data screen design
+    if ([datesArray count] == 0) {
+        MKDate *fackDate = [self fackDatesDataWhenNoRecords];
+        [datesArray addObject:fackDate];
+        noRecordsLabel.hidden = NO;
+    }else{
+        noRecordsLabel.hidden = YES;
+    }
+    //after get all data,update the LAST PUMP label
+    MKRecord *theRecord = [recordsArray firstObject];
+    NSDate *lastDate = [fullDateFormatter dateFromString:theRecord.fullDate];
+    [self.delegate updateLastPumpTimeLabel:lastDate];
 }
 -(void)getSectionData
 {
@@ -121,14 +138,14 @@
     }
     NSArray *tempDatesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
     datesArray = [NSMutableArray arrayWithArray:tempDatesArray];
-    //check if no data , show the empty data screen design
-    if ([datesArray count] == 0) {
-        MKDate *fackDate = [self fackDatesDataWhenNoRecords];
-        [datesArray addObject:fackDate];
-        noRecordsLabel.hidden = NO;
-    }else{
-        noRecordsLabel.hidden = YES;
-    }
+//    //check if no data , show the empty data screen design
+//    if ([datesArray count] == 0) {
+//        MKDate *fackDate = [self fackDatesDataWhenNoRecords];
+//        [datesArray addObject:fackDate];
+//        noRecordsLabel.hidden = NO;
+//    }else{
+//        noRecordsLabel.hidden = YES;
+//    }
 }
 -(MKDate *)fackDatesDataWhenNoRecords
 {

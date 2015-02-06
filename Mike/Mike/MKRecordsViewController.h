@@ -12,6 +12,7 @@
 @protocol MKRecordsViewControllerDelegate <NSObject>
 
 -(void)showRecordDetailPage:(MKRecord *)theRecord;
+-(void)updateLastPumpTimeLabel:(NSDate *)lastPumpDate;
 
 @end
 
