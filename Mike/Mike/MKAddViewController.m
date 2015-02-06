@@ -259,7 +259,7 @@
             [cell.contentView addSubview:timeLabel];
 //            timeLabel.backgroundColor = [UIColor yellowColor];
         }else{
-            if (datePicker == nil) {
+//            if (datePicker == nil) {
                 datePicker = [[UIDatePicker alloc]init];
                 [datePicker setDate:[NSDate date]];
                 [datePicker setLocale:[NSLocale currentLocale]];
@@ -267,7 +267,7 @@
                 datePicker.datePickerMode = UIDatePickerModeDateAndTime;
                 [datePicker addTarget:self action:@selector(updateDateLable) forControlEvents:UIControlEventValueChanged];
                 [cell addSubview:datePicker];
-            }
+//            }
         }
     }else if (indexPath.section == 1){
         
@@ -334,6 +334,8 @@
 }
 -(void)hideDatePicker
 {
+    [datePicker removeFromSuperview];
+    datePicker = nil;
     NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
                                  [NSIndexPath indexPathForRow:1 inSection:0],
                                  nil];
