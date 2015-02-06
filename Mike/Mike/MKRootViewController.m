@@ -14,16 +14,16 @@
 #import "MKRecordsViewController.h"
 #import "MKModifyViewController.h"
 #import "MKDataController.h"
-#import "MKPopView.h"
+//#import "MKPopView.h"
 #import "MKRecord.h"
 #import "UMSocial.h"
 #import "ProgressHUD.h"
 #import "MobClick.h"
 
-@interface MKRootViewController ()<MKRecordsViewControllerDelegate,MKPopViewDelegate,MKMilkViewControllerDelegate>
+@interface MKRootViewController ()<MKRecordsViewControllerDelegate,MKMilkViewControllerDelegate>
 {
-    UILabel *bottleLabel;
-    MKPopView *popView;
+//    UILabel *bottleLabel;
+//    MKPopView *popView;
     
     MKRecordsViewController *recordsViewController;
 }
@@ -63,20 +63,23 @@
     UIBarButtonItem *customAddBarItem = [[UIBarButtonItem alloc] initWithCustomView:addButton];
     self.navigationItem.rightBarButtonItem = customAddBarItem;
     
-    UIView *bottleView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 60, 30)];
- //   bottleView.backgroundColor = [UIColor blueColor];
-    UIImageView *bottleImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bottle"]];
-    bottleImageView.center = CGPointMake(bottleView.center.x - 10, bottleView.center.y);
-    [bottleView addSubview:bottleImageView];
+    UIView *timeView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 40)];
+//    timeView.backgroundColor = [UIColor blueColor];
     
-    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
-    bottleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [bottleLabel setText:[NSString stringWithFormat:@"%d",recordsNum]];
-    [bottleLabel setFont:[UIFont systemFontOfSize:15]];
-    [bottleLabel setTextColor:UIColorFromRGB(0xfd6262)];
-    bottleLabel.center = CGPointMake(bottleView.center.x + 15, bottleView.center.y + 2);
-    [bottleView addSubview:bottleLabel];
-    self.navigationItem.titleView = bottleView;
+    UILabel *lastPumpStaLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 15)];
+    lastPumpStaLabel.text = @"LAST PUMP";
+    [lastPumpStaLabel setFont:[UIFont systemFontOfSize:10]];
+    [lastPumpStaLabel setTextColor:[UIColor lightGrayColor]];
+    [timeView addSubview:lastPumpStaLabel];
+
+    UILabel *lastPumpLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, 60, 15)];
+    lastPumpLabel.text = @"1h25m ago";
+    [lastPumpLabel setFont:[UIFont boldSystemFontOfSize:10]];
+//    [lastPumpLabel setTextColor:UIColorFromRGB(0xfd6262)];
+    [lastPumpLabel setTextColor:[UIColor grayColor]];
+    [timeView addSubview:lastPumpLabel];
+
+    self.navigationItem.titleView = timeView;
         
     MKMilkViewController *milkViewController = [[MKMilkViewController alloc]init];
     milkViewController.delegate = self;
@@ -97,20 +100,20 @@
 }
 -(void)reloadDataWhenAddRecord:(NSNotification *)noti
 {
-    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
-    bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
+//    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
+//    bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
 
-    NSDictionary *dic = [noti userInfo];
-    NSString *dateStr = [dic objectForKey:@"DateStr"];
-    NSString *fullDateStr = [dic objectForKey:@"FullDateStr"];
-    NSArray *dayRecordsArray = [[MKDataController sharedDataController]getRecordsWithDateStr:dateStr];
-    NSString *shareText = [self getShareText:dayRecordsArray dateString:dateStr fullDateString:fullDateStr];
+//    NSDictionary *dic = [noti userInfo];
+//    NSString *dateStr = [dic objectForKey:@"DateStr"];
+//    NSString *fullDateStr = [dic objectForKey:@"FullDateStr"];
+//    NSArray *dayRecordsArray = [[MKDataController sharedDataController]getRecordsWithDateStr:dateStr];
+//    NSString *shareText = [self getShareText:dayRecordsArray dateString:dateStr fullDateString:fullDateStr];
 //    [self performSelector:@selector(showPopViewWhenAdd:) withObject:shareText afterDelay:NUM_ANIMATE_DURATION];
 }
 -(void)reloadDataWhenRemove
 {
-    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
-    bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
+//    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
+//    bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
 }
 -(NSString *)getHomePageShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr
 {
@@ -147,57 +150,57 @@
     }
     return shareStr;
 }
--(void)showPopViewWhenAdd:(NSString *)shareText
-{
-    [self showPopViewWithText:shareText hideTopView:NO];
-}
--(void)showPopViewHomePage:(NSString *)shareText
-{
-    [self showPopViewWithText:shareText hideTopView:YES];
-}
--(void)showPopViewWithText:(NSString *)shareText hideTopView:(BOOL)hideTopView
-{
-    popView = [[MKPopView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
-    popView.center = self.navigationController.view.center;
-    [popView setShareText:shareText];
-    popView.delegate =self;
-    popView.addOrHomeShareView = !hideTopView;
-    [popView hideTopView:hideTopView];
-    [self.navigationController.view addSubview:popView];
-    [popView animateShareViewOut];
-}
-#pragma MKPopViewDelegate
--(void)sharedToSinaWeibo:(NSString *)shareText
-{
-    [self showShareHud];
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:shareText image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
-        if (response.responseCode == UMSResponseCodeSuccess) {
-            
-        }
-    }];
-}
--(void)sharedToWeichat:(NSString *)shareText
-{
-    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
-    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:shareText image:nil location:nil urlResource:nil presentedController:self  completion:^(UMSocialResponseEntity *response){
+//-(void)showPopViewWhenAdd:(NSString *)shareText
+//{
+//    [self showPopViewWithText:shareText hideTopView:NO];
+//}
+//-(void)showPopViewHomePage:(NSString *)shareText
+//{
+//    [self showPopViewWithText:shareText hideTopView:YES];
+//}
+//-(void)showPopViewWithText:(NSString *)shareText hideTopView:(BOOL)hideTopView
+//{
+//    popView = [[MKPopView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+//    popView.center = self.navigationController.view.center;
+//    [popView setShareText:shareText];
+//    popView.delegate =self;
+//    popView.addOrHomeShareView = !hideTopView;
+//    [popView hideTopView:hideTopView];
+//    [self.navigationController.view addSubview:popView];
+//    [popView animateShareViewOut];
+//}
+//#pragma MKPopViewDelegate
+//-(void)sharedToSinaWeibo:(NSString *)shareText
+//{
+//    [self showShareHud];
+//    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToSina] content:shareText image:nil location:nil urlResource:nil presentedController:self completion:^(UMSocialResponseEntity *response){
 //        if (response.responseCode == UMSResponseCodeSuccess) {
 //            
 //        }
-        [popView hideShareView];
-    }];
-}
--(void)showShareHud
-{
-    [ProgressHUD showSuccess:@"已发送"];
-    [self performSelector:@selector(hideHud) withObject:self afterDelay:0.5];
-}
--(void)hideHud
-{
-    [ProgressHUD dismiss];
-    if (popView != nil) {
-        [popView hideShareView];
-    }
-}
+//    }];
+//}
+//-(void)sharedToWeichat:(NSString *)shareText
+//{
+//    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+//    [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToWechatTimeline] content:shareText image:nil location:nil urlResource:nil presentedController:self  completion:^(UMSocialResponseEntity *response){
+////        if (response.responseCode == UMSResponseCodeSuccess) {
+////            
+////        }
+//        [popView hideShareView];
+//    }];
+//}
+//-(void)showShareHud
+//{
+//    [ProgressHUD showSuccess:@"已发送"];
+//    [self performSelector:@selector(hideHud) withObject:self afterDelay:0.5];
+//}
+//-(void)hideHud
+//{
+//    [ProgressHUD dismiss];
+//    if (popView != nil) {
+//        [popView hideShareView];
+//    }
+//}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -232,17 +235,17 @@
 {
     [recordsViewController goToOneDateRecords:dateStr];
 }
--(void)shareNumber
-{
-    NSDate *theDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *dateStr = [dateFormatter stringFromDate:theDate];
-    
-    NSArray *dayRecordsArray = [[MKDataController sharedDataController]getRecordsWithDateStr:dateStr];
-    NSString *shareText = [self getHomePageShareText:dayRecordsArray dateString:dateStr];
-    [self showPopViewHomePage:shareText];
-}
+//-(void)shareNumber
+//{
+//    NSDate *theDate = [NSDate date];
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+//    NSString *dateStr = [dateFormatter stringFromDate:theDate];
+//    
+//    NSArray *dayRecordsArray = [[MKDataController sharedDataController]getRecordsWithDateStr:dateStr];
+//    NSString *shareText = [self getHomePageShareText:dayRecordsArray dateString:dateStr];
+//    [self showPopViewHomePage:shareText];
+//}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

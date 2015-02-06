@@ -53,7 +53,7 @@
     [self.view addSubview:recordsTableView];
     
     noRecordsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 30, ScreenWidth, 30)];
-    noRecordsLabel.text = @"当前还没有记录";
+    noRecordsLabel.text = @"No records now";
     [noRecordsLabel setFont:[UIFont boldSystemFontOfSize:15]];
     noRecordsLabel.textAlignment = NSTextAlignmentCenter;
     [noRecordsLabel setTextColor:UIColorFromRGB(0xd57d9c)];
