@@ -97,7 +97,8 @@
     }else{
         labelHeight = stringSize.height;
     }
-    shareTextLabel.frame = CGRectMake(20, 60, 220, labelHeight);
+    //4 is for the bug for ios7
+    shareTextLabel.frame = CGRectMake(20, 60, 220, labelHeight + 4);
 }
 -(void)animateShareViewOut
 {
