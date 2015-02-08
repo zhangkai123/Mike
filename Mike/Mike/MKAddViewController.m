@@ -375,6 +375,8 @@
 }
 -(void)hideDatePicker
 {
+    [datePicker removeFromSuperview];
+    datePicker = nil;
     NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
                                  [NSIndexPath indexPathForRow:1 inSection:0],
                                  nil];
