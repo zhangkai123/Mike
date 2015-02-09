@@ -20,11 +20,71 @@
 {
     UIColor* myBgColor;
     UIColor* myTextColor;
+    
+    UITableViewCell *unitsCellOne;
+    UITableViewCell *unitsCellTwo;
+    
+    UITableViewCell *exportCell;
+    
+    UITableViewCell *tellFriendCell;
+    UITableViewCell *ratingCell;
+    UITableViewCell *feedbackCell;
 }
 @end
 
 @implementation MKSettingViewController
 
+-(void)loadView
+{
+    [super loadView];
+    theTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];//指定位置大小
+    [theTableView setDelegate:self];//指定委托
+    [theTableView setDataSource:self];//指定数据委托
+    [self.view addSubview:theTableView];//加载tableview
+    
+    dataArray2 = [[NSMutableArray alloc] initWithObjects:@"推荐给朋友", @"打分鼓励，给个评价！", @"意见反馈", @"商务合作", @"精品推荐", @"关于我们", nil];//初始化数据数组2
+    
+    //    theTableView.backgroundColor=myBgColor;
+    theTableView.sectionFooterHeight=0;
+//    theTableView.separatorStyle = UITableViewCellSeparatorStyleNone;//隐藏分割线
+    theTableView.showsHorizontalScrollIndicator = NO;
+    theTableView.showsVerticalScrollIndicator = NO;
+    
+    unitsCellOne = [[UITableViewCell alloc]init];
+    UILabel *ozLabel = [[UILabel alloc]initWithFrame:CGRectInset(unitsCellOne.contentView.bounds, 15, 0)];
+    ozLabel.text = @"US(oz)";
+    unitsCellOne.accessoryType = UITableViewCellAccessoryCheckmark;
+    [unitsCellOne addSubview:ozLabel];
+    
+    unitsCellTwo = [[UITableViewCell alloc]init];
+    UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectInset(unitsCellTwo.contentView.bounds, 15, 0)];
+    mlLabel.text = @"Metric(ml)";
+    [unitsCellTwo addSubview:mlLabel];
+    
+    exportCell = [[UITableViewCell alloc]init];
+    UILabel *exportLabel = [[UILabel alloc]initWithFrame:CGRectInset(exportCell.contentView.bounds, 15, 0)];
+    exportLabel.text = @"Export Data";
+    exportCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [exportCell addSubview:exportLabel];
+    
+    tellFriendCell = [[UITableViewCell alloc]init];
+    UILabel *tellFrienLabel = [[UILabel alloc]initWithFrame:CGRectInset(tellFriendCell.contentView.bounds, 15, 0)];
+    tellFrienLabel.text = @"Tell a friend about Mike";
+    tellFriendCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [tellFriendCell addSubview:tellFrienLabel];
+
+    ratingCell = [[UITableViewCell alloc]init];
+    UILabel *ratingLabel = [[UILabel alloc]initWithFrame:CGRectInset(ratingCell.contentView.bounds, 15, 0)];
+    ratingLabel.text = @"Rating this app";
+    ratingCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [ratingCell addSubview:ratingLabel];
+
+    feedbackCell = [[UITableViewCell alloc]init];
+    UILabel *feedbackLabel = [[UILabel alloc]initWithFrame:CGRectInset(feedbackCell.contentView.bounds, 15, 0)];
+    feedbackLabel.text = @"Feedback";
+    feedbackCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [feedbackCell addSubview:feedbackLabel];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -37,42 +97,12 @@
     myBgColor=[UIColor colorWithRed:(float)(255/255.0f)green:(float)(241 / 255.0f) blue:(float)(246 / 255.0f)alpha:1.0f];
     myTextColor=[UIColor colorWithRed:(float)(219/255.0f)green:(float)(142 / 255.0f) blue:(float)(169 / 255.0f)alpha:1.0f];
     
-    UITableView1 = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStyleGrouped];//指定位置大小
-    [UITableView1 setDelegate:self];//指定委托
-    [UITableView1 setDataSource:self];//指定数据委托
-    [self.view addSubview:UITableView1];//加载tableview
-    
-//    dataArray1 = [[NSMutableArray alloc] initWithObjects:@"提醒设置", @"导出数据", nil];//初始化数据数组1
-    dataArray2 = [[NSMutableArray alloc] initWithObjects:@"推荐给朋友", @"打分鼓励，给个评价！", @"意见反馈", @"商务合作", @"精品推荐", @"关于我们", nil];//初始化数据数组2
-    
-    UITableView1.backgroundColor=myBgColor;
-    UITableView1.sectionFooterHeight=0;
-    UITableView1.separatorStyle = UITableViewCellSeparatorStyleNone;//隐藏分割线
-    UITableView1.showsHorizontalScrollIndicator = NO;
-    UITableView1.showsVerticalScrollIndicator = NO;
-    
-//    if ([UITableView1 respondsToSelector:@selector(setSeparatorInset:)]) {
-//        [UITableView1 setSeparatorInset:UIEdgeInsetsZero];
-//    }
-//    
-//    if ([UITableView1 respondsToSelector:@selector(setLayoutMargins:)]) {
-//        [UITableView1 setLayoutMargins:UIEdgeInsetsZero];//
-//    }
-    
     UIImage *backButtonImage = [UIImage imageNamed:@"back.png"];
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [backButton setImage:backButtonImage forState:UIControlStateNormal];
     backButton.frame = CGRectMake(0, 0, backButtonImage.size.width/2, backButtonImage.size.height/2);
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    
-    //    UIImageView *backImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"back.png"]];
-    
-    //    UIBarButtonItem* btnBack=[[UIBarButtonItem alloc] initWithCustomView:backImageView];
-    //    self.navigationItem.leftBarButtonItem=btnBack;
-    //    self.navigationItem.leftBarButtonItem.action=@selector(backToRootView);
-    //    btnBack.tintColor=textColor;
-    //    [btnBack setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:12.0f], UITextAttributeFont,nil] forState:UIControlStateNormal];
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectZero];
     titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -90,168 +120,134 @@
 
 //每个section显示的标题
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"";
+    switch(section)
+    {
+        case 0: return @"UNITS";
+        case 1: return nil;
+        case 2: return @"ABOUT";
+    }
+    return nil;
 }
 
 //指定有多少个分区(Section)，默认为1
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 3;
 }
 
 //指定每个分区中有多少行，默认为1
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
+    int rowNum;
     switch (section) {
         case 0:
-            return  [dataArray2 count];//每个分区通常对应不同的数组，返回其元素个数来确定分区的行数
+            rowNum = 2;
+            break;
+        case 1:
+            rowNum = 1;
+            break;
+        case 2:
+            rowNum = 3;
             break;
         default:
             return 0;
             break;
     }
+    return rowNum;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 20;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    return 20;
+//}
 //绘制Cell
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell)
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     
-    if (indexPath.row == 0) {
-        UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 0.5)];
-        topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
-        [cell.contentView addSubview:topLineView];
+    switch(indexPath.section)
+    {
+        case 0:
+            switch(indexPath.row)
+        {
+            case 0: return unitsCellOne;
+            case 1: return unitsCellTwo;
+        }
+        case 1:
+            switch(indexPath.row)
+        {
+            case 0: return exportCell;
+        }
+        case 2:
+            switch(indexPath.row)
+        {
+            case 0: return tellFriendCell;
+            case 1: return ratingCell;
+            case 2: return feedbackCell;
+        }
     }
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.frame.size.height - 0.5, 320, 0.5)];
-    lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
-    [cell.contentView addSubview:lineView];
-    
-    
-    switch (indexPath.section) {
-//            　　case 0://对应各自的分区
-//            //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//                {
-//                    UIImageView *IndicatorImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"more@2x.png"]];
-//                    IndicatorImageView.center = CGPointMake(cell.center.x*1.85, cell.center.y);
-//                    [cell.contentView addSubview:IndicatorImageView];
-//                    
-//                    cell.textLabel.text=[dataArray1 objectAtIndex:indexPath.row];//给cell添加数据
-//                }
-//            　　　　break;
-            　　case 0:
-            cell.textLabel.text=[dataArray2 objectAtIndex:indexPath.row];//给cell添加数据
-            　　　　break;
-            　　default:
-            　　　　 cell.textLabel.text=@"";
-            break;
-    }
-    
-    cell.textLabel.backgroundColor= [UIColor whiteColor];
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-    [cell.textLabel setTextColor:myTextColor];
-    
-    NSString *str=[NSString stringWithFormat:@"%@.png",cell.textLabel.text];
-    cell.imageView.image=[UIImage imageNamed:str ];
-    cell.imageView.contentMode = UIViewContentModeScaleToFill;
-    cell.imageView.transform=CGAffineTransformMakeScale(0.5,0.5);
-    
-
-    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row==0)
+    switch(indexPath.section)
     {
-        //推荐给朋友
-        [MobClick event:@"SettingPage_RecommendToFriends"];
-        [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeApp;
-        [UMSocialData defaultData].extConfig.wechatSessionData.title = @"米渴";
-        [UMSocialData defaultData].extConfig.wechatSessionData.url = APP_STORE_URL;
-        [UMSocialData defaultData].extConfig.wechatTimelineData.url = APP_STORE_URL;
-        [UMSocialSnsService presentSnsIconSheetView:self
-                                             appKey:APPKEY
-                                          shareText:@"背奶记录，统计每天背奶量，让你更有计划的组织背奶生活"
-                                         shareImage:[UIImage imageNamed:@"icon.png"]
-                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatSession,UMShareToWechatTimeline,nil]
-                                           delegate:self];
+        case 0:{
+                switch(indexPath.row)
+            {
+                case 0:
+                {
+                    unitsCellOne.accessoryType = UITableViewCellAccessoryCheckmark;
+                    unitsCellTwo.accessoryType = UITableViewCellAccessoryNone;
+                    break;
+                }
+                case 1:
+                {
+                    unitsCellOne.accessoryType = UITableViewCellAccessoryNone;
+                    unitsCellTwo.accessoryType = UITableViewCellAccessoryCheckmark;
+                    break;
+                }
+            }
+            break;
+        }
+        case 1:{
+                switch(indexPath.row)
+            {
+                case 0:
+                {
+                    break;
+                }
+            }
+            break;
+        }
+        case 2:{
+                switch(indexPath.row)
+            {
+                case 0:
+                {
+                    break;
+                }
+                case 1:
+                {
+                    static NSString *const iOS7AppStoreURLFormat = @"itms-apps://itunes.apple.com/app/id%d";
+                    static NSString *const iOSAppStoreURLFormat = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d";
+                    
+                    NSURL *appStore = [NSURL URLWithString:[NSString stringWithFormat:([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)? iOS7AppStoreURLFormat: iOSAppStoreURLFormat, 963645257]];
+                    [[UIApplication sharedApplication]openURL:appStore];
+                    break;
+                }
+                case 2:
+                {
+                    break;
+                }
+            }
+            break;
+        }
     }
-    else if(indexPath.row==1)
-    {
-        //打分鼓励，给个评价！
-        [MobClick event:@"SettingPage_Rating"];
-        static NSString *const iOS7AppStoreURLFormat = @"itms-apps://itunes.apple.com/app/id%d";
-        static NSString *const iOSAppStoreURLFormat = @"itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%d";
-        
-        NSURL *appStore = [NSURL URLWithString:[NSString stringWithFormat:([[UIDevice currentDevice].systemVersion floatValue] >= 7.0f)? iOS7AppStoreURLFormat: iOSAppStoreURLFormat, 963645257]];
-        [[UIApplication sharedApplication]openURL:appStore];
-        
-    }
-    else if(indexPath.row==2)
-    {
-        //意见反馈
-        [MobClick event:@"SettingPage_Feedback"];
-        MKFeedBack *mKFeedBack = [[MKFeedBack alloc]init];
-        [self.navigationController pushViewController:mKFeedBack animated:YES];
-        
-//        [UMFeedback setAppkey:APPKEY];
-//        [UMFeedback.sharedInstance  setTitleColor:[UIColor colorWithRed:(float)(219/255.0f)green:(float)(142 / 255.0f) blue:(float)(169 / 255.0f)alpha:1.0f]];
-        
-//        UIImage *backButtonImage = [UIImage imageNamed:@"back.png"];
-//        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [backButton setImage:backButtonImage forState:UIControlStateNormal];
-//        backButton.frame = CGRectMake(0, 0, backButtonImage.size.width/2, backButtonImage.size.height/2);
-//        [UMFeedback.sharedInstance setBackButton:backButton];
-        
-//        UIViewController* fbUIViewController=[UMFeedback feedbackViewController];
-//        [self.navigationController pushViewController:fbUIViewController animated:YES];
-//        [fbUIViewController.view setBackgroundColor:[UIColor colorWithRed:(float)(255/255.0f)green:(float)(241 / 255.0f) blue:(float)(246 / 255.0f)alpha:1.0f]];
-
-//        [self presentModalViewController:[UMFeedback feedbackModalViewController] animated:YES];
-    }
-    else if(indexPath.row==3)
-    {
-        //商务合作
-        [MobClick event:@"SettingPage_Business"];
-        MKBusinessCooperation *mKAboutUs = [[MKBusinessCooperation alloc]init];
-        [self.navigationController pushViewController:mKAboutUs animated:YES];
-    }
-    else if(indexPath.row==4)
-    {
-        //应用推荐
-        [MobClick event:@"SettingPage_AppRecommend"];
-        MKChanceAd *mKAboutUs = [[MKChanceAd alloc]init];
-        [self.navigationController pushViewController:mKAboutUs animated:YES];
-    }
-    else if(indexPath.row==5)
-    {
-        //关于我们
-        [MobClick event:@"SettingPage_AboutUs"];
-        MKAboutUs *mKAboutUs = [[MKAboutUs alloc]init];
-        [self.navigationController pushViewController:mKAboutUs animated:YES];
-    }
-    //    NSString *msg = [[NSString alloc] initWithFormat:@"你选择的是:%@",[self.dataList objectAtIndex:[indexPath row]]];
-    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    //    [alert show];
-    
-    [UITableView1 deselectRowAtIndexPath:indexPath animated:NO];
+    [theTableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

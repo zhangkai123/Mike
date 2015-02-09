@@ -10,8 +10,7 @@
 
 @interface MKSettingViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
-    UITableView *UITableView1;
-//    NSMutableArray *dataArray1;
+    UITableView *theTableView;
     NSMutableArray *dataArray2;
 }
 @end
