@@ -24,7 +24,7 @@
         [self addSubview:self.timeLabel];
 
         self.numberLabel = [[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth/2 - 30, 1, 60, 43)];
-        self.numberLabel.text = @"200ml";
+//        self.numberLabel.text = @"200ml";
         self.numberLabel.textAlignment = NSTextAlignmentCenter;
         [self.numberLabel setTextColor:UIColorFromRGB(0xd57d9c)];
         [self.numberLabel setFont:[UIFont systemFontOfSize:15]];

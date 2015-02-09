@@ -205,7 +205,7 @@
     int recordIndex = [self getRecordsIndex:(int)indexPath.section];
     MKRecord *record = [recordsArray objectAtIndex:recordIndex + indexPath.row];
     cell.timeLabel.text = record.time;
-    cell.numberLabel.text = [NSString stringWithFormat:@"%dml",(int)record.milkNum ];
+    cell.numberLabel.text = [NSString stringWithFormat:@"%d oz",(int)record.milkNum ];
     cell.noteLabel.text = record.noteStr;
     return cell;
 }

@@ -155,8 +155,8 @@ NSInteger biggestMilkNum;
         [topView.todayNumberLabel countFrom:oldTodayNum to:todayNum withDuration:NUM_ANIMATE_DURATION];
         [topView.totalNumberLabel countFrom:oldTotalNum to:totalNum withDuration:NUM_ANIMATE_DURATION];
     }else{
-        topView.todayNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)todayNum];
-        topView.totalNumberLabel.text = [NSString stringWithFormat:@"%d ml",(int)totalNum];
+        topView.todayNumberLabel.text = [NSString stringWithFormat:@"%d oz",(int)todayNum];
+        topView.totalNumberLabel.text = [NSString stringWithFormat:@"%d oz",(int)totalNum];
     }
 }
 -(int)getNumberFromString:(NSString *)milkStr

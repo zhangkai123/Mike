@@ -282,7 +282,7 @@
 //            numberField.backgroundColor = [UIColor yellowColor];
             
             UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(290, 5, 20, 34)];
-            mlLabel.text = @"ml";
+            mlLabel.text = @"oz";
             mlLabel.font = [UIFont systemFontOfSize:16];
             [mlLabel setTextColor:[UIColor lightGrayColor]];
             [cell.contentView addSubview:mlLabel];
