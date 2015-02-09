@@ -45,12 +45,13 @@ NSInteger biggestMilkNum;
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     weekDayFormatter = [[NSDateFormatter alloc]init];
-    [weekDayFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh-Hans"]];
+//    [weekDayFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh-Hans"]];
     weekDayFormatter.dateFormat=@"EEE";
     monthDayFormatter = [[NSDateFormatter alloc] init];
     [monthDayFormatter setTimeStyle:NSDateFormatterNoStyle];
     [monthDayFormatter setDateStyle:NSDateFormatterShortStyle];
     [monthDayFormatter setLocale:[NSLocale currentLocale]];
+    [monthDayFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh-Hans"]];
     
     topView = [[MKTopView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 49)];
     [self.view addSubview:topView];
