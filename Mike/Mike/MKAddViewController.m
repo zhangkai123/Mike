@@ -14,6 +14,11 @@
 @interface MKAddViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 {
     UITableView *theTableView;
+    UITableViewCell *startTimeCell;
+    UITableViewCell *datepickerCell;
+    UITableViewCell *totalCell;
+    UITableViewCell *noteCell;
+    
     UIDatePicker *datePicker;
     BOOL datePickerShowed;
 }
@@ -24,6 +29,117 @@
 -(void)dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+-(void)loadView
+{
+    [super loadView];
+    labelDateFormatter = [[NSDateFormatter alloc] init];
+    [labelDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [labelDateFormatter setDateStyle:NSDateFormatterShortStyle];
+    [labelDateFormatter setLocale:[NSLocale currentLocale]];
+    labelDateFormatter.doesRelativeDateFormatting = YES;
+
+    theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStyleGrouped];
+    theTableView.showsHorizontalScrollIndicator = NO;
+    theTableView.showsVerticalScrollIndicator = YES;
+    theTableView.dataSource = self;
+    theTableView.delegate = self;
+    [self.view addSubview:theTableView];
+    [theTableView setBackgroundColor:UIColorFromRGB(0xfff1f6)];
+    [theTableView setSeparatorColor:UIColorFromRGB(0xefdbe2)];
+//    [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    startTimeCell = [[UITableViewCell alloc]init];
+    startTimeCell.accessoryType = UITableViewCellAccessoryNone;
+    startTimeCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UILabel *timeStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 80, 34)];
+    [timeStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+    timeStaticLabel.text = @"Start time";
+    //time input label
+    timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(95, 5, 215, 34)];
+    timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:[NSDate date]]];
+    timeLabel.textAlignment = NSTextAlignmentRight;
+    [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+
+    [startTimeCell addSubview:timeStaticLabel];
+    [startTimeCell addSubview:timeLabel];
+    
+    datepickerCell = [[UITableViewCell alloc]init];
+    datepickerCell.accessoryType = UITableViewCellAccessoryNone;
+    datepickerCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    datePicker = [[UIDatePicker alloc]init];
+    [datePicker setDate:[NSDate date]];
+    [datePicker setLocale:[NSLocale currentLocale]];
+    datePicker.center = CGPointMake(160, 100);
+    datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    [datePicker addTarget:self action:@selector(updateDateLable) forControlEvents:UIControlEventValueChanged];
+    
+    [datepickerCell addSubview:datePicker];
+    
+    totalCell = [[UITableViewCell alloc]init];
+    totalCell.accessoryType = UITableViewCellAccessoryNone;
+    totalCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UILabel *numberStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
+    numberStaticLabel.text = @"Total";
+    [numberStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+    numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 205, 34)];
+    numberField.borderStyle = UITextBorderStyleNone;
+    numberField.font = [UIFont systemFontOfSize:16];
+    numberField.autocorrectionType = UITextAutocorrectionTypeNo;
+    numberField.keyboardType = UIKeyboardTypeNumberPad;
+    numberField.placeholder = @"0";
+    numberField.delegate = self;
+    numberField.textColor = UIColorFromRGB(0xd57d9c);
+    numberField.textAlignment = NSTextAlignmentRight;
+    numberField.tintColor = UIColorFromRGB(0xd57d9c);
+    UIToolbar* fieldToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    fieldToolbar.barStyle = UIBarStyleDefault;
+    fieldToolbar.items = [NSArray arrayWithObjects:
+                          [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                          [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                          [[UIBarButtonItem alloc]initWithTitle:@"Finish" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
+                          nil];
+    [fieldToolbar sizeToFit];
+    [fieldToolbar setBackgroundImage:[UIImage new]
+                  forToolbarPosition:UIToolbarPositionAny
+                          barMetrics:UIBarMetricsDefault];
+    [fieldToolbar setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
+    numberField.inputAccessoryView = fieldToolbar;
+    UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(290, 5, 20, 34)];
+    mlLabel.text = @"oz";
+    mlLabel.font = [UIFont systemFontOfSize:16];
+    [mlLabel setTextColor:[UIColor lightGrayColor]];
+    //            mlLabel.backgroundColor = [UIColor greenColor];
+
+    [totalCell addSubview:numberStaticLabel];
+    [totalCell addSubview:numberField];
+    [totalCell addSubview:mlLabel];
+    
+    noteCell = [[UITableViewCell alloc]init];
+    noteCell.accessoryType = UITableViewCellAccessoryNone;
+    noteCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 40, 34)];
+    noteStaticLabel.text = @"Note";
+    [noteStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
+//    noteStaticLabel.backgroundColor = [UIColor blueColor];
+    //note text input label
+    noteTextField = [[UITextField alloc] initWithFrame:CGRectMake(60, 5, 250, 34)];
+    noteTextField.delegate = self;
+    noteTextField.font = [UIFont systemFontOfSize:16];
+    noteTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    noteTextField.keyboardType = UIKeyboardTypeDefault;
+    noteTextField.textAlignment = NSTextAlignmentRight;
+    noteTextField.textColor = UIColorFromRGB(0xd57d9c);
+    noteTextField.tintColor = UIColorFromRGB(0xd57d9c);
+    noteTextField.inputAccessoryView = fieldToolbar;
+//    noteTextField.backgroundColor = [UIColor yellowColor];
+    
+    [noteCell addSubview:noteStaticLabel];
+    [noteCell addSubview:noteTextField];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -53,66 +169,6 @@
                                        target:nil action:nil];
     negativeSpacer.width = -12;// it was -6 in iOS 6
     [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:negativeSpacer, customSaveBarItem, nil] animated:NO];
-    
-    theTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 320, self.view.frame.size.height) style:UITableViewStyleGrouped];
-    theTableView.showsHorizontalScrollIndicator = NO;
-    theTableView.showsVerticalScrollIndicator = YES;
-    theTableView.dataSource = self;
-    theTableView.delegate = self;
-    [self.view addSubview:theTableView];
-    [theTableView setBackgroundColor:UIColorFromRGB(0xfff1f6)];
-    
-    [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
-    labelDateFormatter = [[NSDateFormatter alloc] init];
-    [labelDateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    [labelDateFormatter setDateStyle:NSDateFormatterShortStyle];
-    [labelDateFormatter setLocale:[NSLocale currentLocale]];
-    labelDateFormatter.doesRelativeDateFormatting = YES;
-    
-    //time input label
-    timeLabel = [[UILabel alloc]initWithFrame:CGRectMake(95, 5, 215, 34)];
-    timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:[NSDate date]]];
-    timeLabel.textAlignment = NSTextAlignmentRight;
-    [timeLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-    
-    //milk num input label
-    numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 205, 34)];
-    numberField.borderStyle = UITextBorderStyleNone;
-    numberField.font = [UIFont systemFontOfSize:16];
-    numberField.autocorrectionType = UITextAutocorrectionTypeNo;
-    numberField.keyboardType = UIKeyboardTypeNumberPad;
-    numberField.placeholder = @"0";
-    numberField.delegate = self;
-    numberField.textColor = UIColorFromRGB(0xd57d9c);
-    numberField.textAlignment = NSTextAlignmentRight;
-    numberField.tintColor = UIColorFromRGB(0xd57d9c);
-    UIToolbar* fieldToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
-    fieldToolbar.barStyle = UIBarStyleDefault;
-    fieldToolbar.items = [NSArray arrayWithObjects:
-                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
-                           [[UIBarButtonItem alloc]initWithTitle:@"Finish" style:UIBarButtonItemStyleDone target:self action:@selector(doneWithNumberPad)],
-                           nil];
-    [fieldToolbar sizeToFit];
-    [fieldToolbar setBackgroundImage:[UIImage new]
-                  forToolbarPosition:UIToolbarPositionAny
-                          barMetrics:UIBarMetricsDefault];
-    
-    [fieldToolbar setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
-    numberField.inputAccessoryView = fieldToolbar;
-    
-    //note text input label
-    noteTextView = [[UITextField alloc] initWithFrame:CGRectMake(80, 5, 230, 34)];
-    noteTextView.delegate = self;
-    noteTextView.font = [UIFont systemFontOfSize:16];
-    noteTextView.autocorrectionType = UITextAutocorrectionTypeNo;
-    noteTextView.keyboardType = UIKeyboardTypeDefault;
-    noteTextView.textAlignment = NSTextAlignmentRight;
-    noteTextView.textColor = UIColorFromRGB(0xd57d9c);
-    noteTextView.tintColor = UIColorFromRGB(0xd57d9c);
-    noteTextView.inputAccessoryView = fieldToolbar;
-//    noteTextView.backgroundColor = [UIColor blueColor];
     
     datePickerShowed = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -154,7 +210,7 @@
 }
 -(void)doneWithNumberPad
 {
-    [noteTextView resignFirstResponder];
+    [noteTextField resignFirstResponder];
     [numberField resignFirstResponder];
 }
 -(void)cancel
@@ -182,7 +238,7 @@
     [timeFormatter setDateFormat:@"HH:mm"];
     NSString *timeStr = [timeFormatter stringFromDate:theDate];
 
-    [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteTextView.text fullDate:fullDateStr];
+    [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteTextField.text fullDate:fullDateStr];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:dateStr,@"DateStr",fullDateStr,@"FullDateStr", nil];
     [[NSNotificationCenter defaultCenter]postNotificationName:Mike_ADD_RECORD_NOTIFICATION object:nil userInfo:dic];
     [self.navigationController dismissViewControllerAnimated:YES completion:^(void){
@@ -208,98 +264,34 @@
     }
     return sectionRow;
 }
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    int headerHeight = 0;
-    if (section == 0) {
-        headerHeight = 50;
-    }else{
-        headerHeight = 29;
-    }
-    return headerHeight;
-}
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     float rowHeight = 0;
-    if ((indexPath.section == 0) && (indexPath.row == 0)) {
-        rowHeight = 44;
-    }else if ((indexPath.section == 0) && (indexPath.row == 1)) {
+    if ((indexPath.section == 0) && (indexPath.row == 1)) {
         rowHeight = 200;
-    }else if (indexPath.section == 1) {
+    }else{
         rowHeight = 44;
     }
     return rowHeight;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    if (indexPath.row == 0) {
-        UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 0.5)];
-        topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
-        [cell.contentView addSubview:topLineView];
-    }
-    if (!((indexPath.section == 0)&&(indexPath.row == 1))) {
-        UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0, cell.frame.size.height - 0.5, 320, 0.5)];
-        lineView.backgroundColor = UIColorFromRGB(0xefdbe2);
-        [cell.contentView addSubview:lineView];
-    }
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            UILabel *timeStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 80, 34)];
-            timeStaticLabel.text = @"Start time";
-            [timeStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-            [cell.contentView addSubview:timeStaticLabel];
-//            timeStaticLabel.backgroundColor = [UIColor blueColor];
-            
-            [cell.contentView addSubview:timeLabel];
-//            timeLabel.backgroundColor = [UIColor yellowColor];
-        }else{
-//            if (datePicker == nil) {
-                datePicker = [[UIDatePicker alloc]init];
-                [datePicker setDate:[NSDate date]];
-                [datePicker setLocale:[NSLocale currentLocale]];
-                datePicker.center = CGPointMake(160, 100);
-                datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-                [datePicker addTarget:self action:@selector(updateDateLable) forControlEvents:UIControlEventValueChanged];
-                [cell addSubview:datePicker];
-//            }
+    switch(indexPath.section)
+    {
+        case 0:
+            switch(indexPath.row)
+        {
+            case 0: return startTimeCell;
+            case 1: return datepickerCell;
         }
-    }else if (indexPath.section == 1){
-        
-        if (indexPath.row == 0) {
-            UILabel *numberStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
-            numberStaticLabel.text = @"Total";
-            [numberStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-//            numberStaticLabel.backgroundColor = [UIColor blueColor];
-            [cell.contentView addSubview:numberStaticLabel];
-            
-            [cell.contentView addSubview:numberField];
-//            numberField.backgroundColor = [UIColor yellowColor];
-            
-            UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(290, 5, 20, 34)];
-            mlLabel.text = @"oz";
-            mlLabel.font = [UIFont systemFontOfSize:16];
-            [mlLabel setTextColor:[UIColor lightGrayColor]];
-            [cell.contentView addSubview:mlLabel];
-//            mlLabel.backgroundColor = [UIColor greenColor];
-        }else{
-            UILabel *noteStaticLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 60, 34)];
-            noteStaticLabel.text = @"Note";
-            [noteStaticLabel setTextColor:UIColorFromRGB(0xd57d9c)];
-//            noteStaticLabel.backgroundColor = [UIColor blueColor];
-            [cell.contentView addSubview:noteStaticLabel];
-            
-            [cell.contentView addSubview:noteTextView];
-//            noteTextView.backgroundColor = [UIColor yellowColor];
+        case 1:
+            switch(indexPath.row)
+        {
+            case 0: return totalCell;
+            case 1: return noteCell;
         }
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    return nil;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -319,7 +311,7 @@
             [numberField becomeFirstResponder];
         }else{
             [MobClick event:@"AddPage_NoteFieldClicked"];
-            [noteTextView becomeFirstResponder];
+            [noteTextField becomeFirstResponder];
         }
     }
 }
@@ -334,8 +326,6 @@
 }
 -(void)hideDatePicker
 {
-    [datePicker removeFromSuperview];
-    datePicker = nil;
     NSArray *deleteIndexPaths = [NSArray arrayWithObjects:
                                  [NSIndexPath indexPathForRow:1 inSection:0],
                                  nil];

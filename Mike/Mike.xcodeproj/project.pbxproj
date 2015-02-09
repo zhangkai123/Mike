@@ -19,6 +19,7 @@
 		4B3D3B1F1A5BEAD80069707C /* MKDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B3D3B1E1A5BEAD80069707C /* MKDataBase.sqlite */; };
 		4B5782E11A539DB80085BEAE /* NavigationBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */; };
 		4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5782E31A53A0C20085BEAE /* MKTopView.m */; };
+		4B58D9B61A888AFA00C414E8 /* MKDiskCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B58D9B51A888AFA00C414E8 /* MKDiskCacheManager.m */; };
 		4B91A68D1A61336600AAA9A9 /* zero@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B91A68C1A61336600AAA9A9 /* zero@2x.png */; };
 		4BA38C991A63704E009D25A0 /* MKPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA38C981A63704E009D25A0 /* MKPopView.m */; };
 		4BA38C9D1A637095009D25A0 /* moments.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BA38C9B1A637095009D25A0 /* moments.png */; };
@@ -135,6 +136,8 @@
 		4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBarBackground.png; sourceTree = "<group>"; };
 		4B5782E21A53A0C20085BEAE /* MKTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTopView.h; sourceTree = "<group>"; };
 		4B5782E31A53A0C20085BEAE /* MKTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTopView.m; sourceTree = "<group>"; };
+		4B58D9B41A888AFA00C414E8 /* MKDiskCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDiskCacheManager.h; sourceTree = "<group>"; };
+		4B58D9B51A888AFA00C414E8 /* MKDiskCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDiskCacheManager.m; sourceTree = "<group>"; };
 		4B91A68C1A61336600AAA9A9 /* zero@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zero@2x.png"; sourceTree = "<group>"; };
 		4BA38C971A63704E009D25A0 /* MKPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPopView.h; sourceTree = "<group>"; };
 		4BA38C981A63704E009D25A0 /* MKPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPopView.m; sourceTree = "<group>"; };
@@ -352,6 +355,8 @@
 				4B040BD21A5939A100DF859F /* MKDataController.m */,
 				4B040BD61A59468000DF859F /* MKDBManager.h */,
 				4B040BD71A59468000DF859F /* MKDBManager.m */,
+				4B58D9B41A888AFA00C414E8 /* MKDiskCacheManager.h */,
+				4B58D9B51A888AFA00C414E8 /* MKDiskCacheManager.m */,
 			);
 			name = DataController;
 			sourceTree = "<group>";
@@ -805,6 +810,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */,
+				4B58D9B61A888AFA00C414E8 /* MKDiskCacheManager.m in Sources */,
 				4BC06A2C1A527FF600D62B3C /* MKAddViewController.m in Sources */,
 				4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */,
 				4BD200021A7A5B4A00C16C7D /* ProgressHUD.m in Sources */,

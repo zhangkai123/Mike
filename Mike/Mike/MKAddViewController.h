@@ -13,7 +13,7 @@
     NSDateFormatter *labelDateFormatter;
     UILabel *timeLabel;
     UITextField *numberField;
-    UITextField *noteTextView;
+    UITextField *noteTextField;
     
     NSDate *theDate;
 }
