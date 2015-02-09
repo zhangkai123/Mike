@@ -97,7 +97,13 @@
     
     [recordsTableView beginUpdates];
     if (newSection) {
-        [recordsTableView insertSections:[NSIndexSet indexSetWithIndex:addIndexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+        //for first added record ,because of the init screen design ,diry code
+        if([recordsArray count] == 1){
+            [recordsTableView reloadData];
+            [recordsTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:addIndexPath] withRowAnimation:UITableViewRowAnimationLeft];
+        }else{
+            [recordsTableView insertSections:[NSIndexSet indexSetWithIndex:addIndexPath.section] withRowAnimation:UITableViewRowAnimationLeft];
+        }
     }else{
          [recordsTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:addIndexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
