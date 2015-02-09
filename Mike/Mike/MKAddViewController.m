@@ -45,7 +45,7 @@
     theTableView.dataSource = self;
     theTableView.delegate = self;
     [self.view addSubview:theTableView];
-    [theTableView setBackgroundColor:UIColorFromRGB(0xfff1f6)];
+//    [theTableView setBackgroundColor:UIColorFromRGB(0xfff1f6)];
     [theTableView setSeparatorColor:UIColorFromRGB(0xefdbe2)];
 //    [theTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     

@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor blueColor];
+//    self.view.backgroundColor = [UIColor blueColor];
     self.view.autoresizingMask = UIViewAutoresizingNone;
     
     recordsTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, ScreenHeight- 265 - 64)];
@@ -49,9 +49,9 @@
     recordsTableView.clipsToBounds = YES;
     recordsTableView.showsHorizontalScrollIndicator = NO;
     recordsTableView.showsVerticalScrollIndicator = NO;
-    recordsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [recordsTableView setContentInset:UIEdgeInsetsMake(0,0,170,0)];
     [self.view addSubview:recordsTableView];
+    [recordsTableView setSeparatorColor:UIColorFromRGB(0xefdbe2)];
     
     noRecordsLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 30, ScreenWidth, 30)];
     noRecordsLabel.text = @"No records now";
@@ -138,14 +138,6 @@
     }
     NSArray *tempDatesArray = [[MKDataController sharedDataController]getDatesWithASCOrder:NO];
     datesArray = [NSMutableArray arrayWithArray:tempDatesArray];
-//    //check if no data , show the empty data screen design
-//    if ([datesArray count] == 0) {
-//        MKDate *fackDate = [self fackDatesDataWhenNoRecords];
-//        [datesArray addObject:fackDate];
-//        noRecordsLabel.hidden = NO;
-//    }else{
-//        noRecordsLabel.hidden = YES;
-//    }
 }
 -(MKDate *)fackDatesDataWhenNoRecords
 {
@@ -184,9 +176,6 @@
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 29)];
     headerView.backgroundColor = UIColorFromRGB(0xfff1f6);
-    UIView *topLineView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 0.5)];
-    topLineView.backgroundColor = UIColorFromRGB(0xefdbe2);
-    [headerView addSubview:topLineView];
     
     UILabel *dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 29)];
     dateLabel.text = newDate;
