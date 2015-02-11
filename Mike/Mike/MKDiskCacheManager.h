@@ -10,4 +10,7 @@
 
 @interface MKDiskCacheManager : NSObject
 
++(id)sharedDiskCacheController;
+-(void)setUnitStr:(NSString *)unitS;
+-(NSString *)getUnitStr;
 @end

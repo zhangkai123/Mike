@@ -17,6 +17,7 @@
 #import "MKFeedback.h"
 #import "MobClick.h"
 #import <MessageUI/MFMailComposeViewController.h>
+#import "MKDataController.h"
 
 @interface MKSettingViewController()<UMSocialUIDelegate,MFMailComposeViewControllerDelegate>
 {
@@ -55,13 +56,19 @@
     unitsCellOne = [[UITableViewCell alloc]init];
     UILabel *ozLabel = [[UILabel alloc]initWithFrame:CGRectInset(unitsCellOne.contentView.bounds, 15, 0)];
     ozLabel.text = @"US(oz)";
-    unitsCellOne.accessoryType = UITableViewCellAccessoryCheckmark;
     [unitsCellOne addSubview:ozLabel];
     
     unitsCellTwo = [[UITableViewCell alloc]init];
     UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectInset(unitsCellTwo.contentView.bounds, 15, 0)];
     mlLabel.text = @"Metric(ml)";
     [unitsCellTwo addSubview:mlLabel];
+    
+    NSString *unitStr = [[MKDataController sharedDataController] unitStr];
+    if ([unitStr isEqualToString:@"oz"]) {
+        unitsCellOne.accessoryType = UITableViewCellAccessoryCheckmark;
+    }else{
+        unitsCellTwo.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
     
     exportCell = [[UITableViewCell alloc]init];
     UILabel *exportLabel = [[UILabel alloc]initWithFrame:CGRectInset(exportCell.contentView.bounds, 15, 0)];
@@ -195,12 +202,16 @@
                 {
                     unitsCellOne.accessoryType = UITableViewCellAccessoryCheckmark;
                     unitsCellTwo.accessoryType = UITableViewCellAccessoryNone;
+                    [[MKDataController sharedDataController]setUnitStr:@"oz"];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:Mike_CHANGE_UNIT_NOTIFICATION object:nil];
                     break;
                 }
                 case 1:
                 {
                     unitsCellOne.accessoryType = UITableViewCellAccessoryNone;
                     unitsCellTwo.accessoryType = UITableViewCellAccessoryCheckmark;
+                    [[MKDataController sharedDataController]setUnitStr:@"ml"];
+                    [[NSNotificationCenter defaultCenter]postNotificationName:Mike_CHANGE_UNIT_NOTIFICATION object:nil];
                     break;
                 }
             }

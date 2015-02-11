@@ -10,7 +10,7 @@
 #import "MKCommon.h"
 
 @implementation MKTopView
-@synthesize todayNumberLabel , totalNumberLabel;
+@synthesize todayNumberLabel , totalNumberLabel ,unitStr;
 
 -(id)initWithFrame:(CGRect)frame
 {
@@ -54,5 +54,12 @@
     }
     return self;
 }
-
+-(void)setUnitStr:(NSString *)unitS
+{
+    unitStr = unitS;
+    self.todayNumberLabel.text = [NSString stringWithFormat:@"0 %@",unitS];
+    self.todayNumberLabel.format = [NSString stringWithFormat:@"%%d %@",unitS];
+    self.totalNumberLabel.text = [NSString stringWithFormat:@"0 %@",unitS];
+    self.totalNumberLabel.format = [NSString stringWithFormat:@"%%d %@",unitS];
+}
 @end

@@ -16,6 +16,7 @@
 
 #define Mike_ADD_RECORD_NOTIFICATION @"add_record_notification"
 #define Mike_REMOVE_RECORD_NOTIFICATION @"remove_record_notification"
+#define Mike_CHANGE_UNIT_NOTIFICATION @"change_unit_notification"
 
 #define NUM_ANIMATE_DURATION 1.5
 #define DegreesToRadians(x) ((x) * M_PI / 180.0)

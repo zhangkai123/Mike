@@ -16,10 +16,10 @@
     NSString		*databasePath;
 }
 +(id)sharedDBManager;
--(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder;
+-(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder ozUnit:(BOOL)ozUnit;
 -(void)insertRecord:(MKRecord *)record;
--(NSArray *)getRecords;
--(NSArray *)getRecordsWithDateStr:(NSString *)dateStr;
+-(NSArray *)getRecords:(BOOL)ozUnit;
+-(NSArray *)getRecordsWithDateStr:(NSString *)dateStr ozUnit:(BOOL)ozUnit;
 -(int)getTotalRecordsNum;
 -(void)delRecord:(NSString *)fullDateStr;
 

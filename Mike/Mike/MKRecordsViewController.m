@@ -74,11 +74,12 @@
     
     [self getAllData];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:UIApplicationWillEnterForegroundNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewWhenAdd:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableViewWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadTableView) name:Mike_CHANGE_UNIT_NOTIFICATION object:nil];
 }
--(void)appWillEnterForeground
+-(void)reloadTableView
 {
     [self getAllData];
     [recordsTableView reloadData];
@@ -112,11 +113,6 @@
          [recordsTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:addIndexPath] withRowAnimation:UITableViewRowAnimationLeft];
     }
     [recordsTableView endUpdates];
-}
--(void)reloadTableViewWhenRemove
-{
-    [self getAllData];
-    [recordsTableView reloadData];
 }
 -(void)getAllData
 {
@@ -200,7 +196,8 @@
     int recordIndex = [self getRecordsIndex:(int)indexPath.section];
     MKRecord *record = [recordsArray objectAtIndex:recordIndex + indexPath.row];
     cell.timeLabel.text = record.time;
-    cell.numberLabel.text = [NSString stringWithFormat:@"%d oz",(int)record.milkNum ];
+    NSString *unitValue = [[MKDataController sharedDataController] unitStr];
+    cell.numberLabel.text = [NSString stringWithFormat:@"%d %@",(int)record.milkNum,unitValue];
     cell.noteLabel.text = record.noteStr;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
@@ -277,15 +274,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

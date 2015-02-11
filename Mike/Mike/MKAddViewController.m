@@ -109,7 +109,7 @@
     [fieldToolbar setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
     numberField.inputAccessoryView = fieldToolbar;
     UILabel *mlLabel = [[UILabel alloc]initWithFrame:CGRectMake(290, 5, 20, 34)];
-    mlLabel.text = @"oz";
+    mlLabel.text = [[MKDataController sharedDataController]unitStr];
     mlLabel.font = [UIFont systemFontOfSize:16];
     [mlLabel setTextColor:[UIColor lightGrayColor]];
     //            mlLabel.backgroundColor = [UIColor greenColor];

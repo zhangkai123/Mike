@@ -110,7 +110,7 @@
     }
     sqlite3_close(database);
 }
--(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder
+-(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder ozUnit:(BOOL)ozUnit
 {
     sqlite3 *database;
     sqlite3_stmt *compiledStatement;
@@ -131,11 +131,15 @@
            
             NSString *recordDate = [NSString stringWithUTF8String:(char *)sqlite3_column_text(compiledStatement, 1)];
             int recordsNum = sqlite3_column_int(compiledStatement, 2);
-            float milkNum = sqlite3_column_double(compiledStatement, 3);
+            float ozMilkNum = sqlite3_column_double(compiledStatement, 3);
             MKDate *theDate = [[MKDate alloc]init];
             theDate.dateStr = recordDate;
             theDate.recordsNum = recordsNum;
-            theDate.milkNum = milkNum;
+            if (ozUnit) {
+                theDate.milkNum = ozMilkNum;
+            }else{
+                theDate.milkNum = ozMilkNum * 30;
+            }
             [datesArray addObject:theDate];
         }
     }
@@ -223,7 +227,7 @@
     }
     sqlite3_close(database);
 }
--(NSArray *)getRecords
+-(NSArray *)getRecords:(BOOL)ozUnit
 {
     sqlite3 *database;
     sqlite3_stmt *compiledStatement;
@@ -244,7 +248,11 @@
             MKRecord *record = [[MKRecord alloc]init];
             record.date = recordDate;
             record.time = recordTime;
-            record.milkNum = milkNum;
+            if (ozUnit) {
+                record.milkNum = milkNum;
+            }else{
+                record.milkNum = milkNum*30;
+            }
             record.noteStr = noteStr;
             record.fullDate = fullDateStr;
             [recordsArray addObject:record];
@@ -253,7 +261,7 @@
     sqlite3_close(database);
     return recordsArray;
 }
--(NSArray *)getRecordsWithDateStr:(NSString *)dateStr
+-(NSArray *)getRecordsWithDateStr:(NSString *)dateStr ozUnit:(BOOL)ozUnit
 {
     sqlite3 *database;
     sqlite3_stmt *compiledStatement;
@@ -274,7 +282,11 @@
             MKRecord *record = [[MKRecord alloc]init];
             record.date = recordDate;
             record.time = recordTime;
-            record.milkNum = milkNum;
+            if (ozUnit) {
+                record.milkNum = milkNum;
+            }else{
+                record.milkNum = milkNum*30;
+            }
             record.noteStr = noteStr;
             record.fullDate = fullDateStr;
             [recordsArray addObject:record];

@@ -10,6 +10,8 @@
 
 @interface MKDataController : NSObject
 
+@property(nonatomic,strong) NSString *unitStr;
+
 +(id)sharedDataController;
 -(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder;
 -(void)insertRecord:(NSString *)theDate recordTime:(NSString *)theTime milkNum:(float)milkNumber note:(NSString *)noteStr fullDate:(NSString *)fullD;
@@ -21,4 +23,5 @@
 -(float)getTodayNumber:(NSString *)dateStr;
 -(float)getTotalNumber;
 -(float)getBiggestMilkNumber;
+
 @end

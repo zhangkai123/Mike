@@ -14,4 +14,5 @@
 
 @property(nonatomic,strong) UICountingLabel *todayNumberLabel;
 @property(nonatomic,strong) UICountingLabel *totalNumberLabel;
+@property(nonatomic,strong) NSString *unitStr;
 @end
