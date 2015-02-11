@@ -16,7 +16,9 @@
 #import "MKChanceAd.h"
 #import "MKFeedback.h"
 #import "MobClick.h"
-@interface MKSettingViewController()<UMSocialUIDelegate>
+#import <MessageUI/MFMailComposeViewController.h>
+
+@interface MKSettingViewController()<UMSocialUIDelegate,MFMailComposeViewControllerDelegate>
 {
     UIColor* myBgColor;
     UIColor* myTextColor;
@@ -236,6 +238,13 @@
                 }
                 case 2:
                 {
+                    MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
+                    controller.mailComposeDelegate = self;
+                    [controller setToRecipients:[NSArray arrayWithObject:@"zhangkai176776005@gmail.com"]];
+                    [controller setSubject:@"Support - Mike"];
+                   // [controller setMessageBody:@"Hello there." isHTML:NO];
+                    if (controller)
+                        [self presentViewController:controller animated:YES completion:nil];
                     break;
                 }
             }
@@ -243,6 +252,15 @@
         }
     }
     [theTableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+- (void)mailComposeController:(MFMailComposeViewController*)controller
+          didFinishWithResult:(MFMailComposeResult)result
+                        error:(NSError*)error;
+{
+    if (result == MFMailComposeResultSent) {
+        NSLog(@"It's away!");
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
