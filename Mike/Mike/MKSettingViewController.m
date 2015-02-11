@@ -219,6 +219,10 @@
             {
                 case 0:
                 {
+                    NSString * message = @"Check out this great app Mike! I use it to track my milk production";
+                    NSArray * shareItems = @[message];
+                    UIActivityViewController * avc = [[UIActivityViewController alloc] initWithActivityItems:shareItems applicationActivities:nil];
+                    [self presentViewController:avc animated:YES completion:nil];
                     break;
                 }
                 case 1:
