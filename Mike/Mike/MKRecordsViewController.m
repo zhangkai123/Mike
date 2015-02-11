@@ -202,6 +202,7 @@
     cell.timeLabel.text = record.time;
     cell.numberLabel.text = [NSString stringWithFormat:@"%d oz",(int)record.milkNum ];
     cell.noteLabel.text = record.noteStr;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
