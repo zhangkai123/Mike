@@ -14,6 +14,8 @@
 		4B0842401A7F1F7A00D50B0F /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B08423D1A7F1F7A00D50B0F /* libMobClickLibrary.a */; };
 		4B097F421A762333008EA48A /* MKModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B097F411A762333008EA48A /* MKModifyViewController.m */; };
 		4B0E54571A773A010014B8BF /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E54561A773A010014B8BF /* UICountingLabel.m */; };
+		4B230EB61A8C80670017FD37 /* reminder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B230EB51A8C80670017FD37 /* reminder.png */; };
+		4B230EB91A8C86580017FD37 /* MKReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B230EB81A8C86580017FD37 /* MKReminderView.m */; };
 		4B374D8B1A5A60AE0026CFF4 /* MKDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8A1A5A60AE0026CFF4 /* MKDate.m */; };
 		4B374D8E1A5A629B0026CFF4 /* MKRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8D1A5A629B0026CFF4 /* MKRecordsViewController.m */; };
 		4B3D3B1F1A5BEAD80069707C /* MKDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B3D3B1E1A5BEAD80069707C /* MKDataBase.sqlite */; };
@@ -128,6 +130,9 @@
 		4B097F411A762333008EA48A /* MKModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKModifyViewController.m; sourceTree = "<group>"; };
 		4B0E54551A773A010014B8BF /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		4B0E54561A773A010014B8BF /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
+		4B230EB51A8C80670017FD37 /* reminder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reminder.png; sourceTree = "<group>"; };
+		4B230EB71A8C86580017FD37 /* MKReminderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKReminderView.h; sourceTree = "<group>"; };
+		4B230EB81A8C86580017FD37 /* MKReminderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKReminderView.m; sourceTree = "<group>"; };
 		4B374D891A5A60AE0026CFF4 /* MKDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDate.h; sourceTree = "<group>"; };
 		4B374D8A1A5A60AE0026CFF4 /* MKDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDate.m; sourceTree = "<group>"; };
 		4B374D8C1A5A629B0026CFF4 /* MKRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordsViewController.h; sourceTree = "<group>"; };
@@ -374,6 +379,8 @@
 				4BE59E1D1A53F342004CF8D9 /* MKRecordTableViewCell.m */,
 				4BA38C9F1A63E920009D25A0 /* MKTouchableView.h */,
 				4BA38CA01A63E920009D25A0 /* MKTouchableView.m */,
+				4B230EB71A8C86580017FD37 /* MKReminderView.h */,
+				4B230EB81A8C86580017FD37 /* MKReminderView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -412,6 +419,7 @@
 				4BC06A1E1A5252D700D62B3C /* more@2x.png */,
 				4BC06A1F1A5252D700D62B3C /* add@2x.png */,
 				4BC06A201A5252D700D62B3C /* setting@2x.png */,
+				4B230EB51A8C80670017FD37 /* reminder.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -783,6 +791,7 @@
 				4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */,
 				E21FCEF01A7B3CFB004497AB /* UMFeedbackLocalizable.strings in Resources */,
 				E2815C501A5938A000916F43 /* 提醒设置.png in Resources */,
+				4B230EB61A8C80670017FD37 /* reminder.png in Resources */,
 				4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */,
 				4BC06A231A5252D700D62B3C /* more@2x.png in Resources */,
 				4BA38C9D1A637095009D25A0 /* moments.png in Resources */,
@@ -810,6 +819,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BD18F9B1A51046200CC0F4D /* MKRootViewController.m in Sources */,
+				4B230EB91A8C86580017FD37 /* MKReminderView.m in Sources */,
 				4B58D9B61A888AFA00C414E8 /* MKDiskCacheManager.m in Sources */,
 				4BC06A2C1A527FF600D62B3C /* MKAddViewController.m in Sources */,
 				4BC06A281A52756600D62B3C /* MKSettingViewController.m in Sources */,

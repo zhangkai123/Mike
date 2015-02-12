@@ -19,6 +19,7 @@
 //#import "UMSocial.h"
 #import "ProgressHUD.h"
 #import "MobClick.h"
+#import "MKReminderView.h"
 
 @interface MKRootViewController ()<MKRecordsViewControllerDelegate,MKMilkViewControllerDelegate>
 {
@@ -71,14 +72,21 @@
     [lastPumpStaLabel setFont:[UIFont systemFontOfSize:10]];
     [lastPumpStaLabel setTextColor:[UIColor lightGrayColor]];
     [timeView addSubview:lastPumpStaLabel];
+//    lastPumpStaLabel.backgroundColor = [UIColor yellowColor];
 
     lastPumpLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 20, 60, 15)];
     lastPumpLabel.text = @"1h25m ago";
     [lastPumpLabel setFont:[UIFont boldSystemFontOfSize:10]];
-//    [lastPumpLabel setTextColor:UIColorFromRGB(0xfd6262)];
     [lastPumpLabel setTextColor:[UIColor grayColor]];
     [timeView addSubview:lastPumpLabel];
+//    lastPumpLabel.backgroundColor = [UIColor redColor];
 
+    UIButton *reminderButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    reminderButton.frame = CGRectMake(70, 5, 30, 30);
+    [reminderButton setImage:[UIImage imageNamed:@"reminder.png"] forState:UIControlStateNormal];
+    [reminderButton addTarget:self action:@selector(setUpReminder) forControlEvents:UIControlEventTouchUpInside];
+    [timeView addSubview:reminderButton];
+    
     self.navigationItem.titleView = timeView;
         
     MKMilkViewController *milkViewController = [[MKMilkViewController alloc]init];
@@ -97,6 +105,11 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenAddRecord:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
+}
+-(void)setUpReminder
+{
+    MKReminderView *reminderView = [[MKReminderView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    [self.navigationController.view addSubview:reminderView];
 }
 -(void)reloadDataWhenAddRecord:(NSNotification *)noti
 {
