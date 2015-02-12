@@ -10,6 +10,7 @@
 
 @interface MKReminderView : UIView
 {
+    UIView *setupView;
     UILabel *topLabel;
 }
 @end
