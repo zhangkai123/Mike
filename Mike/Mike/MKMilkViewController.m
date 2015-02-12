@@ -166,10 +166,19 @@ NSInteger biggestMilkNum;
 }
 -(void)setMaxMilkNumber
 {
-    biggestMilkNum = 400;
+    NSString *unitStr = [[MKDataController sharedDataController] unitStr];
+    if ([unitStr isEqualToString:@"oz"]) {
+        biggestMilkNum = 30;
+    }else{
+        biggestMilkNum = 400;
+    }
     int actualBiggestMilkNum = (int)[[MKDataController sharedDataController]getBiggestMilkNumber];
     if (actualBiggestMilkNum > biggestMilkNum) {
-        biggestMilkNum = actualBiggestMilkNum + 50;
+        if ([unitStr isEqualToString:@"oz"]) {
+            biggestMilkNum = actualBiggestMilkNum;
+        }else{
+            biggestMilkNum = actualBiggestMilkNum;
+        }
     }
 }
 -(void)shareNumber

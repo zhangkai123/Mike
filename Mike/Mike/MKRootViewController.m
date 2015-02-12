@@ -21,10 +21,12 @@
 #import "MobClick.h"
 #import "MKReminderView.h"
 
-@interface MKRootViewController ()<MKRecordsViewControllerDelegate,MKMilkViewControllerDelegate>
+@interface MKRootViewController ()<MKRecordsViewControllerDelegate,MKMilkViewControllerDelegate,MKReminderViewDelegate>
 {
     UIView *timeView;
+    UIButton *reminderButton;
     UILabel *lastPumpLabel;
+    NSDate *lastPumpedDate;
     
     MKRecordsViewController *recordsViewController;
 }
@@ -81,9 +83,9 @@
     [timeView addSubview:lastPumpLabel];
 //    lastPumpLabel.backgroundColor = [UIColor redColor];
 
-    UIButton *reminderButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    reminderButton = [UIButton buttonWithType:UIButtonTypeCustom];
     reminderButton.frame = CGRectMake(70, 5, 30, 30);
-    [reminderButton setImage:[UIImage imageNamed:@"reminder.png"] forState:UIControlStateNormal];
+    [reminderButton setImage:[UIImage imageNamed:@"reminder_off.png"] forState:UIControlStateNormal];
     [reminderButton addTarget:self action:@selector(setUpReminder) forControlEvents:UIControlEventTouchUpInside];
     [timeView addSubview:reminderButton];
     
@@ -109,8 +111,31 @@
 -(void)setUpReminder
 {
     MKReminderView *reminderView = [[MKReminderView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+    reminderView.delegate = self;
     [self.navigationController.view addSubview:reminderView];
 }
+#pragma MKReminderViewDelegate
+-(void)cancelReminder
+{
+    [reminderButton setImage:[UIImage imageNamed:@"reminder_off.png"] forState:UIControlStateNormal];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
+-(void)setupReminderWithDuration:(int)seconds
+{
+    if (lastPumpedDate == nil) {
+        return;
+    }
+    [reminderButton setImage:[UIImage imageNamed:@"reminder_on.png"] forState:UIControlStateNormal];
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [lastPumpedDate dateByAddingTimeInterval:seconds];
+    notification.alertBody = @"pump pump";
+//    [notification setApplicationIconBadgeNumber:1];
+    [notification setHasAction: YES];
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
 -(void)reloadDataWhenAddRecord:(NSNotification *)noti
 {
 //    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
@@ -128,41 +153,41 @@
 //    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
 //    bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
 }
--(NSString *)getHomePageShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr
-{
-    return [self getShareText:recordsArray dateString:dateStr fullDateString:nil];
-}
--(NSString *)getShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr fullDateString:(NSString *)fullDateStr
-{
-    NSString *shareStr = [NSString stringWithFormat:@"        #背奶记录# %@",dateStr];
-    
-    NSString *noteStr = nil;
-    int todayTotalNum = 0;
-    NSString *numStr = nil;
-    NSString *fullNumStr = nil;
-    for (int i = 0; i < [recordsArray count]; i++) {
-        MKRecord *record = [recordsArray objectAtIndex:i];
-        todayTotalNum = todayTotalNum + (int)record.milkNum;
-        if (i == ([recordsArray count] - 1)) {
-            fullNumStr = [NSString stringWithFormat:@"%@%d",numStr ?: @"",(int)record.milkNum];
-        }else{
-            numStr = [NSString stringWithFormat:@"%@%d+",numStr ?: @"",(int)record.milkNum];
-        }
-        if ([record.fullDate isEqualToString:fullDateStr]) {
-            noteStr = record.noteStr;
-        }
-    }
-    if (fullNumStr == nil) {
-        fullNumStr = @"0";
-    }
-    int totalNum = (int)[[MKDataController sharedDataController]getTotalNumber];
-    if ([noteStr isEqualToString:@""] || noteStr == nil) {
-        shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml",shareStr,fullNumStr,todayTotalNum,totalNum];
-    }else{
-        shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml,%@",shareStr,fullNumStr,todayTotalNum,totalNum,noteStr];
-    }
-    return shareStr;
-}
+//-(NSString *)getHomePageShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr
+//{
+//    return [self getShareText:recordsArray dateString:dateStr fullDateString:nil];
+//}
+//-(NSString *)getShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr fullDateString:(NSString *)fullDateStr
+//{
+//    NSString *shareStr = [NSString stringWithFormat:@"        #背奶记录# %@",dateStr];
+//    
+//    NSString *noteStr = nil;
+//    int todayTotalNum = 0;
+//    NSString *numStr = nil;
+//    NSString *fullNumStr = nil;
+//    for (int i = 0; i < [recordsArray count]; i++) {
+//        MKRecord *record = [recordsArray objectAtIndex:i];
+//        todayTotalNum = todayTotalNum + (int)record.milkNum;
+//        if (i == ([recordsArray count] - 1)) {
+//            fullNumStr = [NSString stringWithFormat:@"%@%d",numStr ?: @"",(int)record.milkNum];
+//        }else{
+//            numStr = [NSString stringWithFormat:@"%@%d+",numStr ?: @"",(int)record.milkNum];
+//        }
+//        if ([record.fullDate isEqualToString:fullDateStr]) {
+//            noteStr = record.noteStr;
+//        }
+//    }
+//    if (fullNumStr == nil) {
+//        fullNumStr = @"0";
+//    }
+//    int totalNum = (int)[[MKDataController sharedDataController]getTotalNumber];
+//    if ([noteStr isEqualToString:@""] || noteStr == nil) {
+//        shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml",shareStr,fullNumStr,todayTotalNum,totalNum];
+//    }else{
+//        shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml,%@",shareStr,fullNumStr,todayTotalNum,totalNum,noteStr];
+//    }
+//    return shareStr;
+//}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -194,6 +219,7 @@
 }
 -(void)updateLastPumpTimeLabel:(NSDate *)lastPumpDate
 {
+    lastPumpedDate = lastPumpDate;
     if (lastPumpDate == nil) {
         timeView.hidden = YES;
     }else{

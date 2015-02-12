@@ -14,8 +14,9 @@
 		4B0842401A7F1F7A00D50B0F /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B08423D1A7F1F7A00D50B0F /* libMobClickLibrary.a */; };
 		4B097F421A762333008EA48A /* MKModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B097F411A762333008EA48A /* MKModifyViewController.m */; };
 		4B0E54571A773A010014B8BF /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B0E54561A773A010014B8BF /* UICountingLabel.m */; };
-		4B230EB61A8C80670017FD37 /* reminder.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B230EB51A8C80670017FD37 /* reminder.png */; };
+		4B230EB61A8C80670017FD37 /* reminder_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B230EB51A8C80670017FD37 /* reminder_off.png */; };
 		4B230EB91A8C86580017FD37 /* MKReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B230EB81A8C86580017FD37 /* MKReminderView.m */; };
+		4B230EBB1A8CB1180017FD37 /* reminder_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B230EBA1A8CB1180017FD37 /* reminder_on.png */; };
 		4B374D8B1A5A60AE0026CFF4 /* MKDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8A1A5A60AE0026CFF4 /* MKDate.m */; };
 		4B374D8E1A5A629B0026CFF4 /* MKRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8D1A5A629B0026CFF4 /* MKRecordsViewController.m */; };
 		4B3D3B1F1A5BEAD80069707C /* MKDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B3D3B1E1A5BEAD80069707C /* MKDataBase.sqlite */; };
@@ -130,9 +131,10 @@
 		4B097F411A762333008EA48A /* MKModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKModifyViewController.m; sourceTree = "<group>"; };
 		4B0E54551A773A010014B8BF /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
 		4B0E54561A773A010014B8BF /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
-		4B230EB51A8C80670017FD37 /* reminder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reminder.png; sourceTree = "<group>"; };
+		4B230EB51A8C80670017FD37 /* reminder_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reminder_off.png; sourceTree = "<group>"; };
 		4B230EB71A8C86580017FD37 /* MKReminderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKReminderView.h; sourceTree = "<group>"; };
 		4B230EB81A8C86580017FD37 /* MKReminderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKReminderView.m; sourceTree = "<group>"; };
+		4B230EBA1A8CB1180017FD37 /* reminder_on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reminder_on.png; sourceTree = "<group>"; };
 		4B374D891A5A60AE0026CFF4 /* MKDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDate.h; sourceTree = "<group>"; };
 		4B374D8A1A5A60AE0026CFF4 /* MKDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDate.m; sourceTree = "<group>"; };
 		4B374D8C1A5A629B0026CFF4 /* MKRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordsViewController.h; sourceTree = "<group>"; };
@@ -419,7 +421,8 @@
 				4BC06A1E1A5252D700D62B3C /* more@2x.png */,
 				4BC06A1F1A5252D700D62B3C /* add@2x.png */,
 				4BC06A201A5252D700D62B3C /* setting@2x.png */,
-				4B230EB51A8C80670017FD37 /* reminder.png */,
+				4B230EB51A8C80670017FD37 /* reminder_off.png */,
+				4B230EBA1A8CB1180017FD37 /* reminder_on.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				4BC06A241A5252D700D62B3C /* add@2x.png in Resources */,
 				4BF1FAEB1A80E982009DA14B /* UMSShareListController.xib in Resources */,
 				E2B644031A77336B00909745 /* share1@2x.png in Resources */,
+				4B230EBB1A8CB1180017FD37 /* reminder_on.png in Resources */,
 				E2815C531A5938A000916F43 /* 精品推荐.png in Resources */,
 				E2815C521A5938A000916F43 /* 意见反馈.png in Resources */,
 				4BF1FAE21A80E982009DA14B /* UMSocialLocalizable.strings in Resources */,
@@ -791,7 +795,7 @@
 				4BC06A221A5252D700D62B3C /* bottle@2x.png in Resources */,
 				E21FCEF01A7B3CFB004497AB /* UMFeedbackLocalizable.strings in Resources */,
 				E2815C501A5938A000916F43 /* 提醒设置.png in Resources */,
-				4B230EB61A8C80670017FD37 /* reminder.png in Resources */,
+				4B230EB61A8C80670017FD37 /* reminder_off.png in Resources */,
 				4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */,
 				4BC06A231A5252D700D62B3C /* more@2x.png in Resources */,
 				4BA38C9D1A637095009D25A0 /* moments.png in Resources */,

@@ -10,7 +10,7 @@
 #import "MKCommon.h"
 
 @implementation MKReminderView
-
+@synthesize delegate;
 -(id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
@@ -73,7 +73,7 @@
                      }
                      completion:nil];
 }
--(void)animateSetupViewOut
+-(void)animateSetupViewOut:(BOOL)setReminder
 {
     [UIView animateWithDuration:0.2
                           delay:0
@@ -84,22 +84,27 @@
                      }
                      completion:^(BOOL finished){
                          [self removeFromSuperview];
+                         if (setReminder) {
+                             [self.delegate setupReminderWithDuration:duration];
+                         }else{
+                             [self.delegate cancelReminder];
+                         }
                      }];
 }
 -(void)datePickerUpdate:(UIDatePicker *)dateP
 {
-    int duration = (int)dateP.countDownDuration;
+    duration = (int)dateP.countDownDuration;
     int hours = duration/3600;
     int minutes = (duration/60)%60;
     topLabel.text = [NSString stringWithFormat:@"Remind in %d hours %d minutes\n from last pump",hours,minutes];
 }
 -(void)cancelReminder
 {
-    [self animateSetupViewOut];
+    [self animateSetupViewOut:NO];
 }
 -(void)setReminder
 {
-    [self animateSetupViewOut];
+    [self animateSetupViewOut:YES];
 }
 
 @end
