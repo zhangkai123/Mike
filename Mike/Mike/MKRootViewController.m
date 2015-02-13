@@ -14,9 +14,7 @@
 #import "MKRecordsViewController.h"
 #import "MKModifyViewController.h"
 #import "MKDataController.h"
-//#import "MKPopView.h"
 #import "MKRecord.h"
-//#import "UMSocial.h"
 #import "ProgressHUD.h"
 #import "MobClick.h"
 #import "MKReminderView.h"
@@ -128,19 +126,17 @@
 }
 -(void)updateReminderWhenRemove
 {
-//    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
-//    bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
 }
 -(void)animateTopReminder
 {
-    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
     scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
     scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1, 1.1, 1.0)];
     scaleAnimation.autoreverses = YES;
     scaleAnimation.duration = 0.6;
-    scaleAnimation.repeatCount = 6;
+    scaleAnimation.repeatCount = 3;
     scaleAnimation.removedOnCompletion = YES;
-    [reminderButton.imageView.layer addAnimation:scaleAnimation forKey:@"transform.scale"];
+    [reminderButton.imageView.layer addAnimation:scaleAnimation forKey:@"transform"];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
