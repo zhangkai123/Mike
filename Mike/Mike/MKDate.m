@@ -9,6 +9,6 @@
 #import "MKDate.h"
 
 @implementation MKDate
-@synthesize dateStr ,recordsNum ,milkNum;
+@synthesize dateStr ,recordsNum ,milkNumOz ,milkNumMl;
 
 @end

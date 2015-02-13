@@ -197,7 +197,11 @@
     MKRecord *record = [recordsArray objectAtIndex:recordIndex + indexPath.row];
     cell.timeLabel.text = record.time;
     NSString *unitValue = [[MKDataController sharedDataController] unitStr];
-    cell.numberLabel.text = [NSString stringWithFormat:@"%d %@",(int)record.milkNum,unitValue];
+    if ([unitValue isEqualToString:@"oz"]) {
+        cell.numberLabel.text = [NSString stringWithFormat:@"%.1f %@",record.milkNumOz,unitValue];
+    }else{
+        cell.numberLabel.text = [NSString stringWithFormat:@"%d %@",record.milkNumMl,unitValue];
+    }
     cell.noteLabel.text = record.noteStr;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;

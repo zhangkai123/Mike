@@ -46,7 +46,7 @@
 }
 -(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder
 {
-    return [[MKDBManager sharedDBManager]getDatesWithASCOrder:ASCOrder ozUnit:ozUnit];
+    return [[MKDBManager sharedDBManager]getDatesWithASCOrder:ASCOrder];
 }
 -(void)insertRecord:(NSString *)theDate recordTime:(NSString *)theTime milkNum:(float)milkNumber note:(NSString *)noteStr fullDate:(NSString *)fullD
 {
@@ -54,13 +54,17 @@
     record.date = theDate;
     record.time = theTime;
     float milkNumWithOzUnit;
+    int milkNumWithMlUnit;
     //oz is the default unit which will be saved in the database
     if (ozUnit) {
         milkNumWithOzUnit = milkNumber;
+        milkNumWithMlUnit = milkNumber*30;
     }else{
         milkNumWithOzUnit = milkNumber/30;
+        milkNumWithMlUnit = milkNumber;
     }
-    record.milkNum = milkNumWithOzUnit;
+    record.milkNumOz = milkNumWithOzUnit;
+    record.milkNumMl = milkNumWithMlUnit;
     record.noteStr = noteStr;
     record.fullDate = fullD;
     
@@ -68,11 +72,11 @@
 }
 -(NSArray *)getRecords
 {
-    return [[MKDBManager sharedDBManager]getRecords:ozUnit];
+    return [[MKDBManager sharedDBManager]getRecords];
 }
 -(NSArray *)getRecordsWithDateStr:(NSString *)dateStr
 {
-    return [[MKDBManager sharedDBManager]getRecordsWithDateStr:dateStr ozUnit:ozUnit];
+    return [[MKDBManager sharedDBManager]getRecordsWithDateStr:dateStr];
 }
 -(int)getTotalRecordsNum
 {
@@ -85,36 +89,15 @@
 
 -(float)getTodayNumber:(NSString *)dateStr
 {
-    float todayNumber;
-    float ozNumber = [[MKDBManager sharedDBManager]getTodayNumber:dateStr];
-    if (ozUnit) {
-        todayNumber = ozNumber;
-    }else{
-        todayNumber = ozNumber*30;
-    }
-    return todayNumber;
+    return [[MKDBManager sharedDBManager]getTodayNumber:dateStr ozUnit:ozUnit];
 }
 -(float)getTotalNumber
 {
-    float totalNumber;
-    float ozNumber = [[MKDBManager sharedDBManager]getTotalNumber];
-    if (ozUnit) {
-        totalNumber = ozNumber;
-    }else{
-        totalNumber = ozNumber*30;
-    }
-    return totalNumber;
+    return [[MKDBManager sharedDBManager]getTotalNumber:ozUnit];
 }
 -(float)getBiggestMilkNumber
 {
-    float biggestMilkNumber;
-    float ozNumber = [[MKDBManager sharedDBManager]getBiggestMilkNumber];
-    if (ozUnit) {
-        biggestMilkNumber = ozNumber;
-    }else{
-        biggestMilkNumber = ozNumber*30;
-    }
-    return biggestMilkNumber;
+    return [[MKDBManager sharedDBManager]getBiggestMilkNumber:ozUnit];
 }
 -(void)setUnitStr:(NSString *)unitS
 {

@@ -19,7 +19,6 @@
 		4B230EBB1A8CB1180017FD37 /* reminder_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B230EBA1A8CB1180017FD37 /* reminder_on.png */; };
 		4B374D8B1A5A60AE0026CFF4 /* MKDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8A1A5A60AE0026CFF4 /* MKDate.m */; };
 		4B374D8E1A5A629B0026CFF4 /* MKRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B374D8D1A5A629B0026CFF4 /* MKRecordsViewController.m */; };
-		4B3D3B1F1A5BEAD80069707C /* MKDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4B3D3B1E1A5BEAD80069707C /* MKDataBase.sqlite */; };
 		4B5782E11A539DB80085BEAE /* NavigationBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */; };
 		4B5782E41A53A0C20085BEAE /* MKTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5782E31A53A0C20085BEAE /* MKTopView.m */; };
 		4B58D9B61A888AFA00C414E8 /* MKDiskCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B58D9B51A888AFA00C414E8 /* MKDiskCacheManager.m */; };
@@ -42,6 +41,7 @@
 		4BD200011A7A5B4A00C16C7D /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4BD2FFFE1A7A5B4A00C16C7D /* ProgressHUD.bundle */; };
 		4BD200021A7A5B4A00C16C7D /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD200001A7A5B4A00C16C7D /* ProgressHUD.m */; };
 		4BD2F4541A5A7FA00094AE5B /* MKMilkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD2F4531A5A7FA00094AE5B /* MKMilkViewController.m */; };
+		4BD96ACE1A8DFE39005571EA /* MKDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4BD96ACD1A8DFE39005571EA /* MKDataBase.sqlite */; };
 		4BE59E141A53CD35004CF8D9 /* MKChartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */; };
 		4BE59E171A53D3F2004CF8D9 /* 奶量条前景.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */; };
 		4BE59E181A53D3F2004CF8D9 /* chart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BE59E161A53D3F2004CF8D9 /* chart@2x.png */; };
@@ -139,7 +139,6 @@
 		4B374D8A1A5A60AE0026CFF4 /* MKDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDate.m; sourceTree = "<group>"; };
 		4B374D8C1A5A629B0026CFF4 /* MKRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKRecordsViewController.h; sourceTree = "<group>"; };
 		4B374D8D1A5A629B0026CFF4 /* MKRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKRecordsViewController.m; sourceTree = "<group>"; };
-		4B3D3B1E1A5BEAD80069707C /* MKDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MKDataBase.sqlite; sourceTree = "<group>"; };
 		4B5782E01A539DB80085BEAE /* NavigationBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NavigationBarBackground.png; sourceTree = "<group>"; };
 		4B5782E21A53A0C20085BEAE /* MKTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTopView.h; sourceTree = "<group>"; };
 		4B5782E31A53A0C20085BEAE /* MKTopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTopView.m; sourceTree = "<group>"; };
@@ -177,6 +176,7 @@
 		4BD2F4531A5A7FA00094AE5B /* MKMilkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMilkViewController.m; sourceTree = "<group>"; };
 		4BD2FFFE1A7A5B4A00C16C7D /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		4BD2FFFF1A7A5B4A00C16C7D /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
+		4BD96ACD1A8DFE39005571EA /* MKDataBase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MKDataBase.sqlite; sourceTree = "<group>"; };
 		4BE59E121A53CD35004CF8D9 /* MKChartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKChartTableViewCell.h; sourceTree = "<group>"; };
 		4BE59E131A53CD35004CF8D9 /* MKChartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKChartTableViewCell.m; sourceTree = "<group>"; };
 		4BE59E151A53D3F2004CF8D9 /* 奶量条前景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "奶量条前景.png"; sourceTree = "<group>"; };
@@ -492,7 +492,7 @@
 		4BCF0CAB1A50F95900A2FF5D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4B3D3B1E1A5BEAD80069707C /* MKDataBase.sqlite */,
+				4BD96ACD1A8DFE39005571EA /* MKDataBase.sqlite */,
 				4BC06A1B1A5252B300D62B3C /* images */,
 				4BCF0CAC1A50F95900A2FF5D /* Info.plist */,
 				4BCF0CAD1A50F95900A2FF5D /* main.m */,
@@ -768,10 +768,10 @@
 				E2B644041A77336B00909745 /* share2@2x.png in Resources */,
 				E21FCEF81A7B3CFB004497AB /* ToolViewInputVoice@2x.png in Resources */,
 				4BF1FAE81A80E982009DA14B /* UMShareEditViewControlleriPad.xib in Resources */,
-				4B3D3B1F1A5BEAD80069707C /* MKDataBase.sqlite in Resources */,
 				E2815C4C1A5938A000916F43 /* 打分鼓励，给个评价！.png in Resources */,
 				E21FCEFF1A7B3CFB004497AB /* umeng_fb_audio_play_default@2x.png in Resources */,
 				E21FCEFE1A7B3CFB004497AB /* umeng_fb_audio_play_03@2x.png in Resources */,
+				4BD96ACE1A8DFE39005571EA /* MKDataBase.sqlite in Resources */,
 				4BF1FAE91A80E982009DA14B /* UMSLoginViewController.xib in Resources */,
 				4BCF0CB91A50F95900A2FF5D /* Images.xcassets in Resources */,
 				E21FCEF31A7B3CFB004497AB /* cancel@2x.png in Resources */,

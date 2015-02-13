@@ -58,8 +58,13 @@
 {
     unitStr = unitS;
     self.todayNumberLabel.text = [NSString stringWithFormat:@"0 %@",unitS];
-    self.todayNumberLabel.format = [NSString stringWithFormat:@"%%d %@",unitS];
     self.totalNumberLabel.text = [NSString stringWithFormat:@"0 %@",unitS];
-    self.totalNumberLabel.format = [NSString stringWithFormat:@"%%d %@",unitS];
+    if ([unitS isEqualToString:@"oz"]) {
+        self.todayNumberLabel.format = [NSString stringWithFormat:@"%%.1f %@",unitS];
+        self.totalNumberLabel.format = [NSString stringWithFormat:@"%%.1f %@",unitS];
+    }else{
+        self.todayNumberLabel.format = [NSString stringWithFormat:@"%%d %@",unitS];
+        self.totalNumberLabel.format = [NSString stringWithFormat:@"%%d %@",unitS];
+    }
 }
 @end

@@ -12,5 +12,6 @@
 
 @property(nonatomic ,strong) NSString *dateStr;
 @property(nonatomic,assign) int recordsNum;
-@property(nonatomic,assign) float milkNum;
+@property(nonatomic,assign) float milkNumOz;
+@property(nonatomic,assign) int milkNumMl;
 @end

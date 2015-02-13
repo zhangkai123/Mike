@@ -25,8 +25,13 @@
     NSDate *fullDate = [fullDateFormatter dateFromString:theRecord.fullDate];
 
     timeLabel.text = [NSString stringWithFormat:@"%@",[labelDateFormatter stringFromDate:fullDate]];
-    numberField.text = [NSString stringWithFormat:@"%d",(int)theRecord.milkNum];
     noteTextField.text = theRecord.noteStr;
+    NSString *unitValue = [[MKDataController sharedDataController] unitStr];
+    if ([unitValue isEqualToString:@"oz"]) {
+        numberField.text = [NSString stringWithFormat:@"%.1f",theRecord.milkNumOz];
+    }else{
+        numberField.text = [NSString stringWithFormat:@"%d",theRecord.milkNumMl];
+    }
     
     UIButton *deleteButton = [[UIButton alloc]initWithFrame:CGRectMake(0, ScreenHeight - 64 - 45, ScreenWidth, 45)];
     [deleteButton addTarget:self action:@selector(deleteThisRecord) forControlEvents:UIControlEventTouchUpInside];

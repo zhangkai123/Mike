@@ -99,6 +99,7 @@ NSInteger biggestMilkNum;
 }
 -(void)reloadTableView
 {
+    topView.unitStr = [[MKDataController sharedDataController] unitStr];
     [self loadTopviewDataWithAnimation:NO];
     
     [self setMaxMilkNumber];
@@ -125,7 +126,8 @@ NSInteger biggestMilkNum;
     NSString *dateStr = [dateFormatter stringFromDate:[NSDate date]];
     MKDate *date = [[MKDate alloc]init];
     date.dateStr = dateStr;
-    date.milkNum = 0;
+    date.milkNumOz = 0;
+    date.milkNumMl = 0;
     date.recordsNum = 0;
     return date;
 }
@@ -143,8 +145,13 @@ NSInteger biggestMilkNum;
         [topView.totalNumberLabel countFrom:oldTotalNum to:totalNum withDuration:NUM_ANIMATE_DURATION];
     }else{
         NSString *unitValue = [[MKDataController sharedDataController] unitStr];
-        topView.todayNumberLabel.text = [NSString stringWithFormat:@"%d %@",(int)todayNum,unitValue];
-        topView.totalNumberLabel.text = [NSString stringWithFormat:@"%d %@",(int)totalNum,unitValue];
+        if ([unitValue isEqualToString:@"oz"]) {
+            topView.todayNumberLabel.text = [NSString stringWithFormat:@"%.1f %@",todayNum,unitValue];
+            topView.totalNumberLabel.text = [NSString stringWithFormat:@"%.1f %@",totalNum,unitValue];
+        }else{
+            topView.todayNumberLabel.text = [NSString stringWithFormat:@"%d %@",(int)todayNum,unitValue];
+            topView.totalNumberLabel.text = [NSString stringWithFormat:@"%d %@",(int)totalNum,unitValue];
+        }
     }
 }
 -(int)getNumberFromString:(NSString *)milkStr
@@ -156,10 +163,15 @@ NSInteger biggestMilkNum;
 -(void)getTheAnimateCellOldValue:(NSString *)dStr oldDataArray:(NSArray *)oldDataA
 {
     animateCellOldValue = 0;
+    NSString *unitStr = [[MKDataController sharedDataController] unitStr];
     for (int i = 0; i < [oldDataA count]; i++) {
         MKDate *theDate = [oldDataA objectAtIndex:i];
         if ([dStr isEqualToString:theDate.dateStr]) {
-            animateCellOldValue = theDate.milkNum;
+            if ([unitStr isEqualToString:@"oz"]) {
+                animateCellOldValue = theDate.milkNumOz;
+            }else{
+                animateCellOldValue = theDate.milkNumMl;
+            }
             break;
         }
     }
@@ -199,7 +211,12 @@ NSInteger biggestMilkNum;
     MKDate *theDate = [datesArray objectAtIndex:indexPath.row];
     cell.transform = CGAffineTransformMakeRotation(M_PI_2);
 
-    cell.numberLabel.text = [NSString stringWithFormat:@"%d",(int)theDate.milkNum];
+    NSString *unitStr = [[MKDataController sharedDataController]unitStr];
+    if ([unitStr isEqualToString:@"oz"]) {
+        cell.numberLabel.text = [NSString stringWithFormat:@"%0.1f",theDate.milkNumOz];
+    }else{
+        cell.numberLabel.text = [NSString stringWithFormat:@"%d",theDate.milkNumMl];
+    }
     NSDate *originDate = [dateFormatter dateFromString:theDate.dateStr];
     cell.dayLabel.text = [self getWeekDayFromDate:originDate];
     cell.dateLabel.text = [self getMonthDayFromDate:originDate];
@@ -211,7 +228,11 @@ NSInteger biggestMilkNum;
     }else{
         cell.chartAnimate = NO;
     }
-    cell.milkNum = (int)theDate.milkNum;
+    if ([unitStr isEqualToString:@"oz"]) {
+        cell.milkNum = theDate.milkNumOz;
+    }else{
+        cell.milkNum = theDate.milkNumMl;
+    }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

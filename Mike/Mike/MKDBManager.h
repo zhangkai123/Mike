@@ -16,14 +16,14 @@
     NSString		*databasePath;
 }
 +(id)sharedDBManager;
--(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder ozUnit:(BOOL)ozUnit;
+-(NSArray *)getDatesWithASCOrder:(BOOL)ASCOrder;
 -(void)insertRecord:(MKRecord *)record;
--(NSArray *)getRecords:(BOOL)ozUnit;
--(NSArray *)getRecordsWithDateStr:(NSString *)dateStr ozUnit:(BOOL)ozUnit;
+-(NSArray *)getRecords;
+-(NSArray *)getRecordsWithDateStr:(NSString *)dateStr;
 -(int)getTotalRecordsNum;
 -(void)delRecord:(NSString *)fullDateStr;
 
--(float)getTodayNumber:(NSString *)dateStr;
--(float)getTotalNumber;
--(float)getBiggestMilkNumber;
+-(float)getTodayNumber:(NSString *)dateStr ozUnit:(BOOL)ozUnit;
+-(float)getTotalNumber:(BOOL)ozUnit;
+-(float)getBiggestMilkNumber:(BOOL)ozUnit;
 @end

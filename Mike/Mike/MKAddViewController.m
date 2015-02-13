@@ -238,6 +238,13 @@
     [timeFormatter setDateFormat:@"HH:mm"];
     NSString *timeStr = [timeFormatter stringFromDate:theDate];
 
+    float milkNumber;
+    NSString *unitStr = [[MKDataController sharedDataController]unitStr];
+    if ([unitStr isEqualToString:@"oz"]) {
+        milkNumber =  roundf( [numberField.text floatValue]*10.0)/10.0;
+    }else{
+        milkNumber = (int)ceilf([numberField.text floatValue]);
+    }
     [[MKDataController sharedDataController]insertRecord:dateStr recordTime:timeStr milkNum:[numberField.text floatValue] note:noteTextField.text fullDate:fullDateStr];
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:dateStr,@"DateStr",fullDateStr,@"FullDateStr", nil];
     [[NSNotificationCenter defaultCenter]postNotificationName:Mike_ADD_RECORD_NOTIFICATION object:nil userInfo:dic];
