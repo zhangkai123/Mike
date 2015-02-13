@@ -88,7 +88,12 @@
     [reminderButton setImage:[UIImage imageNamed:@"reminder_off.png"] forState:UIControlStateNormal];
     [reminderButton addTarget:self action:@selector(setUpReminder) forControlEvents:UIControlEventTouchUpInside];
     [timeView addSubview:reminderButton];
-    
+    int pumpDuration = [[MKDataController sharedDataController]getPumpReminderDuration];
+    if (pumpDuration == NO_REMINDER_NUM) {
+        [reminderButton setImage:[UIImage imageNamed:@"reminder_off.png"] forState:UIControlStateNormal];
+    }else{
+        [reminderButton setImage:[UIImage imageNamed:@"reminder_on.png"] forState:UIControlStateNormal];
+    }
     self.navigationItem.titleView = timeView;
         
     MKMilkViewController *milkViewController = [[MKMilkViewController alloc]init];
@@ -105,8 +110,8 @@
     [self.view addSubview:recordsViewController.view];
     [recordsViewController didMoveToParentViewController:self];
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenAddRecord:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadDataWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(animateReminderWhenFirstAddRecord:) name:Mike_ADD_RECORD_NOTIFICATION object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(updateReminderWhenRemove) name:Mike_REMOVE_RECORD_NOTIFICATION object:nil];
 }
 -(void)setUpReminder
 {
@@ -114,80 +119,29 @@
     reminderView.delegate = self;
     [self.navigationController.view addSubview:reminderView];
 }
-#pragma MKReminderViewDelegate
--(void)cancelReminder
+-(void)animateReminderWhenFirstAddRecord:(NSNotification *)noti
 {
-    [reminderButton setImage:[UIImage imageNamed:@"reminder_off.png"] forState:UIControlStateNormal];
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-}
--(void)setupReminderWithDuration:(int)seconds
-{
-    if (lastPumpedDate == nil) {
-        return;
+    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
+    if (recordsNum == 1) {
+        [self performSelector:@selector(animateTopReminder) withObject:nil afterDelay:NUM_ANIMATE_DURATION];
     }
-    [reminderButton setImage:[UIImage imageNamed:@"reminder_on.png"] forState:UIControlStateNormal];
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [lastPumpedDate dateByAddingTimeInterval:seconds];
-    notification.alertBody = @"pump pump";
-//    [notification setApplicationIconBadgeNumber:1];
-    [notification setHasAction: YES];
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.soundName = UILocalNotificationDefaultSoundName;
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
-
--(void)reloadDataWhenAddRecord:(NSNotification *)noti
-{
-//    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
-//    bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
-
-//    NSDictionary *dic = [noti userInfo];
-//    NSString *dateStr = [dic objectForKey:@"DateStr"];
-//    NSString *fullDateStr = [dic objectForKey:@"FullDateStr"];
-//    NSArray *dayRecordsArray = [[MKDataController sharedDataController]getRecordsWithDateStr:dateStr];
-//    NSString *shareText = [self getShareText:dayRecordsArray dateString:dateStr fullDateString:fullDateStr];
-//    [self performSelector:@selector(showPopViewWhenAdd:) withObject:shareText afterDelay:NUM_ANIMATE_DURATION];
-}
--(void)reloadDataWhenRemove
+-(void)updateReminderWhenRemove
 {
 //    int recordsNum = [[MKDataController sharedDataController]getTotalRecordsNum];
 //    bottleLabel.text = [NSString stringWithFormat:@"%d",recordsNum];
 }
-//-(NSString *)getHomePageShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr
-//{
-//    return [self getShareText:recordsArray dateString:dateStr fullDateString:nil];
-//}
-//-(NSString *)getShareText:(NSArray *)recordsArray dateString:(NSString *)dateStr fullDateString:(NSString *)fullDateStr
-//{
-//    NSString *shareStr = [NSString stringWithFormat:@"        #背奶记录# %@",dateStr];
-//    
-//    NSString *noteStr = nil;
-//    int todayTotalNum = 0;
-//    NSString *numStr = nil;
-//    NSString *fullNumStr = nil;
-//    for (int i = 0; i < [recordsArray count]; i++) {
-//        MKRecord *record = [recordsArray objectAtIndex:i];
-//        todayTotalNum = todayTotalNum + (int)record.milkNum;
-//        if (i == ([recordsArray count] - 1)) {
-//            fullNumStr = [NSString stringWithFormat:@"%@%d",numStr ?: @"",(int)record.milkNum];
-//        }else{
-//            numStr = [NSString stringWithFormat:@"%@%d+",numStr ?: @"",(int)record.milkNum];
-//        }
-//        if ([record.fullDate isEqualToString:fullDateStr]) {
-//            noteStr = record.noteStr;
-//        }
-//    }
-//    if (fullNumStr == nil) {
-//        fullNumStr = @"0";
-//    }
-//    int totalNum = (int)[[MKDataController sharedDataController]getTotalNumber];
-//    if ([noteStr isEqualToString:@""] || noteStr == nil) {
-//        shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml",shareStr,fullNumStr,todayTotalNum,totalNum];
-//    }else{
-//        shareStr = [NSString stringWithFormat:@"%@, %@,合计%dml,总%dml,%@",shareStr,fullNumStr,todayTotalNum,totalNum,noteStr];
-//    }
-//    return shareStr;
-//}
+-(void)animateTopReminder
+{
+    CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    scaleAnimation.fromValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
+    scaleAnimation.toValue = [NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1, 1.1, 1.0)];
+    scaleAnimation.autoreverses = YES;
+    scaleAnimation.duration = 0.6;
+    scaleAnimation.repeatCount = 6;
+    scaleAnimation.removedOnCompletion = YES;
+    [reminderButton.imageView.layer addAnimation:scaleAnimation forKey:@"transform.scale"];
+}
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -217,7 +171,7 @@
     UINavigationController *navigaitonController = [[UINavigationController alloc]initWithRootViewController:modifyViewController];
     [self presentViewController:navigaitonController animated:YES completion:nil];
 }
--(void)updateLastPumpTimeLabel:(NSDate *)lastPumpDate
+-(void)updateTopTimeView:(NSDate *)lastPumpDate
 {
     lastPumpedDate = lastPumpDate;
     if (lastPumpDate == nil) {
@@ -237,26 +191,50 @@
             int theMinites = minites%60;
             lastPumpLabel.text = [NSString stringWithFormat:@"%dh%dm ago",hours,theMinites];
         }
+        //update the reminder time
+        int nextPumpDuration = [[MKDataController sharedDataController]getPumpReminderDuration];
+        if (nextPumpDuration == NO_REMINDER_NUM) {
+            return;
+        }
+        [self addLocalReminder:lastPumpDate duration:nextPumpDuration];
     }
+}
+#pragma MKReminderViewDelegate
+-(void)cancelReminder
+{
+    [[MKDataController sharedDataController] setPumpReminderDuration:NO_REMINDER_NUM];
+    [reminderButton setImage:[UIImage imageNamed:@"reminder_off.png"] forState:UIControlStateNormal];
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
+-(void)setupReminderWithDuration:(int)seconds
+{
+    if (lastPumpedDate == nil) {
+        return;
+    }
+    [[MKDataController sharedDataController] setPumpReminderDuration:seconds];
+    
+    [reminderButton setImage:[UIImage imageNamed:@"reminder_on.png"] forState:UIControlStateNormal];
+    [self addLocalReminder:lastPumpedDate duration:seconds];
 }
 #pragma MKMilkViewControllerDelegate
 -(void)goToOneDateRecords:(NSString *)dateStr
 {
     [recordsViewController goToOneDateRecords:dateStr];
 }
+
+-(void)addLocalReminder:(NSDate *)lastPumpD duration:(int)dur
+{
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [lastPumpD dateByAddingTimeInterval:dur];
+    notification.alertBody = @"pump pump";
+    [notification setHasAction: YES];
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

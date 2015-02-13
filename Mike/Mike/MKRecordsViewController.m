@@ -130,7 +130,7 @@
     //after get all data,update the LAST PUMP label
     MKRecord *theRecord = [recordsArray firstObject];
     NSDate *lastDate = [fullDateFormatter dateFromString:theRecord.fullDate];
-    [self.delegate updateLastPumpTimeLabel:lastDate];
+    [self.delegate updateTopTimeView:lastDate];
 }
 -(void)getSectionData
 {

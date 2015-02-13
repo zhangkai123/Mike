@@ -18,8 +18,9 @@
 #define Mike_REMOVE_RECORD_NOTIFICATION @"remove_record_notification"
 #define Mike_CHANGE_UNIT_NOTIFICATION @"change_unit_notification"
 
-#define NUM_ANIMATE_DURATION 1.5
+#define NUM_ANIMATE_DURATION 1.0
 #define DegreesToRadians(x) ((x) * M_PI / 180.0)
+#define NO_REMINDER_NUM -1
 
 #define APPKEY @"54c72f5efd98c57f7b000a01"
 #define PublisherID @"826712965-5AE663-08E9-7570-A46148596"

@@ -10,6 +10,7 @@
 #import "MKDBManager.h"
 #import "MKRecord.h"
 #import "MKDiskCacheManager.h"
+#import "MKCommon.h"
 
 @interface MKDataController()
 {
@@ -35,6 +36,10 @@
     if (self = [super init]) {
         if (self.unitStr == nil) {
             self.unitStr = @"oz";
+            int reminderDur = [self getPumpReminderDuration];
+            if (reminderDur == 0) {
+                [self setPumpReminderDuration:NO_REMINDER_NUM];
+            }
         }
     }
     return self;
@@ -130,5 +135,14 @@
         ozUnit = NO;
     }
     return theUnitStr;
+}
+
+-(void)setPumpReminderDuration:(int)duration
+{
+    [[MKDiskCacheManager sharedDiskCacheController]setPumpReminderDuration:duration];
+}
+-(int)getPumpReminderDuration
+{
+    return [[MKDiskCacheManager sharedDiskCacheController]getPumpReminderDuration];
 }
 @end

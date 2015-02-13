@@ -170,7 +170,7 @@ NSInteger biggestMilkNum;
     if ([unitStr isEqualToString:@"oz"]) {
         biggestMilkNum = 30;
     }else{
-        biggestMilkNum = 400;
+        biggestMilkNum = 900;
     }
     int actualBiggestMilkNum = (int)[[MKDataController sharedDataController]getBiggestMilkNumber];
     if (actualBiggestMilkNum > biggestMilkNum) {

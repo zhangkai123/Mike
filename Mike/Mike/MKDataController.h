@@ -24,4 +24,6 @@
 -(float)getTotalNumber;
 -(float)getBiggestMilkNumber;
 
+-(void)setPumpReminderDuration:(int)duration;
+-(int)getPumpReminderDuration;
 @end

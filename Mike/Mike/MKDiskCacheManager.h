@@ -13,4 +13,6 @@
 +(id)sharedDiskCacheController;
 -(void)setUnitStr:(NSString *)unitS;
 -(NSString *)getUnitStr;
+-(void)setPumpReminderDuration:(int)duration;
+-(int)getPumpReminderDuration;
 @end

@@ -30,4 +30,14 @@
     NSString *unitStr = [[NSUserDefaults standardUserDefaults]stringForKey:@"UNIT_STR"];
     return unitStr;
 }
+-(void)setPumpReminderDuration:(int)duration
+{
+    [[NSUserDefaults standardUserDefaults]setObject:[NSString stringWithFormat:@"%d",duration] forKey:@"REMINDER_DURATION"];
+    [[NSUserDefaults standardUserDefaults]synchronize];
+}
+-(int)getPumpReminderDuration
+{
+    NSString *duration = [[NSUserDefaults standardUserDefaults]stringForKey:@"REMINDER_DURATION"];
+    return [duration intValue];
+}
 @end
