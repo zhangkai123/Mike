@@ -89,7 +89,7 @@
     numberField.borderStyle = UITextBorderStyleNone;
     numberField.font = [UIFont systemFontOfSize:16];
     numberField.autocorrectionType = UITextAutocorrectionTypeNo;
-    numberField.keyboardType = UIKeyboardTypeNumberPad;
+    numberField.keyboardType = UIKeyboardTypeDecimalPad;
     numberField.placeholder = @"0";
     numberField.delegate = self;
     numberField.textColor = UIColorFromRGB(0xd57d9c);
