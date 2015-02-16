@@ -10,7 +10,7 @@
 #import "MKCommon.h"
 
 @implementation MKReminderView
-@synthesize delegate;
+@synthesize datePicker ,duration ,delegate;
 -(id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
@@ -35,12 +35,11 @@
         [setupView addSubview:topLabel];
 //        topLabel.backgroundColor = [UIColor blueColor];
         
-        UIDatePicker *datePicker = [[UIDatePicker alloc]init];
+        datePicker = [[UIDatePicker alloc]init];
         [datePicker setDate:[NSDate date]];
         [datePicker setLocale:[NSLocale currentLocale]];
         datePicker.center = CGPointMake(ScreenWidth/2, 150);
         datePicker.datePickerMode = UIDatePickerModeCountDownTimer;
-        [datePicker setCountDownDuration:3*60*60];
         [datePicker addTarget:self action:@selector(datePickerUpdate:) forControlEvents:UIControlEventValueChanged];
         [setupView addSubview:datePicker];
         
@@ -90,6 +89,13 @@
                              [self.delegate cancelReminder];
                          }
                      }];
+}
+-(void)setDuration:(int)dur
+{
+    duration = dur;
+    int hours = duration/3600;
+    int minutes = (duration/60)%60;
+    topLabel.text = [NSString stringWithFormat:@"Remind in %d hours %d minutes\n from last pump",hours,minutes];
 }
 -(void)datePickerUpdate:(UIDatePicker *)dateP
 {

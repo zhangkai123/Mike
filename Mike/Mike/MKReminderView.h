@@ -19,8 +19,11 @@
 {
     UIView *setupView;
     UILabel *topLabel;
+    UIDatePicker *datePicker;
     int duration;
     __unsafe_unretained id<MKReminderViewDelegate> delegate;
 }
+@property(nonatomic,strong) UIDatePicker *datePicker;
+@property(nonatomic,assign) int duration;
 @property(nonatomic,unsafe_unretained) id<MKReminderViewDelegate> delegate;
 @end

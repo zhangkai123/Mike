@@ -115,6 +115,15 @@
 {
     MKReminderView *reminderView = [[MKReminderView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
     reminderView.delegate = self;
+    int nextPumpDuration = [[MKDataController sharedDataController]getPumpReminderDuration];
+    if (nextPumpDuration == NO_REMINDER_NUM) {
+        //default 3 hours
+        [reminderView.datePicker setCountDownDuration:3*60*60];
+        reminderView.duration = 3*60*60;
+    }else{
+        [reminderView.datePicker setCountDownDuration:nextPumpDuration];
+        reminderView.duration = nextPumpDuration;
+    }
     [self.navigationController.view addSubview:reminderView];
 }
 -(void)animateReminderWhenFirstAddRecord:(NSNotification *)noti
